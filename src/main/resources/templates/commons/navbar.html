@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<nav th:fragment="navbar" class="navbar navbar-expand-md bg-light py-3">
+    <div class="container">
+        <a class="navbar-brand colored-text" href="/">
+            <!-- Logo goes here -->
+            <b>Paws Logo</b>
+        </a>
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav ms-auto">
+
+                <a class="nav-link" aria-current="page" href="/home">Home</a>
+                <a class="nav-link" href="/pet-registry">Pet Registry</a>
+
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Shelters</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/shelters">Info</a></li>
+                        <li><a class="dropdown-item" href="/contact-form">Contact a shelter</a></li>
+                    </ul>
+                </div>
+
+                <a class="nav-link" href="#">Pet Care</a>
+
+                <a class="nav-link colored-text" href="/login"><b>Login</b></a>
+                <a class="nav-link colored-text" href="/register"><b>Register</b></a>
+
+            </div>
+        </div>
+    </div>
+</nav>
+</body>
+</html>

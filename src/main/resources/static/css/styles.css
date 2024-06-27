@@ -1,0 +1,109 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+:root {
+    --primary: #FFB000;
+    --primary-light: #FFCF9D;
+    --primary-dark: #ffae00ad;
+    --secondary: #004225;
+    --secondary-light: #F5F5DC;
+    --black: #010101;
+    --gray-1: #788190;
+    --gray-2: #d3d4db;
+    --white: #FFFFFF;
+    --body: #fefefe;
+}
+
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--body);
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+.btn-primary {
+    background-color: var(--primary);
+    border: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    border: white
+}
+
+.btn-secondary {
+    background-color: var(--secondary);
+}
+
+.btn-secondary:hover {
+    background-color: var(--black);
+}
+
+
+.navbar {
+    padding: 18px 0;
+}
+
+.nav-link {
+    margin-left: 30px;
+    font-size: 16px;
+    color: var(--black);
+}
+
+.colored-text {
+    color: #FFB000;
+}
+
+.colored-text:hover {
+    color: #ffae00ad;
+}
+
+
+.box-area {
+    width: 930px;
+}
+
+.righ-box {
+    padding: 40px 30px 40px 40px;
+}
+
+.img-max {
+    max-width: 300px;
+    width: 100%;
+}
+
+/* custom cards for pet-registry*/
+.intro{
+    height: 70px;
+    position: absolute;
+    bottom: 0px;
+    background: rgb(27, 27, 27, .5);
+    transition: 0.5s;
+}
+.intro .card-btn{
+    position: relative;
+    transition-delay: 0.3s;
+}
+.card-p{
+    visibility: hidden;
+    opacity: 0;
+}
+.custom-card:hover{
+    cursor: pointer;
+}
+.custom-card:hover .intro{
+    height: 260px;
+    background: var(--black);
+    opacity: 80%;
+}
+.custom-card:hover .card-p{
+    visibility: visible;
+    opacity: 100;
+}
+
