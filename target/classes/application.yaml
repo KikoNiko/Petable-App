@@ -1,30 +1,30 @@
 spring:
-#  datasource:
-#    driverClassName: com.mysql.cj.jdbc.Driver
-#    url: "jdbc:mysql://localhost:3306/db-name?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC"
-#    username: ${MYSQL_USERNAME}
-#    password: ${MYSQL_PASS}
-#
-#  servlet:
-#    multipart:
-#      max-file-size: 1MB
-#      max-request-size: 5MB
-#
-#  sql:
-#    init:
-#      mode: never
-#  jpa:
-#    # Choose either MySQL 8 or MySQL 5 below
-#    # For MySQL 8
-#    database-platform: org.hibernate.dialect.MySQL8Dialect
-#    #For MySQL 5
-#    #database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-#    hibernate:
-#      ddl-auto: update
-#    properties:
-#      hibernate:
-#        format_sql: true
-#    defer-datasource-initialization: true
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: "jdbc:mysql://localhost:3306/petable-db?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC"
+    username: ${MYSQL_USERNAME}
+    password: ${MYSQL_PASS}
+
+  servlet:
+    multipart:
+      max-file-size: 1MB
+      max-request-size: 5MB
+
+  sql:
+    init:
+      mode: never
+  jpa:
+    # Choose either MySQL 8 or MySQL 5 below
+    # For MySQL 8
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    #For MySQL 5
+    #database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true
   #Cloudinary Properties
   #cloudinary:
   #api-key:
