@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{commons/head::head}"></head>
+<body>
+<header th:replace="~{commons/navbar::navbar}"></header>
+<div class="section pt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <form action="/file/post" class="dropzone dz-clickable border rounded bg-light p-3 mb-5">
+                    <div class="dz-default dz-message text-center">
+                        <img src="/images/photos-upload.jpg" alt="">
+                        <div class="mt-3">Drop files here or click to upload.</div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <p class="ps-1">Name</p>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Pet Name" aria-label="petName">
+                </div>
+                <p class="ps-1">Birthdate</p>
+                <div class="input-group mb-3">
+                    <input type="date" class="form-control" placeholder="Birthdate" aria-label="birthdate">
+                </div>
+                <p class="ps-1">Location</p>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Location" aria-label="location">
+                </div>
+                <p class="ps-1">Status</p>
+                <div class="input-group mb-3">
+                    <select class="form-select" aria-label="form-select">
+                        <option selected>Status</option>
+                        <option value="1">Looking for a home</option>
+                        <option value="2">Adopted</option>
+                    </select>
+                </div>
+                <p class="ps-1">Description / Story</p>
+                <div class="input-group">
+                    <textarea class="form-control" aria-label="Description" placeholder=""></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script>
+    Dropzone.autoDiscover = false;
+
+    // Dropzone configuration
+    var myDropzone = new Dropzone(".dropzone", {
+        url: "/file/post",
+        paramName: "file",
+        maxFilesize: 2, // MB
+        maxFiles: 10,
+        acceptedFiles: 'image/*',
+        dictDefaultMessage: "Drag files here or click to upload.",
+        clickable: true
+    });
+</script>
+</html>
