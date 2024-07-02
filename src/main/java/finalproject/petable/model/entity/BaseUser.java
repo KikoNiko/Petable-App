@@ -1,17 +1,17 @@
 package finalproject.petable.model.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 
 @MappedSuperclass
-public class BaseUser{
+public abstract class BaseUser{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
+    @NotBlank
     @Column(unique = true)
     private String email;
-    @NotNull
+    @NotBlank
     private String password;
 
     public Long getId() {

@@ -15,7 +15,7 @@ public class HomeController {
 
     @GetMapping("/home")
     public String viewHome() {
-        return "user-profile";
+        return "client-profile";
     }
 
     @GetMapping("/shelter-profile")

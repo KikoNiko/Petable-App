@@ -21,7 +21,7 @@ public class Shelter extends BaseUser{
     private String location;
     @NotNull
     @Column(unique = true)
-    private String identificationNumber;
+    private String specialNumber;
     @OneToMany(mappedBy = "shelter")
     private List<Pet> petList;
     @OneToMany
@@ -48,12 +48,12 @@ public class Shelter extends BaseUser{
         this.location = location;
     }
 
-    public String getIdentificationNumber() {
-        return identificationNumber;
+    public String getSpecialNumber() {
+        return specialNumber;
     }
 
-    public void setIdentificationNumber(String identificationNumber) {
-        this.identificationNumber = identificationNumber;
+    public void setSpecialNumber(String identificationNumber) {
+        this.specialNumber = identificationNumber;
     }
 
     public List<Pet> getPetList() {

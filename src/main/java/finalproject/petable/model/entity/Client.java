@@ -1,27 +1,24 @@
 package finalproject.petable.model.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "pet_seekers")
-public class PetSeeker extends BaseUser{
-    @NotNull
+@Table(name = "clients")
+public class Client extends BaseUser{
+    @NotBlank
     private String firstName;
-    @NotNull
+    @NotBlank
     private String lastName;
-    @NotNull
-    @Column(unique = true)
-    private String username;
     @ManyToMany
     private Set<Pet> favoritePets;
     @OneToMany
     private Set<Message> messages;
 
-    public PetSeeker() {
+    public Client() {
         favoritePets = new HashSet<>();
         messages = new HashSet<>();
     }
@@ -40,14 +37,6 @@ public class PetSeeker extends BaseUser{
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public Set<Pet> getFavoritePets() {
