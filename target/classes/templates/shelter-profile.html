@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{commons/head::head}">
+<head th:replace="~{fragments/head::head}">
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" />
     <script defer src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 </head>
 <body>
-<header th:replace="~{commons/navbar::navbar}"></header>
+<header th:replace="~{fragments/navbar::navbar}"></header>
 
 <!-- Shelter profile info: photo, name, email... -->
 <div class="section pt-5">
@@ -275,7 +275,7 @@
   </div>
 <!-- EO: Edit info Modal -->
 
-<footer th:replace="~{commons/footer::footer}"></footer>
+<footer th:replace="~{fragments/footer::footer}"></footer>
 
 </body>
 

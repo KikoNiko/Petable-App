@@ -1,6 +1,7 @@
 package finalproject.petable.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -8,15 +9,15 @@ import java.util.Set;
 @Entity
 @Table(name = "pet_seekers")
 public class PetSeeker extends BaseUser{
-    @Column(nullable = false)
+    @NotNull
     private String firstName;
-    @Column(nullable = false)
+    @NotNull
     private String lastName;
-    @Column(nullable = false, unique = true)
+    @NotNull
+    @Column(unique = true)
     private String username;
     @ManyToMany
     private Set<Pet> favoritePets;
-    private String description;
     @OneToMany
     private Set<Message> messages;
 
@@ -55,14 +56,6 @@ public class PetSeeker extends BaseUser{
 
     public void setFavoritePets(Set<Pet> favoritePets) {
         this.favoritePets = favoritePets;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public Set<Message> getMessages() {

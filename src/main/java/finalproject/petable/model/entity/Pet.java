@@ -4,25 +4,28 @@ import finalproject.petable.model.entity.enums.Gender;
 import finalproject.petable.model.entity.enums.PetStatus;
 import finalproject.petable.model.entity.enums.PetType;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Table(name = "pets")
 public class Pet extends BaseEntity{
-    @Column(nullable = false)
+    @NotNull
     private String name;
-    @Column(nullable = false)
+    @NotNull
     @Enumerated(EnumType.STRING)
     private PetType type;
-    @Column(nullable = false)
+    @NotNull
     @Enumerated(EnumType.STRING)
     private Gender gender;
-    @Column(nullable = false)
+    @NotNull
     private LocalDate birthdate;
-    @Column(nullable = false)
+    @NotNull
     private String location;
-    @Column(nullable = false)
+    private String description;
+    @NotNull
     @Enumerated(EnumType.STRING)
     private PetStatus status;
     @ManyToOne
@@ -71,6 +74,14 @@ public class Pet extends BaseEntity{
         this.location = location;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public PetStatus getStatus() {
         return status;
     }
@@ -85,5 +96,25 @@ public class Pet extends BaseEntity{
 
     public void setShelter(Shelter shelter) {
         this.shelter = shelter;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pet pet = (Pet) o;
+        return Objects.equals(name, pet.name)
+                && type == pet.type
+                && gender == pet.gender
+                && Objects.equals(birthdate, pet.birthdate)
+                && Objects.equals(location, pet.location)
+                && Objects.equals(description, pet.description)
+                && status == pet.status
+                && Objects.equals(shelter, pet.shelter);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, type, gender, birthdate, location, description, status, shelter);
     }
 }
