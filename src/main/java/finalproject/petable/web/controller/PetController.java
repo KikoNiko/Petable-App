@@ -1,4 +1,4 @@
-package finalproject.petable.controller;
+package finalproject.petable.web.controller;
 
 import finalproject.petable.model.dto.PetAddDTO;
 import finalproject.petable.model.entity.enums.Gender;

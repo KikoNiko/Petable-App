@@ -8,12 +8,17 @@ import java.util.Set;
 
 @Entity
 @Table(name = "clients")
-public class Client extends BaseUser{
+public class Client extends BaseUser {
     @NotBlank
     private String firstName;
     @NotBlank
     private String lastName;
     @ManyToMany
+    @JoinTable(
+            name = "clients_favorite_pets",
+            joinColumns = @JoinColumn(name = "client_id"),
+            inverseJoinColumns = @JoinColumn(name = "pet_id")
+    )
     private Set<Pet> favoritePets;
     @OneToMany
     private Set<Message> messages;

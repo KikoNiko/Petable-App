@@ -1,4 +1,4 @@
-package finalproject.petable.controller;
+package finalproject.petable.web.controller;
 
 import finalproject.petable.model.dto.ClientRegistrationDTO;
 import finalproject.petable.model.dto.ShelterRegistrationDTO;
@@ -8,8 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/users")
 public class RegistrationController {
     private final UserService userService;
 
@@ -24,7 +26,7 @@ public class RegistrationController {
 
     @GetMapping("/register-user")
     public String viewRegisterClient() {
-        return "register-client";
+        return "register-user";
     }
 
     @ModelAttribute("clientRegistrationData")
@@ -37,7 +39,7 @@ public class RegistrationController {
         return new ShelterRegistrationDTO();
     }
 
-    @PostMapping("/register-client")
+    @PostMapping("/register-user")
     public String registerClient(ClientRegistrationDTO clientRegistrationData) {
         userService.registerClient(clientRegistrationData);
         return "redirect:/login";

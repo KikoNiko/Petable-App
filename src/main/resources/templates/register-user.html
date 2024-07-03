@@ -20,22 +20,37 @@
                     <p class="text-dark fs-4">Sign Up page</p>
                 </div>
 
-                <form action="index.html">
+                <form th:action="@{/users/register-user}"
+                      th:method="post"
+                      th:object="${clientRegistrationData}">
                     <div class="input-group mb-3">
                         <input type="text"
+                               th:field="*{firstName}"
                                class="form-control form-control-lg bg-light fs-6"
                                placeholder="First Name" required>
 
-                        <input type="text" class="form-control form-control-lg bg-light fs-6" placeholder="Last Name" required>
+                        <input type="text"
+                               th:field="*{lastName}"
+                               class="form-control form-control-lg bg-light fs-6"
+                               placeholder="Last Name" required>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control form-control-lg bg-light fs-6" placeholder="Email address" required>
+                        <input type="email"
+                               th:field="*{email}"
+                               class="form-control form-control-lg bg-light fs-6"
+                               placeholder="Email address" required>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control form-control-lg bg-light fs-6" placeholder="Password" required>
+                        <input type="password"
+                               th:field="*{password}"
+                               class="form-control form-control-lg bg-light fs-6"
+                               placeholder="Password" required>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control form-control-lg bg-light fs-6" placeholder="Confirm Password" required>
+                        <input type="password"
+                               th:field="*{confirmPassword}"
+                               class="form-control form-control-lg bg-light fs-6"
+                               placeholder="Confirm Password" required>
                     </div>
 
                     <div class="input-group mb-3">

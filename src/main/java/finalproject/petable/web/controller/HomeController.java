@@ -1,6 +1,10 @@
-package finalproject.petable.controller;
+package finalproject.petable.web.controller;
 
+import finalproject.petable.model.AppUserDetails;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -8,7 +12,8 @@ public class HomeController {
 
 
     @GetMapping("/")
-    public String index() {
+    public String home(@AuthenticationPrincipal UserDetails userDetails,
+                       Model model) {
 
         return "index";
     }
@@ -33,22 +38,22 @@ public class HomeController {
         return "shelters";
     }
 
-    @GetMapping("contact-form")
+    @GetMapping("/contact-form")
     public String viewContactPage() {
         return "contact-form";
     }
 
-    @GetMapping("pet-profile")
+    @GetMapping("/pet-profile")
     public String viewPetProfile() {
         return "pet-profile";
     }
 
-    @GetMapping("pet-care")
+    @GetMapping("/pet-care")
     public String viewPetCarePage() {
         return "pet-care";
     }
 
-    @GetMapping("member")
+    @GetMapping("/member")
     public String viewMemberPage() {
         return "member";
     }

@@ -13,7 +13,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "shelters")
-public class Shelter extends BaseUser{
+public class Shelter extends BaseUser {
     @NotNull
     @Column(unique = true)
     private String name;
