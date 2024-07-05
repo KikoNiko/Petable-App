@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <body>
 <nav th:fragment="navbar" class="navbar navbar-expand-md bg-light py-3">
@@ -18,26 +19,49 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ms-auto">
 
-                <a class="nav-link" aria-current="page" href="/home">Home</a>
-                <a class="nav-link" href="/pet-registry">Pet Registry</a>
+                <a class="nav-link"
+                   sec:authorize="hasRole('CLIENT')"
+                   aria-current="page" href="/client-profile">Home</a>
+                <a class="nav-link"
+                   sec:authorize="hasRole('SHELTER')"
+                   aria-current="page" href="/shelter-profile">Home</a>
+
+                <div sec:authentication="name"></div>
+
+                <a class="nav-link"
+                   sec:authorize="!hasRole('SHELTER')"
+                   href="/pet-registry">Pet Registry</a>
+
+                <a class="nav-link"
+                   sec:authorize="hasRole('SHELTER')"
+                   th:href="@{/add-pet}">Add Pet</a>
+
+                <a class="nav-link"
+                   sec:authorize="hasRole('SHELTER')"
+                   href="/users/shelter/my-animals">My animals</a>
 
                 <div class="dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Shelters</a>
+                    <a class="nav-link dropdown-toggle" sec:authorize="!hasRole('SHELTER')"
+                       data-bs-toggle="dropdown" href="#">Shelters</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/shelters">Info</a></li>
-                        <li><a class="dropdown-item" href="/contact-form">Contact a shelter</a></li>
+                        <li><a class="dropdown-item" href="/shelters/info">Info</a></li>
+                        <li><a class="dropdown-item" href="/shelters/contact-form">Contact a shelter</a></li>
                     </ul>
                 </div>
 
-                <a class="nav-link" href="#">Pet Care</a>
+                <a class="nav-link" href="/pet-care">Pet Care</a>
 
-                <a class="nav-link" th:href="@{/add-pet}">Add Pet</a>
+                <div sec:authorize="!isAuthenticated()">
+                    <a class="nav-link colored-text" href="/users/login"><b>Login</b></a>
+                    <a class="nav-link colored-text" href="/users/register"><b>Register</b></a>
+                </div>
 
-                <a class="nav-link colored-text" href="/users/login"><b>Login</b></a>
-                <a class="nav-link colored-text" href="/users/register"><b>Register</b></a>
-
-                <a class="nav-link text-danger" href="#"><b>Logout</b></a>
-
+                <form th:action="@{/users/logout}"
+                      th:method="post">
+                    <input class="nav-link text-danger fw-bold"
+                           sec:authorize="isAuthenticated()"
+                           type="submit" value="Logout">
+                </form>
             </div>
         </div>
     </div>

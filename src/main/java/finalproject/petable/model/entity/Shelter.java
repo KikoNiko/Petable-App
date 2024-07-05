@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
@@ -14,12 +15,12 @@ import java.util.Set;
 @Entity
 @Table(name = "shelters")
 public class Shelter extends BaseUser {
-    @NotNull
+    @NotBlank
     @Column(unique = true)
     private String name;
-    @NotNull
+    @NotBlank
     private String location;
-    @NotNull
+    @NotBlank
     @Column(unique = true)
     private String specialNumber;
     @OneToMany(mappedBy = "shelter")

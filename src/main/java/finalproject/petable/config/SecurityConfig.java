@@ -21,8 +21,18 @@ public class SecurityConfig {
                                 authorizeRequests
                                         // all static resources to "common locations" (css, images, js) are available to anyone
                                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                                        .requestMatchers("/", "/users/login", "/users/register", "/users/register-user", "/users/register-shelter")
+                                        .requestMatchers("/",
+                                                "/users/login",
+                                                "/users/register",
+                                                "/users/register-user",
+                                                "/users/register-shelter",
+                                                "/pet-registry",
+                                                "pet-profile",
+                                                "/pet-care",
+                                                "/shelters/info")
                                         .permitAll()
+                                        .requestMatchers("/add-pet", "/shelter-profile").hasRole("SHELTER")
+                                        .requestMatchers("/client-profile").hasRole("CLIENT")
                                         // all other URL-s should be authenticated.
                                         .anyRequest()
                                         .authenticated()
@@ -32,7 +42,7 @@ public class SecurityConfig {
                                 // Where is our custom login form?
                                 .loginPage("/users/login")
                                 // what is the name of the username parameter in the Login POST request?
-                                .usernameParameter("email")
+                                .usernameParameter("username")
                                 // what is the name of the password parameter in the Login POST request?
                                 .passwordParameter("password")
                                 // What will happen if the login is successful

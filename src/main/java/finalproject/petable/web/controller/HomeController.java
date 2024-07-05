@@ -18,7 +18,7 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/home")
+    @GetMapping("/client-profile")
     public String viewHome() {
         return "client-profile";
     }
@@ -33,12 +33,12 @@ public class HomeController {
         return "pet-registry";
     }
 
-    @GetMapping("/shelters")
+    @GetMapping("/shelters/info")
     public String viewSheltersPage() {
         return "shelters";
     }
 
-    @GetMapping("/contact-form")
+    @GetMapping("/shelters/contact-form")
     public String viewContactPage() {
         return "contact-form";
     }

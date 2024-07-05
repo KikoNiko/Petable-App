@@ -3,12 +3,15 @@ package finalproject.petable.web.controller;
 import finalproject.petable.model.dto.ClientRegistrationDTO;
 import finalproject.petable.model.dto.ShelterRegistrationDTO;
 import finalproject.petable.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/users")
@@ -40,9 +43,25 @@ public class RegistrationController {
     }
 
     @PostMapping("/register-user")
-    public String registerClient(ClientRegistrationDTO clientRegistrationData) {
+    public String registerClient(@Valid ClientRegistrationDTO clientRegistrationData,
+                                 BindingResult bindingResult,
+                                 RedirectAttributes redirectAttributes) {
+        if (!clientRegistrationData.getPassword().equals(clientRegistrationData.getConfirmPassword())){
+            bindingResult.addError(
+                    new FieldError(
+                            "differentPasswords",
+                            "confirmPassword",
+                            "Passwords don't match.")
+            );
+        }
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("clientRegistrationData", clientRegistrationData);
+            redirectAttributes.addFlashAttribute(
+                    "org.springframework.validation.BindingResult.clientRegistrationData", bindingResult);
+            return "redirect:/users/register";
+        }
         userService.registerClient(clientRegistrationData);
-        return "redirect:/login";
+        return "redirect:/users/login";
     }
 
     @GetMapping("/register-shelter")
@@ -51,8 +70,24 @@ public class RegistrationController {
     }
 
     @PostMapping("/register-shelter")
-    public String registerShelter(ShelterRegistrationDTO shelterRegistrationData) {
+    public String registerShelter(@Valid ShelterRegistrationDTO shelterRegistrationData,
+                                  BindingResult bindingResult,
+                                  RedirectAttributes redirectAttributes) {
+        if (!shelterRegistrationData.getPassword().equals(shelterRegistrationData.getConfirmPassword())){
+            bindingResult.addError(
+                    new FieldError(
+                            "differentPasswords",
+                            "confirmPassword",
+                            "Passwords don't match.")
+            );
+        }
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("shelterRegistrationData", shelterRegistrationData);
+            redirectAttributes.addFlashAttribute(
+                    "org.springframework.validation.BindingResult.shelterRegistrationData", bindingResult);
+            return "redirect:/users/register";
+        }
         userService.registerShelter(shelterRegistrationData);
-        return "redirect:/login";
+        return "redirect:/users/login";
     }
 }

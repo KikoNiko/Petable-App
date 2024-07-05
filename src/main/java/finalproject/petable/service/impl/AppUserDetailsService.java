@@ -19,18 +19,18 @@ public class AppUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository
-                .findByEmail(email)
+                .findByUsername(username)
                 .map(AppUserDetailsService::map)
                 .orElseThrow(
-                        () -> new UsernameNotFoundException("User with email " + email + " not found!"));
+                        () -> new UsernameNotFoundException("User with username " + username + " not found!"));
     }
 
     private static UserDetails map(BaseUser user) {
 
         return new AppUserDetails(
-                user.getEmail(),
+                user.getUsername(),
                 user.getPassword(),
                 user.getRoles()
                         .stream()
