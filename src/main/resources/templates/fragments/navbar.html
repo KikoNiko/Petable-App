@@ -3,12 +3,14 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <body>
-<nav th:fragment="navbar" class="navbar navbar-expand-md bg-light py-3">
+<nav th:fragment="navbar" class="navbar navbar-expand-md bg-light mb-2 py-3">
     <div class="container">
         <a class="navbar-brand colored-text" href="/">
             <!-- Logo goes here -->
             <b>Petable</b>
         </a>
+
+        <p class="pt-3 fs-6 fw-light" sec:authentication="name"></p>
         <button class="navbar-toggler" type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#navbarNavAltMarkup"
@@ -26,11 +28,9 @@
                    sec:authorize="hasRole('SHELTER')"
                    aria-current="page" href="/shelter-profile">Home</a>
 
-                <div sec:authentication="name"></div>
-
                 <a class="nav-link"
                    sec:authorize="!hasRole('SHELTER')"
-                   href="/pet-registry">Pet Registry</a>
+                   href="/pet-registry">Find A Pet</a>
 
                 <a class="nav-link"
                    sec:authorize="hasRole('SHELTER')"
@@ -51,10 +51,8 @@
 
                 <a class="nav-link" href="/pet-care">Pet Care</a>
 
-                <div sec:authorize="!isAuthenticated()">
-                    <a class="nav-link colored-text" href="/users/login"><b>Login</b></a>
-                    <a class="nav-link colored-text" href="/users/register"><b>Register</b></a>
-                </div>
+                <a class="nav-link colored-text" sec:authorize="!isAuthenticated()"  href="/users/login"><b>Login</b></a>
+                <a class="nav-link colored-text" sec:authorize="!isAuthenticated()" href="/users/register"><b>Register</b></a>
 
                 <form th:action="@{/users/logout}"
                       th:method="post">

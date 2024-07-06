@@ -20,26 +20,25 @@
                     <p class="text-dark fs-4">Sign Up page</p>
                 </div>
 
-                <form th:action="@{/users/register-user}"
+                <form th:action="@{/users/register/client}"
                       th:method="post"
                       th:object="${clientRegistrationData}">
-                    <div class="input-group mb-3">
-                        <input type="text"
-                               th:field="*{firstName}"
-                               th:errorclass="'is-invalid'"
-                               class="form-control form-control-lg bg-light fs-6"
-                               placeholder="First Name" required>
 
-                        <small th:if="${#fields.hasErrors('firstName')}"
+                    <div class="input-group mb-3">
+                            <input type="text"
+                                   th:field="*{firstName}"
+                                   th:errorclass="'is-invalid'"
+                                   class="form-control form-control-lg bg-light fs-6"
+                                   placeholder="First Name" required>
+                        <p th:if="${#fields.hasErrors('firstName')}"
                                th:errors="*{firstName}"
-                               class="invalid-feedback text-danger" style="font-size: 15px">First name error message</small>
+                               class="invalid-feedback text-danger" style="font-size: 15px">First name error message</p>
 
                         <input type="text"
                                th:field="*{lastName}"
                                th:errorclass="'is-invalid'"
                                class="form-control form-control-lg bg-light fs-6"
                                placeholder="Last Name" required>
-
                         <small th:if="${#fields.hasErrors('lastName')}"
                                th:errors="*{lastName}"
                                class="invalid-feedback text-danger" style="font-size: 15px">Last name error message</small>
@@ -50,7 +49,6 @@
                                th:errorclass="'is-invalid'"
                                class="form-control form-control-lg bg-light fs-6"
                                placeholder="Email address" required>
-
                         <small th:if="${#fields.hasErrors('email')}"
                                th:errors="*{email}"
                                class="invalid-feedback text-danger" style="font-size: 15px">Email error message</small>
@@ -61,7 +59,6 @@
                                th:errorclass="'is-invalid'"
                                class="form-control form-control-lg bg-light fs-6"
                                placeholder="Username" required>
-
                         <small th:if="${#fields.hasErrors('username')}"
                                th:errors="*{username}"
                                class="invalid-feedback text-danger" style="font-size: 15px">Username error message</small>
@@ -82,7 +79,6 @@
                                th:errorclass="'is-invalid'"
                                class="form-control form-control-lg bg-light fs-6"
                                placeholder="Confirm Password" required>
-
                         <small th:if="${#fields.hasErrors('confirmPassword')}"
                                th:errors="*{confirmPassword}"
                                class="invalid-feedback text-danger" style="font-size: 15px">Confirm Password error message</small>

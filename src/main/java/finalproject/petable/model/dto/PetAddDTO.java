@@ -3,16 +3,13 @@ package finalproject.petable.model.dto;
 import finalproject.petable.model.entity.enums.Gender;
 import finalproject.petable.model.entity.enums.PetStatus;
 import finalproject.petable.model.entity.enums.PetType;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
 
 public class PetAddDTO {
 
-    @NotBlank
+    @NotEmpty
     @Size(min = 2, max = 50)
     private String name;
     @NotNull
@@ -22,12 +19,12 @@ public class PetAddDTO {
     @NotNull
     @Past
     private LocalDate birthdate;
-    @NotBlank
+    @NotEmpty
     @Size(min = 2, max = 50)
     private String location;
     @NotNull
     private PetStatus status;
-    @NotBlank
+    @NotEmpty
     @Size(max = 500)
     private String description;
 

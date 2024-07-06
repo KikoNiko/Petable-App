@@ -1,9 +1,12 @@
 package finalproject.petable.service;
 
 import finalproject.petable.model.dto.ClientRegistrationDTO;
+import finalproject.petable.model.dto.RegistrationDTO;
 import finalproject.petable.model.dto.ShelterRegistrationDTO;
 
 public interface UserService {
-    void registerClient(ClientRegistrationDTO clientRegistrationDTO);
-    void registerShelter(ShelterRegistrationDTO shelterRegistrationDTO);
+    boolean isUsernameRegistered(String username);
+    boolean isEmailRegistered(String email);
+
+    void registerUser(RegistrationDTO registrationData, String userType);
 }
