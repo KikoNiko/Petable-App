@@ -28,11 +28,6 @@ public class HomeController {
         return "shelter-profile";
     }
 
-    @GetMapping("/pet-registry")
-    public String viewPetRegistry() {
-        return "pet-registry";
-    }
-
     @GetMapping("/shelters/info")
     public String viewSheltersPage() {
         return "shelters";

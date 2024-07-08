@@ -2,14 +2,20 @@ package finalproject.petable.service.impl;
 
 import finalproject.petable.model.AppUserDetails;
 import finalproject.petable.model.dto.PetAddDTO;
+import finalproject.petable.model.dto.PetRegistryDisplayInfoDTO;
 import finalproject.petable.model.entity.Pet;
 import finalproject.petable.model.entity.Shelter;
+import finalproject.petable.model.entity.enums.Gender;
+import finalproject.petable.model.entity.enums.PetType;
 import finalproject.petable.repository.PetRepository;
 import finalproject.petable.repository.ShelterRepository;
 import finalproject.petable.service.PetService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PetServiceImpl implements PetService {
@@ -29,5 +35,13 @@ public class PetServiceImpl implements PetService {
         Pet pet = modelMapper.map(petAddDTO, Pet.class);
         shelterRepository.findByUsername(userDetails.getUsername()).ifPresent(pet::setShelter);
         petRepository.save(pet);
+    }
+
+    @Override
+    public List<PetRegistryDisplayInfoDTO> getAllByType(PetType petType) {
+        return petRepository.findAllByType(petType)
+                .stream()
+                .map(PetRegistryDisplayInfoDTO::new)
+                .collect(Collectors.toList());
     }
 }

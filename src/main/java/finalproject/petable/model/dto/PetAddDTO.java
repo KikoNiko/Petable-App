@@ -10,23 +10,25 @@ import java.time.LocalDate;
 public class PetAddDTO {
 
     @NotEmpty
-    @Size(min = 2, max = 50)
+    @Size(min = 2, max = 50, message = "Name length must be between 2 and 50 characters!")
     private String name;
     @NotNull
     private Gender gender;
     @NotNull
     private PetType type;
     @NotNull
-    @Past
+    @Past(message = "Birthdate cannot be in the present or future!")
     private LocalDate birthdate;
     @NotEmpty
     @Size(min = 2, max = 50)
     private String location;
-    @NotNull
+    @NotNull(message = "Pet status cannot be empty!")
     private PetStatus status;
     @NotEmpty
+    @Size(max = 50, message = "Short description cannot be longer than 50 characters.")
+    private String shortDescription;
     @Size(max = 500)
-    private String description;
+    private String story;
 
     public String getName() {
         return name;
@@ -76,11 +78,19 @@ public class PetAddDTO {
         this.status = status;
     }
 
-    public String getDescription() {
-        return description;
+    public String getShortDescription() {
+        return shortDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
+    }
+
+    public String getStory() {
+        return story;
+    }
+
+    public void setStory(String story) {
+        this.story = story;
     }
 }

@@ -4,7 +4,9 @@ import finalproject.petable.model.entity.enums.Gender;
 import finalproject.petable.model.entity.enums.PetStatus;
 import finalproject.petable.model.entity.enums.PetType;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -24,7 +26,10 @@ public class Pet extends BaseEntity{
     private LocalDate birthdate;
     @NotNull
     private String location;
-    private String description;
+    @Size(max = 50)
+    private String shortDescription;
+
+    private String story;
     @NotNull
     @Enumerated(EnumType.STRING)
     private PetStatus status;
@@ -74,12 +79,20 @@ public class Pet extends BaseEntity{
         this.location = location;
     }
 
-    public String getDescription() {
-        return description;
+    public String getShortDescription() {
+        return shortDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setShortDescription(String description) {
+        this.shortDescription = description;
+    }
+
+    public String getStory() {
+        return story;
+    }
+
+    public void setStory(String story) {
+        this.story = story;
     }
 
     public PetStatus getStatus() {
@@ -108,13 +121,13 @@ public class Pet extends BaseEntity{
                 && gender == pet.gender
                 && Objects.equals(birthdate, pet.birthdate)
                 && Objects.equals(location, pet.location)
-                && Objects.equals(description, pet.description)
+                && Objects.equals(shortDescription, pet.shortDescription)
                 && status == pet.status
                 && Objects.equals(shelter, pet.shelter);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, type, gender, birthdate, location, description, status, shelter);
+        return Objects.hash(name, type, gender, birthdate, location, shortDescription, status, shelter);
     }
 }

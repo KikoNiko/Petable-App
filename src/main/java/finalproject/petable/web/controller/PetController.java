@@ -2,6 +2,7 @@ package finalproject.petable.web.controller;
 
 import finalproject.petable.model.AppUserDetails;
 import finalproject.petable.model.dto.PetAddDTO;
+import finalproject.petable.model.dto.PetRegistryDisplayInfoDTO;
 import finalproject.petable.model.entity.enums.Gender;
 import finalproject.petable.model.entity.enums.PetStatus;
 import finalproject.petable.model.entity.enums.PetType;
@@ -9,9 +10,12 @@ import finalproject.petable.service.PetService;
 import jakarta.validation.Valid;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 
 @Controller
@@ -48,8 +52,8 @@ public class PetController {
     }
 
     @PostMapping("/add-pet")
-    public String addPet(@Valid PetAddDTO petData,
-                         @AuthenticationPrincipal AppUserDetails userDetails,
+    public String addPet(@AuthenticationPrincipal AppUserDetails userDetails,
+                         @Valid PetAddDTO petData,
                          BindingResult bindingResult,
                          RedirectAttributes redirectAttributes) {
 
@@ -61,5 +65,18 @@ public class PetController {
         petService.addPet(userDetails, petData);
         return "redirect:/shelter-profile";
     }
+
+    @GetMapping("/pet-registry")
+    public String viewPetRegistry(Model model) {
+        List<PetRegistryDisplayInfoDTO> allRegisteredDogs = petService.getAllByType(PetType.DOG);
+        model.addAttribute("allRegisteredDogs", allRegisteredDogs);
+
+        List<PetRegistryDisplayInfoDTO> allRegisteredCats = petService.getAllByType(PetType.CAT);
+        model.addAttribute("allRegisteredCats", allRegisteredCats);
+
+        return "pet-registry";
+    }
+
+
 
 }
