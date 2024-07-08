@@ -21,21 +21,24 @@
                 </div>
                 <form th:action="@{/users/login}"
                       th:method="post">
-                    <div class="input-group mb-3">
+
+                    <div class="form-group mb-3">
+                        <label class="mb-2" for="username">Username</label>
                         <input type="text"
                                id="username"
                                name="username"
                                class="form-control form-control-lg bg-light fs-6"
-                               placeholder="Username" required>
+                               placeholder="Enter username" required>
                     </div>
-                    <div class="input-group mb-3">
+                    <div class="form-group mb-3">
+                        <label class="mb-2" for="password">Password</label>
                         <input type="password"
                                id="password"
                                name="password"
                                class="form-control form-control-lg bg-light fs-6"
-                               placeholder="Password" required>
+                               placeholder="Enter password" required>
                     </div>
-
+                    <p th:if="${param.error}" class="error text-danger">Wrong username or password!</p>
                     <div class="input-group mb-3">
                         <button class="btn btn-lg btn-primary w-100 fs-5">
                             Login

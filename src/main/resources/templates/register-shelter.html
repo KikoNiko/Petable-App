@@ -11,20 +11,22 @@
             <div class="form-image my-3">
                 <img src="/images/login-image.jpg" class="image-fluid rounded-5" style="width: 250px" alt="">
             </div>
-            <p class="text-dark fs-5">Shelters get to list their animals to find them potential new homes.</p>
+            <p class="text-dark fs-5 mx-5 my-2">Shelters get to list their animals to find them potential new homes.</p>
         </div>
 
         <div class="col-md-6 right-box">
             <div class="row align-items-center">
-                <div class="header-text my-4">
+                <div class="header-text my-3">
                     <p class="text-dark fs-4">Sign Up page</p>
                 </div>
 
                 <form th:action="@{/users/register/shelter}"
                       th:method="post"
                       th:object="${shelterRegistrationData}">
-                    <div class="input-group mb-3">
+                    <div class="form-group mb-3">
+                        <label class="mb-2" for="shelterName">Shelter Name</label>
                         <input type="text"
+                               id="shelterName"
                                th:field="*{name}"
                                th:errorclass="'is-invalid'"
                                class="form-control form-control-lg bg-light fs-6"
@@ -34,8 +36,10 @@
                                th:errors="*{name}"
                                class="invalid-feedback" style="font-size: 15px">Shelter name error message</small>
                     </div>
-                    <div class="input-group mb-3">
+                    <div class="form-group mb-3">
+                        <label class="mb-2" for="username">Username</label>
                         <input type="text"
+                               id="username"
                                th:field="*{username}"
                                th:errorclass="'is-invalid'"
                                class="form-control form-control-lg bg-light fs-6"
@@ -45,8 +49,10 @@
                                th:errors="*{username}"
                                class="invalid-feedback text-danger" style="font-size: 15px">Username error message</small>
                     </div>
-                    <div class="input-group mb-3">
+                    <div class="form-group mb-3">
+                        <label class="mb-2" for="specialNumber">Special Number</label>
                         <input type="text"
+                               id="specialNumber"
                                th:field="*{specialNumber}"
                                th:errorclass="'is-invalid'"
                                class="form-control form-control-lg bg-light fs-6"
@@ -56,8 +62,10 @@
                                th:errors="*{specialNumber}"
                                class="invalid-feedback" style="font-size: 15px">Special number error message</small>
                     </div>
-                    <div class="input-group mb-3">
+                    <div class="form-group mb-3">
+                        <label class="mb-2" for="city">City (location)</label>
                         <input type="text"
+                               id="city"
                                th:field="*{location}"
                                th:errorclass="'is-invalid'"
                                class="form-control form-control-lg bg-light fs-6"
@@ -67,8 +75,10 @@
                                th:errors="*{location}"
                                class="invalid-feedback" style="font-size: 15px">Location error message</small>
                     </div>
-                    <div class="input-group mb-3">
+                    <div class="form-group mb-3">
+                        <label class="mb-2" for="email">Email address</label>
                         <input type="email"
+                               id="email"
                                th:field="*{email}"
                                th:errorclass="'is-invalid'"
                                class="form-control form-control-lg bg-light fs-6"
@@ -78,8 +88,10 @@
                                th:errors="*{email}"
                                class="invalid-feedback" style="font-size: 15px">Email error message</small>
                     </div>
-                    <div class="input-group mb-3">
+                    <div class="form-group mb-3">
+                        <label class="mb-2" for="password">Password</label>
                         <input type="password"
+                               id="password"
                                th:field="*{password}"
                                th:errorclass="'is-invalid'"
                                class="form-control form-control-lg bg-light fs-6"
@@ -89,8 +101,10 @@
                                th:errors="*{password}"
                                class="invalid-feedback" style="font-size: 15px">Password error message</small>
                     </div>
-                    <div class="input-group mb-3">
+                    <div class="form-group mb-3">
+                        <label class="mb-2" for="confirmPassword">Confirm Password</label>
                         <input type="password"
+                               id="confirmPassword"
                                th:field="*{confirmPassword}"
                                th:errorclass="'is-invalid'"
                                class="form-control form-control-lg bg-light fs-6"
@@ -101,12 +115,12 @@
                                class="invalid-feedback" style="font-size: 15px">Confirm Password error message</small>
                     </div>
 
-                    <div class="input-group mb-3">
+                    <div class="form-group my-4">
                         <button class="btn btn-lg btn-primary w-100 fs-5">
                             Register
                         </button>
                     </div>
-                    <div class="input-group mb-4 d-flex justify-content-center">
+                    <div class="form-group mb-3 d-flex justify-content-center">
                         <p>Already a member? <a class="ms-3" href="/login">Login</a></p>
                     </div>
                 </form>

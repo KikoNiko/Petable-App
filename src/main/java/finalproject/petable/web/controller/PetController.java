@@ -1,11 +1,13 @@
 package finalproject.petable.web.controller;
 
+import finalproject.petable.model.AppUserDetails;
 import finalproject.petable.model.dto.PetAddDTO;
 import finalproject.petable.model.entity.enums.Gender;
 import finalproject.petable.model.entity.enums.PetStatus;
 import finalproject.petable.model.entity.enums.PetType;
 import finalproject.petable.service.PetService;
 import jakarta.validation.Valid;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -47,6 +49,7 @@ public class PetController {
 
     @PostMapping("/add-pet")
     public String addPet(@Valid PetAddDTO petData,
+                         @AuthenticationPrincipal AppUserDetails userDetails,
                          BindingResult bindingResult,
                          RedirectAttributes redirectAttributes) {
 
@@ -55,7 +58,7 @@ public class PetController {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.petData", bindingResult);
             return "redirect:/add-pet";
         }
-        petService.addPet(petData);
+        petService.addPet(userDetails, petData);
         return "redirect:/shelter-profile";
     }
 

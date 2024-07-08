@@ -47,7 +47,6 @@ public class SecurityConfig {
                                 // What will happen if the login is successful
                                 .defaultSuccessUrl("/", true)
                                 // What will happen if the login fails
-                                .failureForwardUrl("/users/login-error")
                 )
                 .logout(
                         logout ->
