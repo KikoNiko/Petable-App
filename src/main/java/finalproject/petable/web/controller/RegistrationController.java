@@ -1,7 +1,7 @@
 package finalproject.petable.web.controller;
 
 import finalproject.petable.model.dto.ClientRegistrationDTO;
-import finalproject.petable.model.dto.RegistrationDTO;
+import finalproject.petable.model.dto.BaseUserRegistrationDTO;
 import finalproject.petable.model.dto.ShelterRegistrationDTO;
 import finalproject.petable.service.UserService;
 import jakarta.validation.Valid;
@@ -35,22 +35,41 @@ public class RegistrationController {
         return "register-shelter";
     }
 
-    @PostMapping("/register/{userType}")
-    public String registerUser(@PathVariable String userType,
-                                 @Valid ClientRegistrationDTO clientRegistrationDTO,
-                                 @Valid ShelterRegistrationDTO shelterRegistrationDTO,
+    @PostMapping("/register/client")
+    public String registerClient(@Valid ClientRegistrationDTO registrationData,
                                  BindingResult bindingResult,
                                  RedirectAttributes redirectAttributes) {
-        RegistrationDTO registrationData = null;
 
-        if (userType.equals("client")) {
-            registrationData = clientRegistrationDTO;
-        } else if (userType.equals("shelter")) {
-            registrationData = shelterRegistrationDTO;
-        } else {
-            return "redirect:/users/register{userType}";
+        validateCommonData(registrationData, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("clientRegistrationData", registrationData);
+            redirectAttributes.addFlashAttribute(
+                    "org.springframework.validation.BindingResult.clientRegistrationData", bindingResult);
+            return "redirect:/users/register/client";
         }
+        userService.registerClient(registrationData);
+        return "redirect:/users/login";
+    }
 
+    @PostMapping("/register/shelter")
+    public String registerShelter(@Valid ShelterRegistrationDTO registrationData,
+                               BindingResult bindingResult,
+                               RedirectAttributes redirectAttributes) {
+
+        validateCommonData(registrationData, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("shelterRegistrationData", registrationData);
+            redirectAttributes.addFlashAttribute(
+                    "org.springframework.validation.BindingResult.shelterRegistrationData", bindingResult);
+            return "redirect:/users/register/shelter";
+        }
+        userService.registerShelter(registrationData);
+        return "redirect:/users/login";
+    }
+
+    private void validateCommonData(BaseUserRegistrationDTO registrationData, BindingResult bindingResult) {
         if (!registrationData.getPassword().equals(registrationData.getConfirmPassword())){
             bindingResult.addError(
                     new FieldError(
@@ -76,15 +95,6 @@ public class RegistrationController {
                             "User with this email is already registered!")
             );
         }
-
-        if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("clientRegistrationData", registrationData);
-            redirectAttributes.addFlashAttribute(
-                    "org.springframework.validation.BindingResult.clientRegistrationData", bindingResult);
-            return "redirect:/users/register/{userType}";
-        }
-        userService.registerUser(registrationData, userType);
-        return "redirect:/users/login";
     }
 
     @ModelAttribute("clientRegistrationData")

@@ -1,10 +1,9 @@
 package finalproject.petable.model.dto;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public class ShelterRegistrationDTO extends RegistrationDTO{
+public class ShelterRegistrationDTO extends BaseUserRegistrationDTO {
     @NotBlank(message = "Shelter name cannot be empty!")
     @Size(min = 2, max = 60)
     private String name;

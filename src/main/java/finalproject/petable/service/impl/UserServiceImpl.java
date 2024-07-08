@@ -1,9 +1,7 @@
 package finalproject.petable.service.impl;
 
 import finalproject.petable.model.dto.ClientRegistrationDTO;
-import finalproject.petable.model.dto.RegistrationDTO;
 import finalproject.petable.model.dto.ShelterRegistrationDTO;
-import finalproject.petable.model.entity.BaseUser;
 import finalproject.petable.model.entity.Client;
 import finalproject.petable.model.entity.Shelter;
 import finalproject.petable.model.entity.UserRole;
@@ -13,7 +11,6 @@ import finalproject.petable.repository.ShelterRepository;
 import finalproject.petable.repository.UserRepository;
 import finalproject.petable.repository.UserRoleRepository;
 import finalproject.petable.service.UserService;
-import org.hibernate.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -25,6 +22,8 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final ClientRepository clientRepository;
+    private final ShelterRepository shelterRepository;
     private final UserRoleRepository roleRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
@@ -36,6 +35,8 @@ public class UserServiceImpl implements UserService {
                            ModelMapper modelMapper,
                            PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.clientRepository = clientRepository;
+        this.shelterRepository = shelterRepository;
         this.roleRepository = roleRepository;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
@@ -52,14 +53,26 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void registerUser(RegistrationDTO registrationData, String userType) {
-        BaseUser user = modelMapper.map(registrationData, BaseUser.class);
-        user.setPassword(passwordEncoder.encode(registrationData.getPassword()));
-        Optional<UserRole> byRole = roleRepository.findByRole(UserRolesEnum.valueOf(userType.toUpperCase()));
+    public void registerClient(ClientRegistrationDTO clientRegistrationDTO) {
+        Client client = modelMapper.map(clientRegistrationDTO, Client.class);
+        client.setPassword(passwordEncoder.encode(clientRegistrationDTO.getPassword()));
+        Optional<UserRole> byRole = roleRepository.findByRole(UserRolesEnum.CLIENT);
         if (byRole.isEmpty()) {
             throw new NullPointerException();
         }
-        user.setRoles(List.of(byRole.get()));
-        userRepository.save(user);
+        client.setRoles(List.of(byRole.get()));
+        clientRepository.save(client);
+    }
+
+    @Override
+    public void registerShelter(ShelterRegistrationDTO shelterRegistrationDTO) {
+        Shelter shelter = modelMapper.map(shelterRegistrationDTO, Shelter.class);
+        shelter.setPassword(passwordEncoder.encode(shelterRegistrationDTO.getPassword()));
+        Optional<UserRole> byRole = roleRepository.findByRole(UserRolesEnum.SHELTER);
+        if (byRole.isEmpty()) {
+            throw new NullPointerException();
+        }
+        shelter.setRoles(List.of(byRole.get()));
+        shelterRepository.save(shelter);
     }
 }

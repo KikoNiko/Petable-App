@@ -48,11 +48,6 @@ public class HomeController {
         return "pet-profile";
     }
 
-    @GetMapping("/pet-care")
-    public String viewPetCarePage() {
-        return "pet-care";
-    }
-
     @GetMapping("/member")
     public String viewMemberPage() {
         return "member";

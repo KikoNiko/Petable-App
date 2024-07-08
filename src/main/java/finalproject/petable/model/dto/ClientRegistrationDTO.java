@@ -1,10 +1,9 @@
 package finalproject.petable.model.dto;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public class ClientRegistrationDTO extends RegistrationDTO{
+public class ClientRegistrationDTO extends BaseUserRegistrationDTO {
     @NotBlank(message = "First name cannot be empty!")
     @Size(min = 2, max = 40)
     private String firstName;
