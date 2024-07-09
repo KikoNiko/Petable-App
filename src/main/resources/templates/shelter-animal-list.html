@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head::head}"></head>
+<body>
+<header th:replace="~{fragments/navbar::navbar}"></header>
+<!-- Dogs flip cards carousel -->
+<div class="section p-5 bg-light">
+    <div class="container">
+        <h2 class="fw-bold pb-3">Dogs</h2>
+        <div class="row">
+            <div class="col mb-3" th:each="dog : ${allDogsByShelter}">
+                <div class="card custom-card rounded-3 shadow">
+                    <img src="/images/dog-portrait.jpg" alt="" class="img-fluid rounded-3">
+                    <div class="card-text bg-dark text-white">
+                        <div class="intro rounded-bottom-3">
+                            <p class="card-h1 lead fw-normal fs-4 ps-3 pt-3" th:text="${dog.getName()}"></p>
+                            <div class="card-p">
+                                <p class="lead px-3 pb-1" th:text="${dog.getShortDescription()}"></p>
+
+                                <div class="card-btn">
+                                    <a th:href="@{/pet-profile/{id}(id=${dog.getId()})}" class="btn btn-primary ms-3">See profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- EO: Dogs flip cards carousel -->
+
+<!-- Cats flip cards carousel -->
+<div class="section p-5 bg-light">
+    <div class="container">
+        <h2 class="fw-bold pb-3">Cats</h2>
+        <div class="row">
+            <div class="col mb-3" th:each="cat : ${allCatsByShelter}">
+                <div class="card custom-card rounded-3 shadow">
+                    <img src="/images/cat-portrait.jpg" alt="" class="img-fluid rounded-3">
+                    <div class="card-text bg-dark text-white">
+                        <div class="intro rounded-bottom-3">
+                            <p class="card-h1 lead fw-normal fs-4 ps-3 pt-3" th:text="${cat.getName()}"></p>
+                            <div class="card-p">
+                                <p class="lead px-3 pb-1" th:text="${cat.getShortDescription()}"></p>
+                                <div class="card-btn">
+                                    <a th:href="@{/pet-profile/{id}(id=${cat.getId()})}" class="btn btn-primary ms-3">See profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- EO: Cats flip cards carousel -->
+<footer th:replace="~{fragments/footer::footer}"></footer>
+</body>
+</html>

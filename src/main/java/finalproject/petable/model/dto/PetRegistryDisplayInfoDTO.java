@@ -6,6 +6,8 @@ import finalproject.petable.model.entity.enums.PetType;
 
 public class PetRegistryDisplayInfoDTO {
 
+    private Long id;
+
     private String name;
 
     private String shortDescription;
@@ -13,9 +15,21 @@ public class PetRegistryDisplayInfoDTO {
     private PetType petType;
 
     public PetRegistryDisplayInfoDTO(Pet pet) {
+        this.id = pet.getId();
         this.name = pet.getName();
         this.shortDescription = pet.getShortDescription();
         this.petType = pet.getType();
+    }
+
+    public PetRegistryDisplayInfoDTO() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

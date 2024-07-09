@@ -38,11 +38,6 @@ public class HomeController {
         return "contact-form";
     }
 
-    @GetMapping("/pet-profile")
-    public String viewPetProfile() {
-        return "pet-profile";
-    }
-
     @GetMapping("/member")
     public String viewMemberPage() {
         return "member";

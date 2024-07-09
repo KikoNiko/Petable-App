@@ -9,16 +9,26 @@
     <div class="container">
         <div class="row text-center">
             <div class="col-8 col-sm-4">
-                <p class="lead fw-bold fs-2">Phoebe</p>
+                <p class="lead fw-bold fs-2" th:text="${petProfileData.getName()}"></p>
             </div>
             
             <div class="col-8 col-sm-4">
                 <p class="lead fw-normal fs-4">
-                  Status : <span class="badge rounded-pill bg-warning text-dark">Looking for a home</span>
+                  Status : <span class="badge rounded-pill bg-warning text-dark"
+                                 th:text="${petProfileData.getStatus().getLabel()}"></span>
                 </p>
-                <p class="fw-normal fs-6">
-                    Location : <span class="fw-bold">Sharko</span>
+                <p>
+                    Location : <span class="fw-bold" th:text="${petProfileData.getShelterName()}"></span>
+
+                    City : <span class="fw-bold" th:text="${petProfileData.getLocation()}"></span>
                 </p>
+                <p>
+                    Gender : <span class="fw-bold" th:text="${petProfileData.getGender().toString()}"></span>
+                </p>
+                <p>
+                    Birthdate : <span class="fw-bold" th:text="${petProfileData.getBirthdate()}"></span>
+                </p>
+
             </div>
 
             <div class="col-8 col-sm-4">
@@ -43,35 +53,22 @@
                 class="w-100 shadow-1-strong rounded mb-4"
                 style="height: 550px;"
                alt=""/>
-          
-              <img
-                src="/images/phoebe-dog/p-6.jpg"
-                class="w-100 shadow-1-strong rounded mb-4"
-                style="height: 270px;"
-               alt=""/>
             </div>
-          
+
             <div class="col-lg-4 mb-4 mb-lg-0">
               <img
                 src="/images/phoebe-dog/p-5.jpg"
                 class="w-100 shadow-1-strong rounded mb-4"
                alt=""/>
-          
-              <img
-                src="/images/phoebe-dog/p-8.jpg"
-                class="w-100 shadow-1-strong rounded mb-4"
-                style="height: 525px;"
-               alt=""/>
+
+                <img src="/images/phoebe-dog/p-2.jpg"
+                     class="w-100 shadow-1-strong rounded mb-4"
+                     alt=""/>
             </div>
-          
+
             <div class="col-lg-4 mb-4 mb-lg-0">
               <img
                 src="/images/phoebe-dog/p-3.jpg"
-                class="w-100 shadow-1-strong rounded mb-4"
-               alt=""/>
-          
-              <img
-                src="/images/phoebe-dog/p-2.jpg"
                 class="w-100 shadow-1-strong rounded mb-4"
                alt=""/>
 
@@ -91,25 +88,21 @@
         <div class="card">
             <div class="card-body">
                 <div class="card-text">
-                    <p class="lead fw-normal fs-4">
-                        Phoebe, a beauty from the beginning, wonderful, cheerful, calmest of all.
-                        With the most amazing and big ears.
+                    <p class="lead fw-normal fs-4" th:text="${petProfileData.getShortDescription()}">
 
                     </p>
                 </div>
                 <div class="card-text">
-                    <p class="lead fw-normal fs-4">
-                        An extremely tidy girl, she loves to collect all available toys in one place so that others do not scatter them 😁
-                        Very soon Phoebe will have a home and family of her own, and we can only wish them a long and happy life together.
+                    <p class="lead fw-normal fs-4" th:text="${petProfileData.getStory()}">
                     </p>
                 </div>
                 <div class="card-footer">
                     <div class="row pt-4">
                         <div class="col-md-4">
-                            <a href="/shelters" class="fs-5 ps-3" style="text-decoration: none; color: green;"> <i class="bi bi-asterisk"></i> Link to Shelter</a>
+                            <a href="/shelters/info" class="fs-5 ps-3" style="text-decoration: none; color: green;"> <i class="bi bi-asterisk"></i> Link to Shelter</a>
                         </div>
                         <div class="col-md-4 text-center">
-                            <a href="/contact-form" class="btn btn-primary"> I want to meet Phoebe</a>
+                            <a href="/shelters/contact-form" class="btn btn-primary"> I want to meet <span th:text="${petProfileData.getName()}"></span></a>
                         </div>
                         <div class="col-md-4">
                             <p class="text-end pe-3">

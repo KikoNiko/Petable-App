@@ -50,7 +50,7 @@
                           <p class="lead px-3 pb-1" th:text="${dog.getShortDescription()}"></p>
 
                           <div class="card-btn">
-                            <a href="/pet-profile" class="btn btn-primary ms-3">See profile</a>
+                            <a th:href="@{/pet-profile/{id}(id=${dog.getId()})}" class="btn btn-primary ms-3">See profile</a>
                           </div>  
                         </div>
                       </div>
@@ -77,7 +77,7 @@
                         <div class="card-p">
                           <p class="lead px-3 pb-1" th:text="${cat.getShortDescription()}"></p>
                           <div class="card-btn">
-                            <a href="/pet-profile" class="btn btn-primary ms-3">See profile</a>
+                            <a th:href="@{/pet-profile/{id}(id=${cat.getId()})}" class="btn btn-primary ms-3">See profile</a>
                           </div>  
                         </div>
                       </div>
