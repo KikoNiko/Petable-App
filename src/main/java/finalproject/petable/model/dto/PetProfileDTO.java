@@ -4,7 +4,6 @@ import finalproject.petable.model.entity.Pet;
 import finalproject.petable.model.entity.enums.Gender;
 import finalproject.petable.model.entity.enums.PetStatus;
 import finalproject.petable.model.entity.enums.PetType;
-import java.time.LocalDate;
 
 public class PetProfileDTO {
     private String name;
@@ -13,7 +12,7 @@ public class PetProfileDTO {
 
     private Gender gender;
 
-    private LocalDate birthdate;
+    private String age;
 
     private String location;
 
@@ -24,17 +23,19 @@ public class PetProfileDTO {
     private PetStatus status;
 
     private String shelterName;
+    private String shelterLink;
 
     public PetProfileDTO(Pet pet) {
         this.name = pet.getName();
         this.type = pet.getType();
         this.gender = pet.getGender();
-        this.birthdate = pet.getBirthdate();
+        this.age = pet.getAge(pet.getBirthdate());
         this.location = pet.getLocation();
         this.shortDescription = pet.getShortDescription();
         this.story = pet.getStory();
         this.status = pet.getStatus();
         this.shelterName = pet.getShelter().getName();
+        this.shelterLink = pet.getShelter().getWebsiteUrl();
     }
 
     public PetProfileDTO() {
@@ -64,12 +65,12 @@ public class PetProfileDTO {
         this.gender = gender;
     }
 
-    public LocalDate getBirthdate() {
-        return birthdate;
+    public String getAge() {
+        return age;
     }
 
-    public void setBirthdate(LocalDate birthdate) {
-        this.birthdate = birthdate;
+    public void setAge(String age) {
+        this.age = age;
     }
 
     public String getLocation() {
@@ -110,5 +111,13 @@ public class PetProfileDTO {
 
     public void setShelterName(String shelterName) {
         this.shelterName = shelterName;
+    }
+
+    public String getShelterLink() {
+        return shelterLink;
+    }
+
+    public void setShelterLink(String shelterLink) {
+        this.shelterLink = shelterLink;
     }
 }

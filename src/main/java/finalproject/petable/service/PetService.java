@@ -8,6 +8,7 @@ import finalproject.petable.model.entity.enums.Gender;
 import finalproject.petable.model.entity.enums.PetType;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface PetService {

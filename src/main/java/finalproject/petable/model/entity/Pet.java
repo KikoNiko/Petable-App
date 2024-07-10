@@ -130,4 +130,21 @@ public class Pet extends BaseEntity{
     public int hashCode() {
         return Objects.hash(name, type, gender, birthdate, location, shortDescription, status, shelter);
     }
+
+    public String getAge(LocalDate birthdate) {
+        StringBuilder sb = new StringBuilder();
+        int result = 0;
+        LocalDate currentDate = LocalDate.now();
+
+        if (birthdate.getYear() == currentDate.getYear()) {
+            if (birthdate.getMonthValue() == currentDate.getMonthValue()) {
+                result = currentDate.getDayOfMonth() - birthdate.getDayOfMonth();
+                return sb.append(result).append(" days").toString();
+            }
+            result = currentDate.getMonthValue() - birthdate.getMonthValue();
+            return sb.append(result).append(" months").toString();
+        }
+        result = currentDate.getYear() - birthdate.getYear();
+        return sb.append(result).append(" years").toString();
+    }
 }

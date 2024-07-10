@@ -76,6 +76,32 @@
                                class="invalid-feedback" style="font-size: 15px">Location error message</small>
                     </div>
                     <div class="form-group mb-3">
+                        <label class="mb-2" for="logoUrl">Logo Url</label>
+                        <input type="text"
+                               id="logoUrl"
+                               th:field="*{logoUrl}"
+                               th:errorclass="'is-invalid'"
+                               class="form-control form-control-lg bg-light fs-6"
+                               placeholder="http://i.imgur.com">
+
+                        <small th:if="${#fields.hasErrors('logoUrl')}"
+                               th:errors="*{logoUrl}"
+                               class="invalid-feedback" style="font-size: 15px"></small>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="mb-2" for="websiteUrl">Website link</label>
+                        <input type="text"
+                               id="websiteUrl"
+                               th:field="*{websiteUrl}"
+                               th:errorclass="'is-invalid'"
+                               class="form-control form-control-lg bg-light fs-6"
+                               placeholder="https://www.shelterexample.com">
+
+                        <small th:if="${#fields.hasErrors('websiteUrl')}"
+                               th:errors="*{websiteUrl}"
+                               class="invalid-feedback" style="font-size: 15px">Website link error message</small>
+                    </div>
+                    <div class="form-group mb-3">
                         <label class="mb-2" for="email">Email address</label>
                         <input type="email"
                                id="email"

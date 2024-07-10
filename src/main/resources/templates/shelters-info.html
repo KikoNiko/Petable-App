@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head::head}"></head>
+<body>
+<header th:replace="~{fragments/navbar::navbar}"></header>
+
+<main>
+<!-- Search Shelter -->
+<div class="container p-5">
+    <div class="row d-md-flex justify-content-between align-items-center">
+        <form action="/shelters/info">
+            <div class="input-group">
+                <p class="h4 pe-3">Search:</p>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Location</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                </select>
+                <input type="text" class="form-control" placeholder="Shelter Name">
+                <button class="btn btn-outline-warning" type="submit">Search</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- EO: Search Shelter -->
+
+<!-- Each shelter listed -->
+<div class="section p-5" th:each="shelter : ${allSheltersInfo}">
+    <div class="container border border-success rounded-4">
+        <div class="row">
+            <div class="col-4 p-3">
+                <img class="img-fluid border rounded-circle" th:src="${shelter.getLogoUrl()}" alt="shelterLogo" style="max-width: 200px;">
+            </div>
+            <div class="col-8 d-flex align-items-center">
+                <div class="card d-flex align-items-start" style="border: none;">
+                    <div class="card-header fw-bolder fs-3 mt-3 rounded-4" style="border: none;">
+                        <span th:text="${shelter.getName()}"></span>
+                        <a th:href="@{/shelters/contact-form}" class="btn btn-secondary rounded ms-5">Contact</a>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text" th:text="${shelter.getDescription()}"></p>
+                        <div class="card-footer">
+                            <a th:href="${shelter.getWebsiteUrl()}" target="_blank">Go to website</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- EO: Each shelter listed -->
+</main>
+<footer th:replace="~{fragments/footer::footer}"></footer>
+</body>
+</html>

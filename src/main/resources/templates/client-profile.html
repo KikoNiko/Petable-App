@@ -72,45 +72,21 @@
                             <div class="col-sm-3">
                                 <h6 class="mb-0">Full Name</h6>
                             </div>
-                            <div class="col-sm-9 text-secondary">
-                                Kiril Nikolov
-                            </div>
+                            <div class="col-sm-9 text-secondary" th:text="${clientProfileInfo.getFullName()}"></div>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
                                 <h6 class="mb-0">Username</h6>
                             </div>
-                            <div class="col-sm-9 text-secondary">
-                                Username
-                            </div>
+                            <div class="col-sm-9 text-secondary" th:text="${clientProfileInfo.getUsername()}"> </div>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
                                 <h6 class="mb-0">Email</h6>
                             </div>
-                            <div class="col-sm-9 text-secondary">
-                                example@example.com
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">Phone number</h6>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                                +359 887 878787
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">Address</h6>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                                Bay Area, San Francisco, CA
-                            </div>
+                            <div class="col-sm-9 text-secondary" th:text="${clientProfileInfo.getEmail()}"></div>
                         </div>
                         <hr>
                         <div class="row">
@@ -208,18 +184,6 @@
                                 Email
                             </label>
                             <input type="email" class="form-control" id="email">
-                        </div>
-                        <div class="mb-2">
-                            <label for="phoneNumber" class="col-form-label">
-                                Phone Number
-                            </label>
-                            <input type="tel" class="form-control" id="phoneNumber">
-                        </div>
-                        <div class="mb-2">
-                            <label for="address" class="col-form-label">
-                                Address
-                            </label>
-                            <input type="tel" class="form-control" id="address">
                         </div>
                     </form>
                 </div>

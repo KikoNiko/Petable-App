@@ -5,7 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -23,6 +22,11 @@ public class Shelter extends BaseUser {
     @NotBlank
     @Column(unique = true)
     private String specialNumber;
+    @Column(unique = true)
+    private String websiteUrl;
+
+    private String logoUrl;
+    private String description;
     @OneToMany(mappedBy = "shelter")
     private List<Pet> petList;
     @OneToMany
@@ -55,6 +59,30 @@ public class Shelter extends BaseUser {
 
     public void setSpecialNumber(String identificationNumber) {
         this.specialNumber = identificationNumber;
+    }
+
+    public String getWebsiteUrl() {
+        return websiteUrl;
+    }
+
+    public void setWebsiteUrl(String websiteLink) {
+        this.websiteUrl = websiteLink;
+    }
+
+    public String getLogoUrl() {
+        return logoUrl;
+    }
+
+    public void setLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public List<Pet> getPetList() {

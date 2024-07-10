@@ -12,6 +12,8 @@ import finalproject.petable.service.exception.PetNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.Year;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -59,4 +61,5 @@ public class PetServiceImpl implements PetService {
                 .map(PetRegistryDisplayInfoDTO::new)
                 .collect(Collectors.toList());
     }
+
 }

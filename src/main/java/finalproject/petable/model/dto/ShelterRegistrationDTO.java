@@ -2,6 +2,7 @@ package finalproject.petable.model.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import org.hibernate.validator.constraints.URL;
 
 public class ShelterRegistrationDTO extends BaseUserRegistrationDTO {
     @NotBlank(message = "Shelter name cannot be empty!")
@@ -11,6 +12,12 @@ public class ShelterRegistrationDTO extends BaseUserRegistrationDTO {
     private String location;
     @NotBlank(message = "Special number cannot be empty!")
     private String specialNumber;
+    @URL
+    @Size(max = 1500, message = "Url is too long.")
+    private String websiteUrl;
+    @URL
+    private String logoUrl;
+
 
     public String getName() {
         return name;
@@ -36,4 +43,19 @@ public class ShelterRegistrationDTO extends BaseUserRegistrationDTO {
         this.specialNumber = specialNumber;
     }
 
+    public String getWebsiteUrl() {
+        return websiteUrl;
+    }
+
+    public void setWebsiteUrl(String websiteUrl) {
+        this.websiteUrl = websiteUrl;
+    }
+
+    public String getLogoUrl() {
+        return logoUrl;
+    }
+
+    public void setLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
+    }
 }

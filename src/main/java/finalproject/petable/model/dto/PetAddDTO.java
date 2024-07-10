@@ -12,9 +12,9 @@ public class PetAddDTO {
     @NotEmpty
     @Size(min = 2, max = 50, message = "Name length must be between 2 and 50 characters!")
     private String name;
-    @NotNull
+    @NotNull(message = "You must select a gender!")
     private Gender gender;
-    @NotNull
+    @NotNull(message = "You must select pet type!")
     private PetType type;
     @NotNull
     @Past(message = "Birthdate cannot be in the present or future!")
@@ -22,7 +22,7 @@ public class PetAddDTO {
     @NotEmpty
     @Size(min = 2, max = 50)
     private String location;
-    @NotNull(message = "Pet status cannot be empty!")
+    @NotNull(message = "You must select pet status!")
     private PetStatus status;
     @NotEmpty
     @Size(max = 50, message = "Short description cannot be longer than 50 characters.")
