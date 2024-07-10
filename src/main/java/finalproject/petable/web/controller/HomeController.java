@@ -5,10 +5,13 @@ import finalproject.petable.model.dto.ClientProfileDTO;
 import finalproject.petable.model.dto.ShelterProfileDTO;
 import finalproject.petable.service.ClientService;
 import finalproject.petable.service.ShelterService;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.Collection;
 
 @Controller
 public class HomeController {
@@ -21,9 +24,22 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String home(@AuthenticationPrincipal AppUserDetails userDetails,
-                       Model model) {
-        //TODO redirect to profile page according to role
+    public String index() {
+        return "index";
+    }
+
+    @GetMapping("/home")
+    public String home(@AuthenticationPrincipal AppUserDetails userDetails) {
+        if (userDetails != null) {
+            Collection<GrantedAuthority> authorities = userDetails.getAuthorities();
+            for (GrantedAuthority authority : authorities) {
+                if (authority.getAuthority().equals("ROLE_CLIENT")) {
+                    return "redirect:/client-profile";
+                } else if (authority.getAuthority().equals("ROLE_SHELTER")) {
+                    return "redirect:/shelter-profile";
+                }
+            }
+        }
         return "index";
     }
 

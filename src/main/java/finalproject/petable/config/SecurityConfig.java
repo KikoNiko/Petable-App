@@ -45,7 +45,7 @@ public class SecurityConfig {
                                 // what is the name of the password parameter in the Login POST request?
                                 .passwordParameter("password")
                                 // What will happen if the login is successful
-                                .defaultSuccessUrl("/", true)
+                                .defaultSuccessUrl("/home", true)
                                 // What will happen if the login fails
                 )
                 .logout(
