@@ -6,6 +6,7 @@ import finalproject.petable.model.entity.enums.PetStatus;
 import finalproject.petable.model.entity.enums.PetType;
 
 public class PetProfileDTO {
+    private Long id;
     private String name;
 
     private PetType type;
@@ -26,6 +27,7 @@ public class PetProfileDTO {
     private String shelterLink;
 
     public PetProfileDTO(Pet pet) {
+        this.id = pet.getId();
         this.name = pet.getName();
         this.type = pet.getType();
         this.gender = pet.getGender();
@@ -39,6 +41,14 @@ public class PetProfileDTO {
     }
 
     public PetProfileDTO() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

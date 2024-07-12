@@ -116,7 +116,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
+                                    <tr th:each="pet : ${favoritePets}">
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <img
@@ -126,12 +126,12 @@
                                                         class="rounded-circle"
                                                 />
                                                 <div class="ms-4">
-                                                    <p class="fw-bold mb-1">Phoebe</p>
+                                                    <p class="fw-bold mb-1" th:text="${pet.getName()}"></p>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            <a href="/pet-profile.html" class="btn btn-secondary btn-sm">Go to profile <i class="bi bi-arrow-up-right-square ms-1"></i></a>
+                                            <a th:href="@{/pet-profile/{id}(id=${pet.getId()})}" class="btn btn-secondary btn-sm">Go to profile <i class="bi bi-arrow-up-right-square ms-1"></i></a>
                                         </td>
                                         <td>
                                             <a href="#" class="btn btn-sm btn-danger btn-sm">Remove <i class="bi bi-x-square ms-1"></i></a>

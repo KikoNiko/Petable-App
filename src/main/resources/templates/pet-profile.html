@@ -21,10 +21,17 @@
             </div>
 
             <div class="col-8 col-sm-4">
-                <button sec:authorize="hasRole('CLIENT')" type="button" class="btn btn-outline-danger ms-3"
-                data-toggle="tooltip" data-placement="top" title="Add to favourites">
-                    <i class="bi bi-heart-fill" style="font-size: 30px;"></i>
-                </button>
+                <form th:action="@{/pet-profile/add-to-favorites/{id}(id=${petProfileData.getId()})}"
+                      th:method="post">
+                    <button sec:authorize="hasRole('CLIENT')"
+                            type="submit"
+                            class="btn btn-outline-danger ms-3"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Add to favourites">
+                        <i class="bi bi-heart-fill" style="font-size: 30px;"></i>
+                    </button>
+                </form>
                 <a sec:authorize="!hasRole('CLIENT')" href="#" class="btn btn-sm btn-danger btn-sm">Delete <i class="bi bi-x-square ms-1"></i></a>
             </div>
             <hr class="mx-auto m-3">
@@ -98,12 +105,15 @@
                                             <a href="/shelters/contact-form" class="btn btn-primary"> I want to meet <span th:text="${petProfileData.getName()}"></span></a>
                                         </div>
                                         <div class="col-md-4">
-                                            <p class="text-end pe-3">
-                                                Add to favourites
-                                                <button type="button" class="btn btn-outline-danger ms-1">
-                                                    <i class="bi bi-heart-fill" style="font-size: 16px;"></i>
-                                                </button>
-                                            </p>
+                                            <form th:action="@{/pet-profile/add-to-favorites/{id}(id=${petProfileData.getId()})}"
+                                                  th:method="post">
+                                                <p class="text-end pe-3">
+                                                    Add to favourites
+                                                    <button type="submit" class="btn btn-outline-danger ms-1">
+                                                        <i class="bi bi-heart-fill" style="font-size: 16px;"></i>
+                                                    </button>
+                                                </p>
+                                            </form>
                                         </div>
                                     </div>
                                     <div sec:authorize="!hasRole('CLIENT')" class="row pt-4">

@@ -3,14 +3,13 @@ package finalproject.petable.web.controller;
 import finalproject.petable.model.AppUserDetails;
 import finalproject.petable.model.dto.PetAddDTO;
 import finalproject.petable.model.dto.PetProfileDTO;
-import finalproject.petable.model.dto.PetRegistryDisplayInfoDTO;
+import finalproject.petable.model.dto.PetDisplayInfoDTO;
 import finalproject.petable.model.entity.Shelter;
 import finalproject.petable.model.entity.enums.Gender;
 import finalproject.petable.model.entity.enums.PetStatus;
 import finalproject.petable.model.entity.enums.PetType;
-import finalproject.petable.repository.ShelterRepository;
 import finalproject.petable.service.PetService;
-import finalproject.petable.service.exception.UserNotFoundException;
+import finalproject.petable.service.ShelterService;
 import jakarta.validation.Valid;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -20,17 +19,16 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Controller
 public class PetController {
     private final PetService petService;
-    private final ShelterRepository shelterRepository;
+    private final ShelterService shelterService;
 
-    public PetController(PetService petService, ShelterRepository shelterRepository) {
+    public PetController(PetService petService, ShelterService shelterService) {
         this.petService = petService;
-        this.shelterRepository = shelterRepository;
+        this.shelterService = shelterService;
     }
 
     @ModelAttribute("petData")
@@ -75,10 +73,10 @@ public class PetController {
 
     @GetMapping("/pet-registry")
     public String viewPetRegistry(Model model) {
-        List<PetRegistryDisplayInfoDTO> allRegisteredDogs = petService.getAllByType(PetType.DOG);
+        List<PetDisplayInfoDTO> allRegisteredDogs = petService.getAllByType(PetType.DOG);
         model.addAttribute("allRegisteredDogs", allRegisteredDogs);
 
-        List<PetRegistryDisplayInfoDTO> allRegisteredCats = petService.getAllByType(PetType.CAT);
+        List<PetDisplayInfoDTO> allRegisteredCats = petService.getAllByType(PetType.CAT);
         model.addAttribute("allRegisteredCats", allRegisteredCats);
 
         return "pet-registry";
@@ -92,15 +90,19 @@ public class PetController {
         return "pet-profile";
     }
 
+    @PostMapping("/pet-profile/add-to-favorites/{id}")
+    public String addToFavorites(@PathVariable Long id,
+                                 @AuthenticationPrincipal AppUserDetails userDetails) {
+        petService.addToFavorites(userDetails.getUsername(), id);
+        return "redirect:/client-profile";
+    }
+
     @GetMapping("/shelter/my-animals")
     public String viewMyAnimals(@AuthenticationPrincipal AppUserDetails userDetails, Model model) {
-        Optional<Shelter> optionalShelter = shelterRepository.findByUsername(userDetails.getUsername());
-        if (optionalShelter.isEmpty()) {
-            throw new UserNotFoundException("Shelter not found!");
-        }
-        Long shelterId = optionalShelter.get().getId();
-        List<PetRegistryDisplayInfoDTO> allCatsByShelter = petService.getAllByShelterIdAndType(shelterId, PetType.CAT);
-        List<PetRegistryDisplayInfoDTO> allDogsByShelter = petService.getAllByShelterIdAndType(shelterId, PetType.DOG);
+        Shelter shelter = shelterService.getByUsername(userDetails.getUsername());
+        Long shelterId = shelter.getId();
+        List<PetDisplayInfoDTO> allCatsByShelter = petService.getAllByShelterIdAndType(shelterId, PetType.CAT);
+        List<PetDisplayInfoDTO> allDogsByShelter = petService.getAllByShelterIdAndType(shelterId, PetType.DOG);
         model.addAttribute("allCatsByShelter", allCatsByShelter);
         model.addAttribute("allDogsByShelter", allDogsByShelter);
         return "shelter-animal-list";

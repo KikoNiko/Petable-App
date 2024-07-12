@@ -2,6 +2,7 @@ package finalproject.petable.web.controller;
 
 import finalproject.petable.model.AppUserDetails;
 import finalproject.petable.model.dto.ClientProfileDTO;
+import finalproject.petable.model.dto.PetDisplayInfoDTO;
 import finalproject.petable.model.dto.ShelterProfileDTO;
 import finalproject.petable.service.ClientService;
 import finalproject.petable.service.ShelterService;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Collection;
+import java.util.Set;
 
 @Controller
 public class HomeController {
@@ -46,6 +48,8 @@ public class HomeController {
     @GetMapping("/client-profile")
     public String viewClientHome(@AuthenticationPrincipal AppUserDetails userDetails, Model model) {
         ClientProfileDTO clientProfileInfo = clientService.getClientInfo(userDetails.getUsername());
+        Set<PetDisplayInfoDTO> favoritePets = clientService.getAllFavoritePets(userDetails.getUsername());
+        model.addAttribute("favoritePets", favoritePets);
         model.addAttribute("clientProfileInfo", clientProfileInfo);
         return "client-profile";
     }

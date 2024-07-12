@@ -1,10 +1,9 @@
 package finalproject.petable.model.dto;
 
 import finalproject.petable.model.entity.Pet;
-import finalproject.petable.model.entity.enums.Gender;
 import finalproject.petable.model.entity.enums.PetType;
 
-public class PetRegistryDisplayInfoDTO {
+public class PetDisplayInfoDTO {
 
     private Long id;
 
@@ -14,14 +13,14 @@ public class PetRegistryDisplayInfoDTO {
 
     private PetType petType;
 
-    public PetRegistryDisplayInfoDTO(Pet pet) {
+    public PetDisplayInfoDTO(Pet pet) {
         this.id = pet.getId();
         this.name = pet.getName();
         this.shortDescription = pet.getShortDescription();
         this.petType = pet.getType();
     }
 
-    public PetRegistryDisplayInfoDTO() {
+    public PetDisplayInfoDTO() {
     }
 
     public Long getId() {

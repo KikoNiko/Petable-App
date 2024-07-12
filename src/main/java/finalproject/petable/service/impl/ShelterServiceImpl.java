@@ -9,6 +9,7 @@ import finalproject.petable.service.exception.UserNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,5 +36,14 @@ public class ShelterServiceImpl implements ShelterService {
             throw new UserNotFoundException("Shelter not found!");
         }
         return new ShelterProfileDTO(shelter);
+    }
+
+    @Override
+    public Shelter getByUsername(String username) {
+        Optional<Shelter> optionalShelter = shelterRepository.findByUsername(username);
+        if (optionalShelter.isEmpty()) {
+            throw new UserNotFoundException("Shelter not found!");
+        }
+        return optionalShelter.get();
     }
 }

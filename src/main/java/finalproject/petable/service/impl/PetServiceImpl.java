@@ -2,19 +2,21 @@ package finalproject.petable.service.impl;
 
 import finalproject.petable.model.dto.PetAddDTO;
 import finalproject.petable.model.dto.PetProfileDTO;
-import finalproject.petable.model.dto.PetRegistryDisplayInfoDTO;
+import finalproject.petable.model.dto.PetDisplayInfoDTO;
+import finalproject.petable.model.entity.Client;
 import finalproject.petable.model.entity.Pet;
 import finalproject.petable.model.entity.enums.PetType;
+import finalproject.petable.repository.ClientRepository;
 import finalproject.petable.repository.PetRepository;
 import finalproject.petable.repository.ShelterRepository;
 import finalproject.petable.service.PetService;
 import finalproject.petable.service.exception.PetNotFoundException;
+import finalproject.petable.service.exception.UserNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.Year;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,11 +24,13 @@ public class PetServiceImpl implements PetService {
 
     private final PetRepository petRepository;
     private final ShelterRepository shelterRepository;
+    private final ClientRepository clientRepository;
     private final ModelMapper modelMapper;
 
-    public PetServiceImpl(PetRepository petRepository, ShelterRepository shelterRepository, ModelMapper modelMapper) {
+    public PetServiceImpl(PetRepository petRepository, ShelterRepository shelterRepository, ClientRepository clientRepository, ModelMapper modelMapper) {
         this.petRepository = petRepository;
         this.shelterRepository = shelterRepository;
+        this.clientRepository = clientRepository;
         this.modelMapper = modelMapper;
     }
 
@@ -38,10 +42,10 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    public List<PetRegistryDisplayInfoDTO> getAllByType(PetType petType) {
+    public List<PetDisplayInfoDTO> getAllByType(PetType petType) {
         return petRepository.findAllByType(petType)
                 .stream()
-                .map(PetRegistryDisplayInfoDTO::new)
+                .map(PetDisplayInfoDTO::new)
                 .collect(Collectors.toList());
     }
 
@@ -55,11 +59,26 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    public List<PetRegistryDisplayInfoDTO> getAllByShelterIdAndType(Long id, PetType type) {
+    public List<PetDisplayInfoDTO> getAllByShelterIdAndType(Long id, PetType type) {
         return petRepository.findAllByShelterIdAndType(id, type)
                 .stream()
-                .map(PetRegistryDisplayInfoDTO::new)
+                .map(PetDisplayInfoDTO::new)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void addToFavorites(String username, Long petId) {
+        Optional<Client> byUsername = clientRepository.findByUsername(username);
+        if (byUsername.isEmpty()) {
+            throw new UserNotFoundException("User not found!");
+        }
+        Optional<Pet> optionalPet = petRepository.findById(petId);
+        if (optionalPet.isEmpty()) {
+            throw new PetNotFoundException("Pet not found!", petId);
+        }
+        Client client = byUsername.get();
+        client.getFavoritePets().add(optionalPet.get());
+        clientRepository.save(client);
     }
 
 }
