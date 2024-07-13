@@ -4,12 +4,10 @@ import finalproject.petable.model.AppUserDetails;
 import finalproject.petable.model.dto.PetAddDTO;
 import finalproject.petable.model.dto.PetProfileDTO;
 import finalproject.petable.model.dto.PetDisplayInfoDTO;
-import finalproject.petable.model.entity.Shelter;
 import finalproject.petable.model.entity.enums.Gender;
 import finalproject.petable.model.entity.enums.PetStatus;
 import finalproject.petable.model.entity.enums.PetType;
 import finalproject.petable.service.PetService;
-import finalproject.petable.service.ShelterService;
 import jakarta.validation.Valid;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -24,11 +22,9 @@ import java.util.List;
 @Controller
 public class PetController {
     private final PetService petService;
-    private final ShelterService shelterService;
 
-    public PetController(PetService petService, ShelterService shelterService) {
+    public PetController(PetService petService) {
         this.petService = petService;
-        this.shelterService = shelterService;
     }
 
     @ModelAttribute("petData")
@@ -74,7 +70,7 @@ public class PetController {
     @DeleteMapping("/pet-profile/remove-pet/{id}")
     public String removePet(@PathVariable Long id) {
         petService.removePet(id);
-        return "redirect:/shelter/my-animals";
+        return "redirect:/shelters/shelter/my-animals";
     }
 
     @GetMapping("/pet-registry")
@@ -106,17 +102,6 @@ public class PetController {
                                       @AuthenticationPrincipal AppUserDetails userDetails) {
         petService.removeFromFavorites(userDetails.getUsername(), id);
         return "redirect:/client-profile";
-    }
-
-    @GetMapping("/shelter/my-animals")
-    public String viewMyAnimals(@AuthenticationPrincipal AppUserDetails userDetails, Model model) {
-        Shelter shelter = shelterService.getByUsername(userDetails.getUsername());
-        Long shelterId = shelter.getId();
-        List<PetDisplayInfoDTO> allCatsByShelter = petService.getAllByShelterIdAndType(shelterId, PetType.CAT);
-        List<PetDisplayInfoDTO> allDogsByShelter = petService.getAllByShelterIdAndType(shelterId, PetType.DOG);
-        model.addAttribute("allCatsByShelter", allCatsByShelter);
-        model.addAttribute("allDogsByShelter", allDogsByShelter);
-        return "shelter-animal-list";
     }
 
 }

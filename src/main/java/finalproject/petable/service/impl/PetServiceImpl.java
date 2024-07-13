@@ -48,7 +48,13 @@ public class PetServiceImpl implements PetService {
         if (optionalPet.isEmpty()) {
             throw new PetNotFoundException("Pet not found!");
         }
-        petRepository.delete(optionalPet.get());
+        Pet pet = optionalPet.get();
+        clientRepository.findAll()
+                .stream()
+                .map(Client::getFavoritePets)
+                .filter(fav -> fav.contains(pet))
+                .forEach(fav -> fav.remove(pet));
+        petRepository.delete(pet);
     }
 
     @Override
