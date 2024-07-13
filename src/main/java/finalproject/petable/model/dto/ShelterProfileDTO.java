@@ -20,7 +20,7 @@ public class ShelterProfileDTO {
         this.specialNumber = shelter.getSpecialNumber();
         this.websiteUrl = shelter.getWebsiteUrl();
         this.logoUrl = shelter.getLogoUrl();
-        this.description = shelter.getDescription();
+        this.description = shelter.getBio();
     }
 
     public ShelterProfileDTO() {

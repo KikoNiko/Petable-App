@@ -26,14 +26,11 @@ public class Shelter extends BaseUser {
     private String websiteUrl;
 
     private String logoUrl;
-    private String description;
-    @OneToMany(mappedBy = "shelter")
-    private List<Pet> petList;
+    private String bio;
     @OneToMany
     private Set<Message> messages;
 
     public Shelter() {
-        petList = new ArrayList<>();
         messages = new HashSet<>();
     }
 
@@ -77,20 +74,12 @@ public class Shelter extends BaseUser {
         this.logoUrl = logoUrl;
     }
 
-    public String getDescription() {
-        return description;
+    public String getBio() {
+        return bio;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<Pet> getPetList() {
-        return petList;
-    }
-
-    public void setPetList(List<Pet> petList) {
-        this.petList = petList;
+    public void setBio(String description) {
+        this.bio = description;
     }
 
     public Set<Message> getMessages() {

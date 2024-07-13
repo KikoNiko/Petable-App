@@ -71,6 +71,12 @@ public class PetController {
         return "redirect:/shelter-profile";
     }
 
+    @DeleteMapping("/pet-profile/remove-pet/{id}")
+    public String removePet(@PathVariable Long id) {
+        petService.removePet(id);
+        return "redirect:/shelter/my-animals";
+    }
+
     @GetMapping("/pet-registry")
     public String viewPetRegistry(Model model) {
         List<PetDisplayInfoDTO> allRegisteredDogs = petService.getAllByType(PetType.DOG);
@@ -78,7 +84,6 @@ public class PetController {
 
         List<PetDisplayInfoDTO> allRegisteredCats = petService.getAllByType(PetType.CAT);
         model.addAttribute("allRegisteredCats", allRegisteredCats);
-
         return "pet-registry";
     }
 
@@ -86,7 +91,6 @@ public class PetController {
     public String viewPetProfile(@PathVariable Long id, Model model) {
         PetProfileDTO petProfileData = petService.getPetById(id);
         model.addAttribute("petProfileData", petProfileData);
-
         return "pet-profile";
     }
 
@@ -94,6 +98,13 @@ public class PetController {
     public String addToFavorites(@PathVariable Long id,
                                  @AuthenticationPrincipal AppUserDetails userDetails) {
         petService.addToFavorites(userDetails.getUsername(), id);
+        return "redirect:/client-profile";
+    }
+
+    @DeleteMapping("/client-profile/remove-pet/{id}")
+    public String removeFromFavorites(@PathVariable Long id,
+                                      @AuthenticationPrincipal AppUserDetails userDetails) {
+        petService.removeFromFavorites(userDetails.getUsername(), id);
         return "redirect:/client-profile";
     }
 

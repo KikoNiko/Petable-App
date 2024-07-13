@@ -10,9 +10,12 @@ import java.util.List;
 public interface PetService {
 
     void addPet(String shelterUsername, PetAddDTO petAddDTO);
+    void removePet(Long petId);
     List<PetDisplayInfoDTO> getAllByType(PetType type);
     PetProfileDTO getPetById(Long id);
     List<PetDisplayInfoDTO> getAllByShelterIdAndType(Long id, PetType type);
     void addToFavorites(String username, Long petId);
+    void removeFromFavorites(String username, Long petId);
+
 
 }

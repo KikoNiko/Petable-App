@@ -14,7 +14,7 @@ public class ShelterDisplayInfoDTO {
 
     public ShelterDisplayInfoDTO(Shelter shelter) {
         this.name = shelter.getName();
-        this.description = shelter.getDescription();
+        this.description = shelter.getBio();
         this.websiteUrl = shelter.getWebsiteUrl();
         this.logoUrl = shelter.getLogoUrl();
     }

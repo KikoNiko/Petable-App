@@ -2,10 +2,9 @@ package finalproject.petable.service.impl;
 
 import finalproject.petable.model.dto.ClientProfileDTO;
 import finalproject.petable.model.dto.PetDisplayInfoDTO;
-import finalproject.petable.model.entity.BaseUser;
 import finalproject.petable.model.entity.Client;
 import finalproject.petable.repository.ClientRepository;
-import finalproject.petable.repository.UserRepository;
+import finalproject.petable.repository.PetRepository;
 import finalproject.petable.service.ClientService;
 import finalproject.petable.service.exception.UserNotFoundException;
 import org.springframework.stereotype.Service;

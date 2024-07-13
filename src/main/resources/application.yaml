@@ -40,6 +40,10 @@ spring:
       static-locations: file:src/main/resources/static/
       cache:
         period: 0
+  mvc:
+    hidden-method:
+      filter:
+        enabled: true
 
 admin:
   username: ${ADMIN_USERNAME}

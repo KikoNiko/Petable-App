@@ -9,5 +9,4 @@ public interface ClientService {
 
     ClientProfileDTO getClientInfo(String username);
     Set<PetDisplayInfoDTO> getAllFavoritePets(String username);
-
 }
