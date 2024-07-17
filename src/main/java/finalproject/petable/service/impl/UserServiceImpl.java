@@ -1,5 +1,6 @@
 package finalproject.petable.service.impl;
 
+import finalproject.petable.model.dto.BaseUserDisplayInfoDTO;
 import finalproject.petable.model.dto.ClientRegistrationDTO;
 import finalproject.petable.model.dto.ShelterRegistrationDTO;
 import finalproject.petable.model.entity.Client;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -74,5 +76,13 @@ public class UserServiceImpl implements UserService {
         }
         shelter.setRoles(List.of(byRole.get()));
         shelterRepository.save(shelter);
+    }
+
+    @Override
+    public List<BaseUserDisplayInfoDTO> getAllUsersInfo() {
+        return userRepository.findAll()
+                .stream()
+                .map(BaseUserDisplayInfoDTO::new)
+                .collect(Collectors.toList());
     }
 }

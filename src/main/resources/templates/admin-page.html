@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head::head}"></head>
+<body>
+<header th:replace="~{fragments/navbar::navbar}"></header>
+<main>
+    <!-- User profile info: photo, name, email... -->
+    <div class="section pt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card rounded-4 shadow">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-center m-1">
+                                <img id="selectedAvatar" src="/images/profile-picture-placeholder.png"
+                                     class="rounded-circle" style="width: 250px; height: 250px; object-fit: cover;" alt="example placeholder" />
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <p class="lead fs-4 fw-bolder" th:text="${allUsers.get(0).getUsername()}"></p>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <div class="btn btn-primary btn-rounded">
+                                    <label class="form-label text-white m-1" for="customFile2">Choose file</label>
+                                    <input type="file" class="form-control d-none" id="customFile2"
+                                           onchange="displaySelectedImage(event, 'selectedAvatar')" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <!-- Users list -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card mt-3 rounded-4 shadow">
+                                <div class="card-title">
+                                    <p class="h3 text-center fw-bold pt-3 ps-3">Users</p>
+                                </div>
+                                <div class="card-body table-responsive overflow-auto" style="height: 215px;">
+                                    <table class="table align-middle mb-0 bg-white">
+                                        <thead >
+                                        <tr>
+                                            <th scope="col">Username</th>
+                                            <th scope="col">Roles</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="user : ${allUsers}">
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="ms-4">
+                                                        <p class="fw-bold mb-1" th:text="${user.getUsername()}"></p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="ms-4">
+                                                        <p class="fw-bold mb-1" th:text="${user.getRoles()}"></p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button th:href="@{/}"
+                                                        class="btn btn-sm btn-danger btn-sm">Delete <i class="bi bi-x-square ms-1"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- EO: Users list -->
+                </div>
+                </div>
+            </div>
+        </div>
+    <!-- EO: User profile -->
+
+</main>
+
+<footer th:replace="~{fragments/footer::footer}"></footer>
+
+<script>
+    function displaySelectedImage(event, elementId) {
+        const selectedImage = document.getElementById(elementId);
+        const fileInput = event.target;
+
+        if (fileInput.files && fileInput.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                selectedImage.src = e.target.result;
+            };
+
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    }
+</script>
+</body>
+</html>
