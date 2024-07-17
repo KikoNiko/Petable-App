@@ -6,7 +6,7 @@ public class ShelterDisplayInfoDTO {
 
     private String name;
 
-    private String description;
+    private String bio;
 
     private String websiteUrl;
     
@@ -14,7 +14,7 @@ public class ShelterDisplayInfoDTO {
 
     public ShelterDisplayInfoDTO(Shelter shelter) {
         this.name = shelter.getName();
-        this.description = shelter.getBio();
+        this.bio = shelter.getBio();
         this.websiteUrl = shelter.getWebsiteUrl();
         this.logoUrl = shelter.getLogoUrl();
     }
@@ -30,12 +30,12 @@ public class ShelterDisplayInfoDTO {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getBio() {
+        return bio;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
     public String getWebsiteUrl() {

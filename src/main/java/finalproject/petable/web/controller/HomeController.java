@@ -4,6 +4,7 @@ import finalproject.petable.model.AppUserDetails;
 import finalproject.petable.model.dto.ClientProfileDTO;
 import finalproject.petable.model.dto.PetDisplayInfoDTO;
 import finalproject.petable.model.dto.ShelterProfileDTO;
+import finalproject.petable.model.entity.Shelter;
 import finalproject.petable.service.ClientService;
 import finalproject.petable.service.ShelterService;
 import org.springframework.security.core.GrantedAuthority;
@@ -11,6 +12,9 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Collection;
 import java.util.Set;
@@ -61,4 +65,12 @@ public class HomeController {
         return "shelter-profile";
     }
 
+    @PostMapping("/shelter-profile/{shelterId}")
+    public String editProfileInfo(@PathVariable Long shelterId,
+                                  @ModelAttribute("shelterProfileInfo") ShelterProfileDTO shelterProfileInfo) {
+        shelterProfileInfo.setId(shelterId);
+        shelterService.editShelterInfo(shelterProfileInfo);
+
+        return "redirect:/shelter-profile";
+    }
 }

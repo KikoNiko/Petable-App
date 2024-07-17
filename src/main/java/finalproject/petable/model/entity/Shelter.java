@@ -26,6 +26,7 @@ public class Shelter extends BaseUser {
     private String websiteUrl;
 
     private String logoUrl;
+    @Column(length = 1000)
     private String bio;
     @OneToMany
     private Set<Message> messages;

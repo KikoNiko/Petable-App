@@ -38,7 +38,7 @@
                         <a th:href="@{/shelters/contact-form}" class="btn btn-secondary rounded ms-5">Contact</a>
                     </div>
                     <div class="card-body">
-                        <p class="card-text" th:text="${shelter.getDescription()}"></p>
+                        <p class="card-text" th:text="${shelter.getBio()}"></p>
                         <div class="card-footer">
                             <a th:href="${shelter.getWebsiteUrl()}" target="_blank">Go to website</a>
                         </div>

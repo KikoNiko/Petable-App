@@ -3,9 +3,11 @@ package finalproject.petable.service.impl;
 import finalproject.petable.model.dto.ClientProfileDTO;
 import finalproject.petable.model.dto.PetDisplayInfoDTO;
 import finalproject.petable.model.entity.Client;
+import finalproject.petable.model.entity.Pet;
 import finalproject.petable.repository.ClientRepository;
 import finalproject.petable.repository.PetRepository;
 import finalproject.petable.service.ClientService;
+import finalproject.petable.service.exception.PetNotFoundException;
 import finalproject.petable.service.exception.UserNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +18,11 @@ import java.util.stream.Collectors;
 @Service
 public class ClientServiceImpl implements ClientService {
     private final ClientRepository clientRepository;
+    private final PetRepository petRepository;
 
-    public ClientServiceImpl(ClientRepository clientRepository) {
+    public ClientServiceImpl(ClientRepository clientRepository, PetRepository petRepository) {
         this.clientRepository = clientRepository;
+        this.petRepository = petRepository;
     }
 
     @Override
@@ -41,5 +45,37 @@ public class ClientServiceImpl implements ClientService {
                 .stream()
                 .map(PetDisplayInfoDTO::new)
                 .collect(Collectors.toSet());
+    }
+
+    @Override
+    public void addPetToFavorites(String username, Long petId) {
+        Client client = getClientByUsername(username);
+        Pet pet = getPet(petId);
+        client.getFavoritePets().add(pet);
+        clientRepository.save(client);
+    }
+
+    @Override
+    public void removePetFromFavorites(String username, Long petId) {
+        Client client = getClientByUsername(username);
+        Pet pet = getPet(petId);
+        client.getFavoritePets().remove(pet);
+        clientRepository.save(client);
+    }
+
+    private Client getClientByUsername(String username) {
+        Optional<Client> byUsername = clientRepository.findByUsername(username);
+        if (byUsername.isEmpty()) {
+            throw new UserNotFoundException("User not found!");
+        }
+        return byUsername.get();
+    }
+
+    private Pet getPet(Long id) {
+        Optional<Pet> optionalPet = petRepository.findById(id);
+        if (optionalPet.isEmpty()) {
+            throw new PetNotFoundException("Pet not found!");
+        }
+        return optionalPet.get();
     }
 }

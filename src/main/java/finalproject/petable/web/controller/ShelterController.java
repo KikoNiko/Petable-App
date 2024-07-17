@@ -3,6 +3,7 @@ package finalproject.petable.web.controller;
 import finalproject.petable.model.AppUserDetails;
 import finalproject.petable.model.dto.PetDisplayInfoDTO;
 import finalproject.petable.model.dto.ShelterDisplayInfoDTO;
+import finalproject.petable.model.dto.ShelterProfileDTO;
 import finalproject.petable.model.entity.Shelter;
 import finalproject.petable.model.entity.enums.PetType;
 import finalproject.petable.service.PetService;
@@ -10,11 +11,10 @@ import finalproject.petable.service.ShelterService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/shelters")
@@ -49,4 +49,5 @@ public class ShelterController {
         model.addAttribute("allDogsByShelter", allDogsByShelter);
         return "shelter-animal-list";
     }
+
 }

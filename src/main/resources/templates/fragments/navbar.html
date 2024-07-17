@@ -23,10 +23,10 @@
 
                 <a class="nav-link"
                    sec:authorize="hasRole('CLIENT')"
-                   aria-current="page" href="/client-profile">Home</a>
+                   aria-current="page" th:href="@{/client-profile}">Home</a>
                 <a class="nav-link"
                    sec:authorize="hasRole('SHELTER')"
-                   aria-current="page" href="/shelter-profile">Home</a>
+                   aria-current="page" th:href="@{/shelter-profile}">Home</a>
 
                 <a class="nav-link"
                    sec:authorize="!hasRole('SHELTER')"

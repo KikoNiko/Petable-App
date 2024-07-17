@@ -46,4 +46,22 @@ public class ShelterServiceImpl implements ShelterService {
         }
         return optionalShelter.get();
     }
+
+    @Override
+    public void editShelterInfo(ShelterProfileDTO shelterProfileInfo) {
+        Optional<Shelter> optionalShelter = shelterRepository.findById(shelterProfileInfo.getId());
+        if (optionalShelter.isEmpty()) {
+            throw new UserNotFoundException("Shelter not found!");
+        }
+        Shelter shelter = optionalShelter.get();
+        shelter.setName(shelterProfileInfo.getName());
+        shelter.setUsername(shelterProfileInfo.getUsername());
+        shelter.setEmail(shelterProfileInfo.getEmail());
+        shelter.setLocation(shelterProfileInfo.getLocation());
+        shelter.setSpecialNumber(shelterProfileInfo.getSpecialNumber());
+        shelter.setBio(shelterProfileInfo.getBio());
+        shelter.setLogoUrl(shelterProfileInfo.getLogoUrl());
+        shelter.setWebsiteUrl(shelterProfileInfo.getWebsiteUrl());
+        shelterRepository.save(shelter);
+    }
 }

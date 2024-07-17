@@ -82,36 +82,4 @@ public class PetServiceImpl implements PetService {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public void addToFavorites(String username, Long petId) {
-        Client client = getClientByUsername(username);
-        Pet pet = getPet(petId);
-        client.getFavoritePets().add(pet);
-        clientRepository.save(client);
-    }
-
-    @Override
-    public void removeFromFavorites(String username, Long petId) {
-        Client client = getClientByUsername(username);
-        Pet pet = getPet(petId);
-        client.getFavoritePets().remove(pet);
-        clientRepository.save(client);
-    }
-
-    private Client getClientByUsername(String username) {
-        Optional<Client> byUsername = clientRepository.findByUsername(username);
-        if (byUsername.isEmpty()) {
-            throw new UserNotFoundException("User not found!");
-        }
-        return byUsername.get();
-    }
-
-    private Pet getPet(Long id) {
-        Optional<Pet> optionalPet = petRepository.findById(id);
-        if (optionalPet.isEmpty()) {
-            throw new PetNotFoundException("Pet not found!");
-        }
-        return optionalPet.get();
-    }
-
 }

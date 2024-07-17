@@ -3,6 +3,7 @@ package finalproject.petable.model.dto;
 import finalproject.petable.model.entity.Shelter;
 
 public class ShelterProfileDTO {
+    private Long id;
     private String username;
     private String email;
     private String name;
@@ -10,9 +11,10 @@ public class ShelterProfileDTO {
     private String specialNumber;
     private String websiteUrl;
     private String logoUrl;
-    private String description;
+    private String bio;
 
     public ShelterProfileDTO(Shelter shelter) {
+        this.id = shelter.getId();
         this.username = shelter.getUsername();
         this.email = shelter.getEmail();
         this.name = shelter.getName();
@@ -20,10 +22,18 @@ public class ShelterProfileDTO {
         this.specialNumber = shelter.getSpecialNumber();
         this.websiteUrl = shelter.getWebsiteUrl();
         this.logoUrl = shelter.getLogoUrl();
-        this.description = shelter.getBio();
+        this.bio = shelter.getBio();
     }
 
     public ShelterProfileDTO() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -82,11 +92,11 @@ public class ShelterProfileDTO {
         this.logoUrl = logoUrl;
     }
 
-    public String getDescription() {
-        return description;
+    public String getBio() {
+        return bio;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 }

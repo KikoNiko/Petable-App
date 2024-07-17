@@ -90,18 +90,4 @@ public class PetController {
         return "pet-profile";
     }
 
-    @PostMapping("/pet-profile/add-to-favorites/{id}")
-    public String addToFavorites(@PathVariable Long id,
-                                 @AuthenticationPrincipal AppUserDetails userDetails) {
-        petService.addToFavorites(userDetails.getUsername(), id);
-        return "redirect:/client-profile";
-    }
-
-    @DeleteMapping("/client-profile/remove-pet/{id}")
-    public String removeFromFavorites(@PathVariable Long id,
-                                      @AuthenticationPrincipal AppUserDetails userDetails) {
-        petService.removeFromFavorites(userDetails.getUsername(), id);
-        return "redirect:/client-profile";
-    }
-
 }

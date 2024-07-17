@@ -21,12 +21,6 @@
                         <div class="d-flex justify-content-center">
                             <p class="lead fs-4 fw-bolder" th:text="${shelterProfileInfo.getName()}"></p>
                         </div>
-                        <div class="d-flex justify-content-center">
-                            <div class="btn btn-primary btn-rounded">
-                                <label class="form-label text-white m-1" for="customFile2">Choose file</label>
-                                <input type="file" class="form-control d-none" id="customFile2" onchange="displaySelectedImage(event, 'selectedAvatar')" />
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -99,20 +93,25 @@
                         <div class="col-sm-9 text-secondary" th:text="${shelterProfileInfo.getEmail()}"></div>
                     </div>
                     <hr>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <h6 class="mb-0">Short bio:</h6>
-                        </div>
-                        <div class="col-sm-9 text-secondary" th:text="${shelterProfileInfo.getDescription()}"></div>
-                    </div>
-                    <hr>
+                      <div class="row">
+                          <div class="col-sm-3">
+                              <h6 class="mb-0">Location</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary" th:text="${shelterProfileInfo.getLocation()}"></div>
+                      </div>
+                      <hr>
                     <div class="row">
                         <div class="col-sm-3">
                             <h6 class="mb-0">Website Url</h6>
                         </div>
-                        <div class="col-sm-9 text-secondary" th:text="${shelterProfileInfo.getWebsiteUrl()}">
-                            Bay Area, San Francisco, CA
+                        <div class="col-sm-9 text-secondary" th:text="${shelterProfileInfo.getWebsiteUrl()}"></div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Short bio:</h6>
                         </div>
+                        <div class="col-sm-9 text-secondary" th:text="${shelterProfileInfo.getBio()}"></div>
                     </div>
                     <hr>
                     <div class="row">
@@ -130,7 +129,6 @@
 </div>
 
 <!-- Modals -->
-
 <!-- Edit info Modal -->
 <div class="modal fade" id="editInfo" tabindex="-1" aria-labelledby="editInfoLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -139,43 +137,95 @@
           <h1 class="modal-title fs-5" id="editInfoLabel">Edit user information</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          <form>
-            <div class="mb-2">
-                <label for="firstName" class="col-form-label">
-                    Shelter Name
-                </label>
-                <input type="text" class="form-control" id="firstName">
+        <form th:action="@{/shelter-profile/{id}(id=${shelterProfileInfo.getId()})}"
+              th:method="post"
+              th:object="${shelterProfileInfo}">
+            <div class="modal-body">
+                <div class="mb-2">
+                    <label for="shelterName" class="col-form-label">
+                        Shelter Name
+                    </label>
+                    <input type="text"
+                           class="form-control"
+                           id="shelterName"
+                           th:field="*{name}"
+                           th:value="${shelterProfileInfo.getName()}">
+                </div>
+                <div class="mb-2">
+                    <label for="idNumber" class="col-form-label">
+                        ID number
+                    </label>
+                    <input type="text"
+                           class="form-control"
+                           id="idNumber"
+                           th:field="*{specialNumber}"
+                           th:value="${shelterProfileInfo.getSpecialNumber()}">
+                </div>
+                  <div class="mb-2">
+                      <label for="username" class="col-form-label">
+                          Username
+                      </label>
+                      <input type="text"
+                             class="form-control"
+                             id="username"
+                             th:field="*{username}"
+                             th:value="${shelterProfileInfo.getUsername()}">
+                  </div>
+                <div class="mb-2">
+                    <label for="email" class="col-form-label">
+                        Email
+                    </label>
+                    <input type="email"
+                           class="form-control"
+                           id="email"
+                           th:field="*{email}"
+                           th:value="${shelterProfileInfo.getEmail()}">
+                </div>
+                <div class="mb-2">
+                    <label for="location" class="col-form-label">
+                        Location
+                    </label>
+                    <input type="text"
+                           class="form-control"
+                           id="location"
+                           th:field="*{location}"
+                           th:value="${shelterProfileInfo.getLocation()}">
+                </div>
+                <div class="mb-2">
+                    <label for="logoUrl" class="col-form-label">
+                        Logo Url
+                    </label>
+                    <input type="text"
+                           class="form-control"
+                           id="logoUrl"
+                           th:field="*{logoUrl}"
+                           th:value="${shelterProfileInfo.getLogoUrl()}">
+                </div>
+                <div class="mb-2">
+                    <label for="websiteUrl" class="col-form-label">
+                        Website Url
+                    </label>
+                    <input type="text"
+                           class="form-control"
+                           id="websiteUrl"
+                           th:field="*{websiteUrl}"
+                           th:value="${shelterProfileInfo.getWebsiteUrl()}">
+                </div>
+                <div class="mb-2">
+                    <label for="bio" class="col-form-label">
+                        Bio
+                    </label>
+                    <textarea rows="2"
+                              class="form-control"
+                              id="bio"
+                              th:field="*{bio}"
+                              th:value="${shelterProfileInfo.getBio()}"></textarea>
+                </div>
             </div>
-            <div class="mb-2">
-                <label for="idNumber" class="col-form-label">
-                    ID number
-                </label>
-                <input type="text" class="form-control" id="IdNumber">
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
-            <div class="mb-2">
-                <label for="email" class="col-form-label">
-                    Email
-                </label>
-                <input type="email" class="form-control" id="email">
-            </div>
-            <div class="mb-2">
-                <label for="phoneNumber" class="col-form-label">
-                    Phone Number
-                </label>
-                <input type="tel" class="form-control" id="phoneNumber">
-            </div>
-            <div class="mb-2">
-                <label for="address" class="col-form-label">
-                    Address
-                </label>
-                <input type="tel" class="form-control" id="address">
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+        </form>
       </div>
     </div>
   </div>
@@ -185,20 +235,4 @@
 
 </body>
 
-<script>
-    function displaySelectedImage(event, elementId) {
-        const selectedImage = document.getElementById(elementId);
-        const fileInput = event.target;
-
-        if (fileInput.files && fileInput.files[0]) {
-            const reader = new FileReader();
-
-            reader.onload = function(e) {
-                selectedImage.src = e.target.result;
-            };
-
-            reader.readAsDataURL(fileInput.files[0]);
-        }
-    }
-</script>
 </html>

@@ -28,7 +28,7 @@ public class Pet extends BaseEntity{
     private String location;
     @Size(max = 50)
     private String shortDescription;
-
+    @Column(length = 1000)
     private String story;
     @NotNull
     @Enumerated(EnumType.STRING)
