@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head::head}"></head>
+<body>
+    <div class="container-fluid pt-5">
+        <img class="mx-auto d-block mb-3" src="/images/404.jpg" style="height: 300px">
+        <p class="h3 text-center">
+            Oops! Pet with id <th:block th:text="${petId}"></th:block> was not found :(
+        </p>
+        <p class="h4 text-center">
+            We are sorry... You can go back to the <a th:href="@{/pet-registry}"><b>pet registry</b></a>.
+        </p>
+    </div>
+</body>
+</html>

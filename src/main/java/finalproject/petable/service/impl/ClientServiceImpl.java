@@ -29,7 +29,7 @@ public class ClientServiceImpl implements ClientService {
     public ClientProfileDTO getClientInfo(String username) {
         Client client = clientRepository.findByUsername(username).orElse(null);
         if (client == null) {
-            throw new UserNotFoundException("User not found!");
+            throw new UserNotFoundException("User not found!", username);
         }
         return new ClientProfileDTO(client);
     }
@@ -38,7 +38,7 @@ public class ClientServiceImpl implements ClientService {
     public Set<PetDisplayInfoDTO> getAllFavoritePets(String username) {
         Optional<Client> byUsername = clientRepository.findByUsername(username);
         if (byUsername.isEmpty()) {
-            throw new UserNotFoundException("User not found!");
+            throw new UserNotFoundException("User not found!", username);
         }
         return byUsername.get()
                 .getFavoritePets()
@@ -66,7 +66,7 @@ public class ClientServiceImpl implements ClientService {
     private Client getClientByUsername(String username) {
         Optional<Client> byUsername = clientRepository.findByUsername(username);
         if (byUsername.isEmpty()) {
-            throw new UserNotFoundException("User not found!");
+            throw new UserNotFoundException("User not found!", username);
         }
         return byUsername.get();
     }
@@ -74,7 +74,7 @@ public class ClientServiceImpl implements ClientService {
     private Pet getPet(Long id) {
         Optional<Pet> optionalPet = petRepository.findById(id);
         if (optionalPet.isEmpty()) {
-            throw new PetNotFoundException("Pet not found!");
+            throw new PetNotFoundException("Pet not found!", id);
         }
         return optionalPet.get();
     }

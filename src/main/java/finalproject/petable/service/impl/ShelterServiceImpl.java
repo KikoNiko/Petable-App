@@ -33,7 +33,7 @@ public class ShelterServiceImpl implements ShelterService {
     public ShelterProfileDTO getInfoByUsername(String username) {
         Shelter shelter = shelterRepository.findByUsername(username).orElse(null);
         if (shelter == null) {
-            throw new UserNotFoundException("Shelter not found!");
+            throw new UserNotFoundException("Shelter not found!", username);
         }
         return new ShelterProfileDTO(shelter);
     }
@@ -42,7 +42,7 @@ public class ShelterServiceImpl implements ShelterService {
     public Shelter getByUsername(String username) {
         Optional<Shelter> optionalShelter = shelterRepository.findByUsername(username);
         if (optionalShelter.isEmpty()) {
-            throw new UserNotFoundException("Shelter not found!");
+            throw new UserNotFoundException("Shelter not found!", username);
         }
         return optionalShelter.get();
     }
@@ -51,7 +51,7 @@ public class ShelterServiceImpl implements ShelterService {
     public void editShelterInfo(ShelterProfileDTO shelterProfileInfo) {
         Optional<Shelter> optionalShelter = shelterRepository.findById(shelterProfileInfo.getId());
         if (optionalShelter.isEmpty()) {
-            throw new UserNotFoundException("Shelter not found!");
+            throw new UserNotFoundException("Shelter not found!", shelterProfileInfo.getId());
         }
         Shelter shelter = optionalShelter.get();
         shelter.setName(shelterProfileInfo.getName());
@@ -63,5 +63,12 @@ public class ShelterServiceImpl implements ShelterService {
         shelter.setLogoUrl(shelterProfileInfo.getLogoUrl());
         shelter.setWebsiteUrl(shelterProfileInfo.getWebsiteUrl());
         shelterRepository.save(shelter);
+    }
+
+    @Override
+    public Shelter findById(Long shelterId) {
+        return shelterRepository.
+                findById(shelterId)
+                .orElseThrow(() -> new UserNotFoundException("Shelter not found!", shelterId));
     }
 }

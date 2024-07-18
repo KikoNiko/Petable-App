@@ -70,9 +70,12 @@ public class HomeController {
     @PostMapping("/shelter-profile/{shelterId}")
     public String editProfileInfo(@PathVariable Long shelterId,
                                   @ModelAttribute("shelterProfileInfo") ShelterProfileDTO shelterProfileInfo) {
+        String username = shelterService.findById(shelterId).getUsername();
         shelterProfileInfo.setId(shelterId);
         shelterService.editShelterInfo(shelterProfileInfo);
-
+        if (!username.equals(shelterProfileInfo.getUsername())) {
+            return "redirect:/users/login";
+        }
         return "redirect:/shelter-profile";
     }
 }

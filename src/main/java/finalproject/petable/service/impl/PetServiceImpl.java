@@ -11,13 +11,11 @@ import finalproject.petable.repository.PetRepository;
 import finalproject.petable.repository.ShelterRepository;
 import finalproject.petable.service.PetService;
 import finalproject.petable.service.exception.PetNotFoundException;
-import finalproject.petable.service.exception.UserNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -46,7 +44,7 @@ public class PetServiceImpl implements PetService {
     public void removePet(Long petId) {
         Optional<Pet> optionalPet = petRepository.findById(petId);
         if (optionalPet.isEmpty()) {
-            throw new PetNotFoundException("Pet not found!");
+            throw new PetNotFoundException("Pet not found!", petId);
         }
         Pet pet = optionalPet.get();
         clientRepository.findAll()
@@ -69,7 +67,7 @@ public class PetServiceImpl implements PetService {
     public PetProfileDTO getPetById(Long id) {
         Pet pet = petRepository.findById(id).orElse(null);
         if (pet == null) {
-            throw new PetNotFoundException("Pet not found!");
+            throw new PetNotFoundException("Pet not found!", id);
         }
         return new PetProfileDTO(pet);
     }
