@@ -28,6 +28,7 @@ public class SecurityConfig {
                                                 "/users/register/shelter",
                                                 "/pet-registry",
                                                 "/pet-profile/{id}",
+                                                "/test",
                                                 "/shelters/info")
                                         .permitAll()
                                         .requestMatchers("/add-pet", "/shelter-profile").hasRole("SHELTER")
