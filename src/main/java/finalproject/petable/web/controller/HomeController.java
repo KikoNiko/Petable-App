@@ -34,6 +34,11 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("/test")
+    public String test() {
+        return "test";
+    }
+
     @GetMapping("/home")
     public String home(@AuthenticationPrincipal AppUserDetails userDetails) {
         if (userDetails != null) {
