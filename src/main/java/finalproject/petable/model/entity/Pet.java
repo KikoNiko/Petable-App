@@ -9,6 +9,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -35,6 +37,8 @@ public class Pet extends BaseEntity{
     private PetStatus status;
     @ManyToOne
     private Shelter shelter;
+    @OneToMany
+    private List<Image> images = new ArrayList<>();
 
     public Pet() {
     }
@@ -109,6 +113,14 @@ public class Pet extends BaseEntity{
 
     public void setShelter(Shelter shelter) {
         this.shelter = shelter;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 
     @Override

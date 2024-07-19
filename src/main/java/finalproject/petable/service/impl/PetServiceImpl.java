@@ -37,6 +37,7 @@ public class PetServiceImpl implements PetService {
     public void addPet(String shelterUsername, PetAddDTO petAddDTO) {
         Pet pet = modelMapper.map(petAddDTO, Pet.class);
         shelterRepository.findByUsername(shelterUsername).ifPresent(pet::setShelter);
+        pet.setImages(petAddDTO.getImages());
         petRepository.save(pet);
     }
 

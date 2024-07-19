@@ -1,11 +1,13 @@
 package finalproject.petable.model.dto;
 
+import finalproject.petable.model.entity.Image;
 import finalproject.petable.model.entity.enums.Gender;
 import finalproject.petable.model.entity.enums.PetStatus;
 import finalproject.petable.model.entity.enums.PetType;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class PetAddDTO {
 
@@ -29,6 +31,8 @@ public class PetAddDTO {
     private String shortDescription;
     @Size(max = 1000)
     private String story;
+
+    private List<Image> images;
 
     public String getName() {
         return name;
@@ -92,5 +96,13 @@ public class PetAddDTO {
 
     public void setStory(String story) {
         this.story = story;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 }

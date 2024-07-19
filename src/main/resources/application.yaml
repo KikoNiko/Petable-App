@@ -49,3 +49,8 @@ admin:
   username: ${ADMIN_USERNAME}
   password: ${ADMIN_PASS}
 
+cloudinary:
+  api:
+    cloud_name: ${CLOUD_NAME}
+    api_key: ${CLOUD_API_KEY}
+    api_secret: ${CLOUD_SECRET}

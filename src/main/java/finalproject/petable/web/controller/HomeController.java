@@ -79,8 +79,4 @@ public class HomeController {
         return "redirect:/shelter-profile";
     }
 
-    @GetMapping("/test")
-    public String test() {
-        return "test";
-    }
 }
