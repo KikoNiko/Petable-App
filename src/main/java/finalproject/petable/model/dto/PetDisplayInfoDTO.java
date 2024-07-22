@@ -23,9 +23,9 @@ public class PetDisplayInfoDTO {
         if (!pet.getImages().isEmpty()) {
             this.profileImageUrl = pet.getImages().get(0).getUrl();
         } else if (petType.equals(PetType.CAT)){
-            this.profileImageUrl = "src/main/resources/static/images/cat-portrait.jpg";
+            this.profileImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT53hL5qjY5qzvc-8HDatMuH9mm3Tol2Dl1OQ&s";
         } else if (petType.equals(PetType.DOG)) {
-            this.profileImageUrl = "src/main/resources/static/images/dog-portrait.jpg";
+            this.profileImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3hTQwsrGuYW0XGXbIB4d2noVL1ZhL7llERA&s";
         }
     }
 
