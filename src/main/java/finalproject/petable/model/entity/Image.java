@@ -6,14 +6,14 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "images")
 public class Image extends BaseEntity{
-    private String name;
-    private String imageUrl;
-    private String imageId;
 
-    public Image(String name, String imageUrl, String imageId) {
+    private String name;
+
+    private String url;
+
+    public Image(String name, String url) {
         this.name = name;
-        this.imageUrl = imageUrl;
-        this.imageId = imageId;
+        this.url = url;
     }
 
     public Image() {
@@ -27,19 +27,11 @@ public class Image extends BaseEntity{
         this.name = name;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getUrl() {
+        return url;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public String getImageId() {
-        return imageId;
-    }
-
-    public void setImageId(String imageId) {
-        this.imageId = imageId;
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

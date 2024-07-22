@@ -42,7 +42,7 @@
         <div class="row">
             <div class="col mb-3" th:each="dog : ${allRegisteredDogs}">
                 <div class="card custom-card rounded-3 shadow">
-                    <img src="/images/dog-portrait.jpg" alt="" class="img-fluid rounded-3">
+                    <img th:src="${dog.getProfileImageUrl()}" alt="" class="img-fluid rounded-3">
                     <div class="card-text bg-dark text-white">
                       <div class="intro rounded-bottom-3">
                         <p class="card-h1 lead fw-normal fs-4 ps-3 pt-3" th:text="${dog.getName()}"></p>
@@ -70,7 +70,7 @@
         <div class="row">
             <div class="col mb-3" th:each="cat : ${allRegisteredCats}">
                 <div class="card custom-card rounded-3 shadow">
-                    <img src="/images/cat-portrait.jpg" alt="" class="img-fluid rounded-3">
+                    <img th:src="${cat.getProfileImageUrl()}" alt="" class="img-fluid rounded-3">
                     <div class="card-text bg-dark text-white">
                       <div class="intro rounded-bottom-3">
                         <p class="card-h1 lead fw-normal fs-4 ps-3 pt-3" th:text="${cat.getName()}"></p>

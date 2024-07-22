@@ -8,7 +8,8 @@
         <div class="row">
             <form th:action="@{/add-pet}"
                   th:method="post"
-                  th:object="${petData}">
+                  th:object="${petData}"
+                  enctype="multipart/form-data">
 
                 <div class="form-group mb-3">
                     <label class="mb-2" for="name">Name</label>

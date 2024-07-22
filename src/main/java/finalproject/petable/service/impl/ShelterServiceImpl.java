@@ -60,7 +60,7 @@ public class ShelterServiceImpl implements ShelterService {
         shelter.setLocation(shelterProfileInfo.getLocation());
         shelter.setSpecialNumber(shelterProfileInfo.getSpecialNumber());
         shelter.setBio(shelterProfileInfo.getBio());
-        shelter.setLogoUrl(shelterProfileInfo.getLogoUrl());
+        shelter.setProfileImageUrl(shelterProfileInfo.getLogoUrl());
         shelter.setWebsiteUrl(shelterProfileInfo.getWebsiteUrl());
         shelterRepository.save(shelter);
     }

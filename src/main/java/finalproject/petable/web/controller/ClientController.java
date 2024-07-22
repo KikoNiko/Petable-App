@@ -30,4 +30,5 @@ public class ClientController {
         clientService.removePetFromFavorites(userDetails.getUsername(), id);
         return "redirect:/client-profile";
     }
+
 }

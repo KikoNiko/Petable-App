@@ -57,16 +57,11 @@
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                     </div>
-                    <div class="carousel-inner">
+                    <div class="carousel-inner" th:each="image : ${petProfileData.getImages()}">
                         <div class="carousel-item active">
-                            <img src="/images/phoebe-dog/p-1.jpg" class="d-block w-100" alt="...">
+                            <img th:src="*{image}" class="d-block w-100" alt="...">
                         </div>
-                        <div class="carousel-item">
-                            <img src="/images/phoebe-dog/p-2.jpg" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="/images/phoebe-dog/p-3.jpg" class="d-block w-100" alt="...">
-                        </div>
+
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -123,10 +118,12 @@
                                             </form>
                                         </div>
                                     </div>
-                                    <div sec:authorize="!hasRole('CLIENT')" class="row pt-4">
+                                    <div sec:authorize="hasRole('SHELTER')" class="row pt-4">
                                         <div class="col-md-4">
                                             <p class="text-end pe-3">
-                                                <a class="btn btn-sm btn-warning">Edit <i class="bi bi-pencil ms-1"></i></a>
+                                                <a class="btn btn-sm btn-warning"
+                                                   data-bs-toggle="modal"
+                                                   data-bs-target="#editInfo">Edit <i class="bi bi-pencil ms-1"></i></a>
                                             </p>
                                         </div>
                                     </div>
@@ -139,6 +136,58 @@
         </div>
     </div>
 </div>
+
+<!-- Edit info Modal -->
+<div class="modal fade" id="editInfo" tabindex="-1" aria-labelledby="editInfoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editInfoLabel">Edit user information</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form th:action="@{/pet-profile/{id}(id=${petProfileData.getId()})}"
+                  th:method="post"
+                  th:object="${petProfileData}">
+                <div class="modal-body">
+                    <div class="mb-2">
+                        <label for="shelterName" class="col-form-label">
+                            Shelter Name
+                        </label>
+                        <input type="text"
+                               class="form-control"
+                               id="shelterName"
+                               th:field="*{name}"
+                               th:value="${petProfileData.getName()}">
+                    </div>
+                    <div class="mb-2">
+                        <label for="images" class="col-form-label">
+                            Images
+                        </label>
+                        <input type="text"
+                               class="form-control"
+                               id="images"
+                               th:field="*{images}"
+                               th:value="${petProfileData.getImages()}">
+                    </div>
+                    <div class="mb-2">
+                        <label for="location" class="col-form-label">
+                            Location
+                        </label>
+                        <input type="text"
+                               class="form-control"
+                               id="location"
+                               th:field="*{location}"
+                               th:value="${petProfileData.getLocation()}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- EO: Edit info Modal -->
 
 <!-- TODO: Button to go back to registry -->
 

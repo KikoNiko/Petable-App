@@ -38,7 +38,7 @@ public class Pet extends BaseEntity{
     @ManyToOne
     private Shelter shelter;
     @OneToMany
-    private List<Image> images = new ArrayList<>();
+    private List<Image> images;
 
     public Pet() {
     }

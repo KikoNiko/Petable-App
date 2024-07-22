@@ -21,7 +21,7 @@ public class ShelterProfileDTO {
         this.location = shelter.getLocation();
         this.specialNumber = shelter.getSpecialNumber();
         this.websiteUrl = shelter.getWebsiteUrl();
-        this.logoUrl = shelter.getLogoUrl();
+        this.logoUrl = shelter.getProfileImageUrl();
         this.bio = shelter.getBio();
     }
 

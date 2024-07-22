@@ -29,8 +29,8 @@ public class BaseUser {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private List<UserRole> roles = new ArrayList<>();
-    @OneToOne
-    private Image profileImage;
+
+    private String profileImageUrl;
 
     public BaseUser() {
     }
@@ -80,11 +80,11 @@ public class BaseUser {
         this.roles = roles;
     }
 
-    public Image getProfileImage() {
-        return profileImage;
+    public String getProfileImageUrl() {
+        return profileImageUrl;
     }
 
-    public void setProfileImage(Image profileImage) {
-        this.profileImage = profileImage;
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
     }
 }

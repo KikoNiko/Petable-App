@@ -13,11 +13,20 @@ public class PetDisplayInfoDTO {
 
     private PetType petType;
 
+    private String profileImageUrl;
+
     public PetDisplayInfoDTO(Pet pet) {
         this.id = pet.getId();
         this.name = pet.getName();
         this.shortDescription = pet.getShortDescription();
         this.petType = pet.getType();
+        if (!pet.getImages().isEmpty()) {
+            this.profileImageUrl = pet.getImages().get(0).getUrl();
+        } else if (petType.equals(PetType.CAT)){
+            this.profileImageUrl = "src/main/resources/static/images/cat-portrait.jpg";
+        } else if (petType.equals(PetType.DOG)) {
+            this.profileImageUrl = "src/main/resources/static/images/dog-portrait.jpg";
+        }
     }
 
     public PetDisplayInfoDTO() {
@@ -55,4 +64,11 @@ public class PetDisplayInfoDTO {
         this.petType = petType;
     }
 
+    public String getProfileImageUrl() {
+        return profileImageUrl;
+    }
+
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
+    }
 }

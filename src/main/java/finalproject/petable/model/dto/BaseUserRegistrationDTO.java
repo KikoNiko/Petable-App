@@ -19,6 +19,7 @@ public class BaseUserRegistrationDTO {
     @Size(min = 5, max = 30)
     private String confirmPassword;
 
+    private String profileImageUrl;
     public String getUsername() {
         return username;
     }
@@ -49,5 +50,13 @@ public class BaseUserRegistrationDTO {
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+    }
+
+    public String getProfileImageUrl() {
+        return profileImageUrl;
+    }
+
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
     }
 }

@@ -24,8 +24,6 @@ public class Shelter extends BaseUser {
     private String specialNumber;
     @Column(unique = true)
     private String websiteUrl;
-
-    private String logoUrl;
     @Column(length = 1000)
     private String bio;
     @OneToMany
@@ -65,14 +63,6 @@ public class Shelter extends BaseUser {
 
     public void setWebsiteUrl(String websiteLink) {
         this.websiteUrl = websiteLink;
-    }
-
-    public String getLogoUrl() {
-        return logoUrl;
-    }
-
-    public void setLogoUrl(String logoUrl) {
-        this.logoUrl = logoUrl;
     }
 
     public String getBio() {

@@ -13,4 +13,5 @@ public interface UserService {
     void registerClient(ClientRegistrationDTO clientRegistrationDTO);
     void registerShelter(ShelterRegistrationDTO shelterRegistrationDTO);
     List<BaseUserDisplayInfoDTO> getAllUsersInfo();
+
 }

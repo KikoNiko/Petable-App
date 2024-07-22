@@ -10,6 +10,7 @@ import finalproject.petable.service.ClientService;
 import finalproject.petable.service.exception.PetNotFoundException;
 import finalproject.petable.service.exception.UserNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClient;
 
 import java.util.Optional;
 import java.util.Set;
@@ -19,10 +20,12 @@ import java.util.stream.Collectors;
 public class ClientServiceImpl implements ClientService {
     private final ClientRepository clientRepository;
     private final PetRepository petRepository;
+    private final RestClient restClient;
 
-    public ClientServiceImpl(ClientRepository clientRepository, PetRepository petRepository) {
+    public ClientServiceImpl(ClientRepository clientRepository, PetRepository petRepository, RestClient restClient) {
         this.clientRepository = clientRepository;
         this.petRepository = petRepository;
+        this.restClient = restClient;
     }
 
     @Override

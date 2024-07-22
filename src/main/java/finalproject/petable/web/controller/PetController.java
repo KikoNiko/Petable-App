@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Objects;
 
 
 @Controller
@@ -88,6 +89,15 @@ public class PetController {
         PetProfileDTO petProfileData = petService.getPetById(id);
         model.addAttribute("petProfileData", petProfileData);
         return "pet-profile";
+    }
+
+    @PostMapping("/pet-profile/{id}")
+    public String ediPetInfo(@PathVariable Long id, @ModelAttribute("petProfileData") PetProfileDTO petProfileInfo) {
+        if (!Objects.equals(petProfileInfo.getId(), id)) {
+            return "redirect:/pet-registry";
+        }
+        petService.editPetInfo(petProfileInfo);
+        return "redirect:/pet-profile/{id}";
     }
 
 }

@@ -1,30 +1,27 @@
 package finalproject.petable.model.dto;
 
+import finalproject.petable.model.entity.Image;
 import finalproject.petable.model.entity.Pet;
 import finalproject.petable.model.entity.enums.Gender;
 import finalproject.petable.model.entity.enums.PetStatus;
 import finalproject.petable.model.entity.enums.PetType;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class PetProfileDTO {
     private Long id;
     private String name;
-
     private PetType type;
-
     private Gender gender;
-
     private String age;
-
     private String location;
-
     private String shortDescription;
-
     private String story;
-
     private PetStatus status;
-
     private String shelterName;
     private String shelterLink;
+    private List<String> images;
 
     public PetProfileDTO(Pet pet) {
         this.id = pet.getId();
@@ -38,6 +35,7 @@ public class PetProfileDTO {
         this.status = pet.getStatus();
         this.shelterName = pet.getShelter().getName();
         this.shelterLink = pet.getShelter().getWebsiteUrl();
+        this.images = pet.getImages().stream().map(Image::getUrl).collect(Collectors.toList());
     }
 
     public PetProfileDTO() {
@@ -130,4 +128,13 @@ public class PetProfileDTO {
     public void setShelterLink(String shelterLink) {
         this.shelterLink = shelterLink;
     }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
+
 }

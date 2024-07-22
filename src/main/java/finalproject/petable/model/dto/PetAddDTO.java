@@ -1,16 +1,14 @@
 package finalproject.petable.model.dto;
 
-import finalproject.petable.model.entity.Image;
 import finalproject.petable.model.entity.enums.Gender;
 import finalproject.petable.model.entity.enums.PetStatus;
 import finalproject.petable.model.entity.enums.PetType;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class PetAddDTO {
-
+    private Long id;
     @NotEmpty
     @Size(min = 2, max = 50, message = "Name length must be between 2 and 50 characters!")
     private String name;
@@ -32,7 +30,9 @@ public class PetAddDTO {
     @Size(max = 1000)
     private String story;
 
-    private List<Image> images;
+    public Long getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
@@ -98,11 +98,4 @@ public class PetAddDTO {
         this.story = story;
     }
 
-    public List<Image> getImages() {
-        return images;
-    }
-
-    public void setImages(List<Image> images) {
-        this.images = images;
-    }
 }
