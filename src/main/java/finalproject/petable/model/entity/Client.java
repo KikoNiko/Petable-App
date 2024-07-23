@@ -20,12 +20,9 @@ public class Client extends BaseUser {
             inverseJoinColumns = @JoinColumn(name = "pet_id")
     )
     private Set<Pet> favoritePets;
-    @OneToMany
-    private Set<Message> messages;
 
     public Client() {
         favoritePets = new HashSet<>();
-        messages = new HashSet<>();
     }
 
     public String getFirstName() {
@@ -50,14 +47,6 @@ public class Client extends BaseUser {
 
     public void setFavoritePets(Set<Pet> favoritePets) {
         this.favoritePets = favoritePets;
-    }
-
-    public Set<Message> getMessages() {
-        return messages;
-    }
-
-    public void setMessages(Set<Message> messages) {
-        this.messages = messages;
     }
 
     public String getFullName() {

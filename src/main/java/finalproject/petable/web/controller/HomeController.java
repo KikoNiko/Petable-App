@@ -4,8 +4,10 @@ import finalproject.petable.model.AppUserDetails;
 import finalproject.petable.model.dto.ClientProfileDTO;
 import finalproject.petable.model.dto.PetDisplayInfoDTO;
 import finalproject.petable.model.dto.ShelterProfileDTO;
+import finalproject.petable.model.dto.ShowMessageDTO;
 import finalproject.petable.model.entity.Shelter;
 import finalproject.petable.service.ClientService;
+import finalproject.petable.service.MessageService;
 import finalproject.petable.service.ShelterService;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -17,16 +19,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 @Controller
 public class HomeController {
     private final ShelterService shelterService;
     private final ClientService clientService;
+    private final MessageService messageService;
 
-    public HomeController(ShelterService shelterService, ClientService clientService) {
+    public HomeController(ShelterService shelterService, ClientService clientService, MessageService messageService) {
         this.shelterService = shelterService;
         this.clientService = clientService;
+        this.messageService = messageService;
     }
 
     @GetMapping("/")
@@ -64,6 +69,10 @@ public class HomeController {
     public String viewShelterProfile(@AuthenticationPrincipal AppUserDetails userDetails, Model model) {
         ShelterProfileDTO shelterProfileInfo = shelterService.getInfoByUsername(userDetails.getUsername());
         model.addAttribute("shelterProfileInfo", shelterProfileInfo);
+        Shelter shelter = shelterService.getByUsername(userDetails.getUsername());
+        Long shelterId = shelter.getId();
+        List<ShowMessageDTO> allMessages = messageService.getAllMessages(shelterId);
+        model.addAttribute("allMessages", allMessages);
         return "shelter-profile";
     }
 

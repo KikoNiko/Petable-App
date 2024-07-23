@@ -5,13 +5,6 @@
 <body>
 <header th:replace="~{fragments/navbar::navbar}"></header>
 
-<table class="table table-success table-striped">
-  <tr th:each="message : ${allMessages}">
-    <td th:text="${message.getSubject()}"></td>
-    <td th:text="${message.getSenderFullName()}"></td>
-    <td th:text="${message.getDate()}"></td>
-    <td th:text="${message.getBody()}"></td>
-  </tr>
-</table>
+
 </body>
 </html>

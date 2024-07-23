@@ -5,7 +5,9 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -29,10 +31,13 @@ public class BaseUser {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private List<UserRole> roles = new ArrayList<>();
+    @OneToMany
+    private Set<Message> messages;
 
     private String profileImageUrl;
 
     public BaseUser() {
+        this.messages = new HashSet<>();
     }
 
     public BaseUser(String username, String password) {
@@ -78,6 +83,14 @@ public class BaseUser {
 
     public void setRoles(List<UserRole> roles) {
         this.roles = roles;
+    }
+
+    public Set<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(Set<Message> messages) {
+        this.messages = messages;
     }
 
     public String getProfileImageUrl() {

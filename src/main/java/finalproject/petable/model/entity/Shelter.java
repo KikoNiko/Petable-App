@@ -26,11 +26,8 @@ public class Shelter extends BaseUser {
     private String websiteUrl;
     @Column(length = 1000)
     private String bio;
-    @OneToMany
-    private Set<Message> messages;
 
     public Shelter() {
-        messages = new HashSet<>();
     }
 
     public String getName() {
@@ -71,13 +68,5 @@ public class Shelter extends BaseUser {
 
     public void setBio(String description) {
         this.bio = description;
-    }
-
-    public Set<Message> getMessages() {
-        return messages;
-    }
-
-    public void setMessages(Set<Message> messages) {
-        this.messages = messages;
     }
 }

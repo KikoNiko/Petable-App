@@ -76,7 +76,7 @@ public class ShelterServiceImpl implements ShelterService {
     public List<String> getAllSheltersNames() {
         return shelterRepository.findAll()
                 .stream()
-                .map(Shelter::getName)
+                .map(Shelter::getUsername)
                 .collect(Collectors.toList());
     }
 }

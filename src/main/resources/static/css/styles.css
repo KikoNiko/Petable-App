@@ -78,36 +78,5 @@ img {
     width: 100%;
 }
 
-/* custom cards for pet-registry*/
-.intro{
-    height: 70px;
-    position: absolute;
-    bottom: 0px;
-    background: rgb(27, 27, 27, .5);
-    transition: 0.5s;
-}
-.intro .card-btn{
-    position: relative;
-    transition-delay: 0.3s;
-}
-.card-p{
-    width: 18rem;
-    visibility: hidden;
-    opacity: 0;
-}
-.custom-card{
-    width: 18rem;
-}
-.custom-card:hover{
-    cursor: pointer;
-}
-.custom-card:hover .intro{
-    height: 220px;
-    background: var(--black);
-    opacity: 80%;
-}
-.custom-card:hover .card-p{
-    visibility: visible;
-    opacity: 100;
-}
+
 

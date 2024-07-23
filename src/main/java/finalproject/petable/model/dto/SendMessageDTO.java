@@ -4,8 +4,7 @@ import finalproject.petable.model.entity.enums.PetType;
 
 public class SendMessageDTO {
 
-    private String senderFirstName;
-    private String senderLastName;
+    private String senderUsername;
 
     private String senderEmail;
 
@@ -13,24 +12,16 @@ public class SendMessageDTO {
 
     private PetType petType;
 
-    private String receiverName;
+    private String receiverUsername;
 
     private String body;
 
-    public String getSenderFirstName() {
-        return senderFirstName;
+    public String getSenderUsername() {
+        return senderUsername;
     }
 
-    public void setSenderFirstName(String senderFirstName) {
-        this.senderFirstName = senderFirstName;
-    }
-
-    public String getSenderLastName() {
-        return senderLastName;
-    }
-
-    public void setSenderLastName(String senderLastName) {
-        this.senderLastName = senderLastName;
+    public void setSenderUsername(String senderUsername) {
+        this.senderUsername = senderUsername;
     }
 
     public String getSenderEmail() {
@@ -57,12 +48,12 @@ public class SendMessageDTO {
         this.petType = petType;
     }
 
-    public String getReceiverName() {
-        return receiverName;
+    public String getReceiverUsername() {
+        return receiverUsername;
     }
 
-    public void setReceiverName(String receiverName) {
-        this.receiverName = receiverName;
+    public void setReceiverUsername(String receiverUsername) {
+        this.receiverUsername = receiverUsername;
     }
 
     public String getBody() {

@@ -10,4 +10,5 @@ public interface MessageService {
     void sendMessage(SendMessageDTO messageData);
 
     List<ShowMessageDTO> getAllMessages(Long userId);
+    void deleteMessage(Long id);
 }
