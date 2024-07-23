@@ -29,7 +29,6 @@ public class SecurityConfig {
                                                 "/pet-registry",
                                                 "/pet-profile/{id}",
                                                 "/test",
-                                                "/cloudinary/list",
                                                 "/shelters/info")
                                         .permitAll()
                                         .requestMatchers("/add-pet", "/shelter-profile").hasRole("SHELTER")

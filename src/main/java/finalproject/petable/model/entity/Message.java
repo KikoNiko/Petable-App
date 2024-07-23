@@ -3,6 +3,8 @@ package finalproject.petable.model.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "messages")
 public class Message extends BaseEntity{
@@ -11,12 +13,13 @@ public class Message extends BaseEntity{
 
     private Long receiverId;
 
+    private String subject;
+
     private String body;
 
-    private boolean isReceived;
+    private LocalDate date;
 
     public Message() {
-        isReceived = false;
     }
 
     public Long getSenderId() {
@@ -35,6 +38,14 @@ public class Message extends BaseEntity{
         this.receiverId = receiverId;
     }
 
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
     public String getBody() {
         return body;
     }
@@ -43,11 +54,11 @@ public class Message extends BaseEntity{
         this.body = body;
     }
 
-    public boolean isReceived() {
-        return isReceived;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setReceived(boolean received) {
-        isReceived = received;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 }

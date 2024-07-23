@@ -59,4 +59,8 @@ public class Client extends BaseUser {
     public void setMessages(Set<Message> messages) {
         this.messages = messages;
     }
+
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
 }

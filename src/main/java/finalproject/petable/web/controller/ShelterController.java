@@ -35,10 +35,6 @@ public class ShelterController {
         return "shelters-info";
     }
 
-    @GetMapping("/contact-form")
-    public String viewContactPage() {
-        return "contact-form";
-    }
     @GetMapping("/shelter/my-animals")
     public String viewMyAnimals(@AuthenticationPrincipal AppUserDetails userDetails,
                                 Model model) {

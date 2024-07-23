@@ -71,4 +71,12 @@ public class ShelterServiceImpl implements ShelterService {
                 findById(shelterId)
                 .orElseThrow(() -> new UserNotFoundException("Shelter not found!", shelterId));
     }
+
+    @Override
+    public List<String> getAllSheltersNames() {
+        return shelterRepository.findAll()
+                .stream()
+                .map(Shelter::getName)
+                .collect(Collectors.toList());
+    }
 }

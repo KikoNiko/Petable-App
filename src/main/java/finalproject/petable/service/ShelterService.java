@@ -15,4 +15,6 @@ public interface ShelterService {
     void editShelterInfo(ShelterProfileDTO shelterProfileInfo);
 
     Shelter findById(Long shelterId);
+
+    List<String> getAllSheltersNames();
 }

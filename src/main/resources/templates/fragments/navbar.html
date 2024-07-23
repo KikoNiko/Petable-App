@@ -43,12 +43,18 @@
                    sec:authorize="hasRole('SHELTER')"
                    th:href="@{/shelters/shelter/my-animals}">My animals</a>
 
+                <a class="nav-link"
+                   sec:authorize="hasRole('SHELTER')"
+                   th:href="@{/shelter-profile/message-inbox}">My Messages</a>
+
+
+
                 <div class="dropdown">
                     <a class="nav-link dropdown-toggle" sec:authorize="!hasRole('SHELTER')"
                        data-bs-toggle="dropdown" href="#">Shelters</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="/shelters/info">Info</a></li>
-                        <li><a class="dropdown-item" href="/shelters/contact-form">Contact a shelter</a></li>
+                        <li><a class="dropdown-item" href="/contact-form">Contact a shelter</a></li>
                     </ul>
                 </div>
 
