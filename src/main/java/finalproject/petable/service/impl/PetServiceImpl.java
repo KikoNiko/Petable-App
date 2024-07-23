@@ -6,6 +6,7 @@ import finalproject.petable.model.dto.PetDisplayInfoDTO;
 import finalproject.petable.model.entity.Client;
 import finalproject.petable.model.entity.Image;
 import finalproject.petable.model.entity.Pet;
+import finalproject.petable.model.entity.enums.PetStatus;
 import finalproject.petable.model.entity.enums.PetType;
 import finalproject.petable.repository.ClientRepository;
 import finalproject.petable.repository.ImageRepository;
@@ -42,6 +43,7 @@ public class PetServiceImpl implements PetService {
     @Override
     public void addPet(String shelterUsername, PetAddDTO petAddDTO) {
         Pet pet = modelMapper.map(petAddDTO, Pet.class);
+        pet.setStatus(PetStatus.valueOfLabel(petAddDTO.getStatus()));
         shelterRepository.findByUsername(shelterUsername).ifPresent(pet::setShelter);
         petRepository.save(pet);
     }

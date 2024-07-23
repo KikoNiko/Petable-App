@@ -37,7 +37,7 @@
                     <input type="hidden" name="_method" value="delete"/>
                     <button sec:authorize="!hasRole('CLIENT')"
                             th:href="@{/pet-profile/remove-pet/{id}(id=${petProfileData.getId()})}"
-                            class="btn btn-sm btn-danger btn-sm">Delete<i class="bi bi-x-square ms-1"></i>
+                            class="btn btn-danger btn-sm">Delete<i class="bi bi-x-square ms-1"></i>
                     </button>
                 </form>
             </div>

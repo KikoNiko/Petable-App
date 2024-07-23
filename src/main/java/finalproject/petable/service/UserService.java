@@ -3,6 +3,7 @@ package finalproject.petable.service;
 import finalproject.petable.model.dto.BaseUserDisplayInfoDTO;
 import finalproject.petable.model.dto.ClientRegistrationDTO;
 import finalproject.petable.model.dto.ShelterRegistrationDTO;
+import finalproject.petable.model.entity.BaseUser;
 
 import java.util.List;
 import java.util.Set;
@@ -13,5 +14,6 @@ public interface UserService {
     void registerClient(ClientRegistrationDTO clientRegistrationDTO);
     void registerShelter(ShelterRegistrationDTO shelterRegistrationDTO);
     List<BaseUserDisplayInfoDTO> getAllUsersInfo();
+    BaseUser getByUsername(String username);
 
 }

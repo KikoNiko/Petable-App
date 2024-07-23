@@ -23,7 +23,7 @@ public class PetAddDTO {
     @Size(min = 2, max = 50)
     private String location;
     @NotNull(message = "You must select pet status!")
-    private PetStatus status;
+    private String status;
     @NotEmpty
     @Size(max = 50, message = "Short description cannot be longer than 50 characters.")
     private String shortDescription;
@@ -74,11 +74,11 @@ public class PetAddDTO {
         this.location = location;
     }
 
-    public PetStatus getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(PetStatus status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

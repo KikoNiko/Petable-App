@@ -82,18 +82,30 @@
                                             <hr>
                                             <div class="row text-center">
                                                 <div class="col-6">
-                                                    <button th:href="@{/}"
-                                                            class="btn btn-sm btn-success btn-sm">Reply
-                                                    </button>
+                                                    <a class="btn btn-success btn-sm" data-bs-toggle="collapse" href="#replyMessage" role="button" aria-expanded="false" aria-controls="replyMessage">
+                                                        Reply
+                                                    </a>
                                                 </div>
                                                 <div class="col-6">
                                                     <form th:action="@{/messages/delete/{id}(id=${message.getId()})}"
                                                           th:method="delete">
                                                         <input type="hidden" name="_method" value="delete"/>
                                                         <button th:href="@{/messages/delete/{id}(id=${message.getId()})}"
-                                                                class="btn btn-sm btn-danger btn-sm">Delete <i class="bi bi-x-square ms-1"></i>
+                                                                class="btn btn-danger btn-sm">Delete <i class="bi bi-x-square ms-1"></i>
                                                         </button>
                                                     </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="collapse" id="replyMessage">
+                                            <div class="card card-body">
+                                                <label for="message" class="form-label">Message: </label>
+                                                <textarea class="form-control"
+                                                          id="message"
+                                                          rows="4">
+                                                </textarea>
+                                                <div class="d-grid mt-2">
+                                                    <button class="btn btn-primary" type="submit">Send</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -173,7 +185,6 @@
     </div>
 </div>
 
-<!-- Modals -->
 <!-- Edit info Modal -->
 <div class="modal fade" id="editInfo" tabindex="-1" aria-labelledby="editInfoLabel" aria-hidden="true">
     <div class="modal-dialog">

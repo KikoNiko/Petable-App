@@ -5,10 +5,12 @@ import finalproject.petable.model.dto.ClientProfileDTO;
 import finalproject.petable.model.dto.PetDisplayInfoDTO;
 import finalproject.petable.model.dto.ShelterProfileDTO;
 import finalproject.petable.model.dto.ShowMessageDTO;
+import finalproject.petable.model.entity.BaseUser;
 import finalproject.petable.model.entity.Shelter;
 import finalproject.petable.service.ClientService;
 import finalproject.petable.service.MessageService;
 import finalproject.petable.service.ShelterService;
+import finalproject.petable.service.UserService;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -27,11 +29,13 @@ public class HomeController {
     private final ShelterService shelterService;
     private final ClientService clientService;
     private final MessageService messageService;
+    private final UserService userService;
 
-    public HomeController(ShelterService shelterService, ClientService clientService, MessageService messageService) {
+    public HomeController(ShelterService shelterService, ClientService clientService, MessageService messageService, UserService userService) {
         this.shelterService = shelterService;
         this.clientService = clientService;
         this.messageService = messageService;
+        this.userService = userService;
     }
 
     @GetMapping("/")
@@ -62,6 +66,10 @@ public class HomeController {
         Set<PetDisplayInfoDTO> favoritePets = clientService.getAllFavoritePets(userDetails.getUsername());
         model.addAttribute("favoritePets", favoritePets);
         model.addAttribute("clientProfileInfo", clientProfileInfo);
+        BaseUser user = userService.getByUsername(userDetails.getUsername());
+        Long clientId = user.getId();
+        List<ShowMessageDTO> allMessages = messageService.getAllMessages(clientId);
+        model.addAttribute("allMessages", allMessages);
         return "client-profile";
     }
 

@@ -3,6 +3,7 @@ package finalproject.petable.service.impl;
 import finalproject.petable.model.dto.BaseUserDisplayInfoDTO;
 import finalproject.petable.model.dto.ClientRegistrationDTO;
 import finalproject.petable.model.dto.ShelterRegistrationDTO;
+import finalproject.petable.model.entity.BaseUser;
 import finalproject.petable.model.entity.Client;
 import finalproject.petable.model.entity.Shelter;
 import finalproject.petable.model.entity.UserRole;
@@ -84,5 +85,10 @@ public class UserServiceImpl implements UserService {
                 .stream()
                 .map(BaseUserDisplayInfoDTO::new)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public BaseUser getByUsername(String username) {
+        return userRepository.findByUsername(username).orElse(null);
     }
 }

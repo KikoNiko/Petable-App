@@ -16,8 +16,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -34,8 +36,10 @@ public class PetController {
     }
 
     @ModelAttribute("petStatuses")
-    public PetStatus[] petStatuses() {
-        return PetStatus.values();
+    public List<String> petStatuses() {
+        return Arrays.stream(PetStatus.values())
+                .map(PetStatus::getLabel)
+                .collect(Collectors.toList());
     }
 
     @ModelAttribute("petTypes")

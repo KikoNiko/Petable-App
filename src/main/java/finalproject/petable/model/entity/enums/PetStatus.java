@@ -15,4 +15,13 @@ public enum PetStatus {
     public String getLabel() {
         return label;
     }
+
+    public static PetStatus valueOfLabel(String label) {
+        for (PetStatus status : values()) {
+            if (status.label.equals(label)) {
+                return status;
+            }
+        }
+        return null;
+    }
 }
