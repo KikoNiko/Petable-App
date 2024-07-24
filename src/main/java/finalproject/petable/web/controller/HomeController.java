@@ -1,24 +1,24 @@
 package finalproject.petable.web.controller;
 
 import finalproject.petable.model.AppUserDetails;
-import finalproject.petable.model.dto.ClientProfileDTO;
-import finalproject.petable.model.dto.PetDisplayInfoDTO;
-import finalproject.petable.model.dto.ShelterProfileDTO;
-import finalproject.petable.model.dto.ShowMessageDTO;
+import finalproject.petable.model.dto.*;
 import finalproject.petable.model.entity.BaseUser;
 import finalproject.petable.model.entity.Shelter;
 import finalproject.petable.service.ClientService;
 import finalproject.petable.service.MessageService;
 import finalproject.petable.service.ShelterService;
 import finalproject.petable.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Collection;
 import java.util.List;
@@ -84,6 +84,13 @@ public class HomeController {
         return "shelter-profile";
     }
 
+    @PostMapping("/messages/reply/{id}")
+    public String replyMessage(@PathVariable Long id,
+                               @Valid ReplyMessageDTO replyMessage) {
+        messageService.replyMessage(id, replyMessage);
+        return "redirect:/home";
+    }
+
     @PostMapping("/shelter-profile/{shelterId}")
     public String editProfileInfo(@PathVariable Long shelterId,
                                   @ModelAttribute("shelterProfileInfo") ShelterProfileDTO shelterProfileInfo) {
@@ -94,6 +101,11 @@ public class HomeController {
             return "redirect:/users/login";
         }
         return "redirect:/shelter-profile";
+    }
+
+    @ModelAttribute("replyMessage")
+    public ReplyMessageDTO replyMessage() {
+        return new ReplyMessageDTO();
     }
 
 }

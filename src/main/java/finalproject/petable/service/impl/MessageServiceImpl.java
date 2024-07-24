@@ -1,5 +1,6 @@
 package finalproject.petable.service.impl;
 
+import finalproject.petable.model.dto.ReplyMessageDTO;
 import finalproject.petable.model.dto.SendMessageDTO;
 import finalproject.petable.model.dto.ShowMessageDTO;
 import finalproject.petable.model.entity.BaseUser;
@@ -7,6 +8,7 @@ import finalproject.petable.model.entity.Message;
 import finalproject.petable.repository.MessageRepository;
 import finalproject.petable.repository.UserRepository;
 import finalproject.petable.service.MessageService;
+import finalproject.petable.service.exception.MessageNotFoundException;
 import finalproject.petable.service.exception.UserNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -69,6 +71,28 @@ public class MessageServiceImpl implements MessageService {
                 .filter(messages -> messages.contains(message))
                 .forEach(messages -> messages.remove(message));
         messageRepository.deleteById(id);
+    }
+
+    @Override
+    public Message getMessageById(Long id) {
+        return messageRepository.findById(id).orElseThrow(
+                () -> new MessageNotFoundException("Message with id " + id + " not found.", id)
+        );
+    }
+
+    @Override
+    public void replyMessage(Long messageId, ReplyMessageDTO message) {
+        Message originalMessage = getMessageById(messageId);
+        Message reply = new Message();
+        reply.setSubject(originalMessage.getSubject());
+        reply.setSenderId(originalMessage.getReceiverId());
+        reply.setReceiverId(originalMessage.getSenderId());
+        reply.setDate(LocalDate.now());
+        reply.setBody(message.getBody());
+        messageRepository.save(reply);
+        BaseUser user = userRepository.findById(reply.getReceiverId()).get();
+        user.getMessages().add(reply);
+        userRepository.save(user);
     }
 
     private ShowMessageDTO map(Message message) {

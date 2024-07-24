@@ -97,18 +97,26 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- Reply message collapse -->
                                         <div class="collapse" id="replyMessage">
                                             <div class="card card-body">
-                                                <label for="message" class="form-label">Message: </label>
-                                                <textarea class="form-control"
-                                                          id="message"
-                                                          rows="4">
-                                                </textarea>
-                                                <div class="d-grid mt-2">
-                                                    <button class="btn btn-primary" type="submit">Send</button>
-                                                </div>
+                                                <form th:action="@{/messages/reply/{id}(id=${message.getId()})}"
+                                                      th:method="post"
+                                                      th:object="${replyMessage}">
+                                                    <label for="messageBody" class="form-label">Message: </label>
+                                                    <textarea class="form-control"
+                                                              id="messageBody"
+                                                              rows="4"
+                                                              th:field="*{body}"
+                                                              name="messageBody">
+                                                    </textarea>
+                                                    <div class="d-grid mt-2">
+                                                        <button class="btn btn-primary" type="submit">Send</button>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
+                                        <!-- EO: Reply message collapse -->
                                     </div>
                                 </div>
                             </div>
