@@ -21,7 +21,7 @@
                            placeholder="Name" required>
                     <p th:if="${#fields.hasErrors('name')}"
                        th:errors="*{name}"
-                       class="invalid-feedback text-danger" style="font-size: 15px"></p>
+                       class="invalid-feedback text-danger"></p>
                 </div>
 
                 <div class="form-group mb-3">
@@ -55,7 +55,7 @@
                     </select>
                     <small th:if="${#fields.hasErrors('gender')}"
                            th:errors="*{gender}"
-                           class="invalid-feedback text-danger">Pet gender error message</small>
+                           class="invalid-feedback text-danger"></small>
                 </div>
 
                 <div class="form-group mb-3">
@@ -83,7 +83,7 @@
                            placeholder="Location" required>
                     <small th:if="${#fields.hasErrors('location')}"
                            th:errors="*{location}"
-                           class="invalid-feedback text-danger" style="font-size: 15px"></small>
+                           class="invalid-feedback text-danger"></small>
                 </div>
 
                 <div class="form-group mb-3">

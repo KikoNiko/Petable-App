@@ -31,7 +31,11 @@
                          id="username"
                          name="username"
                          th:field="*{senderUsername}"
+                         th:errorclass="'is-invalid'"
                          required>
+                  <p th:if="${#fields.hasErrors('senderUsername')}"
+                     th:errors="*{senderUsername}"
+                     class="invalid-feedback text-danger"></p>
                 </div>
 
                 <div class="col-12 col-md-6">
@@ -43,38 +47,54 @@
                     <input type="email"
                            class="form-control"
                            id="email" name="email"
-                           th:field="*{senderEmail}">
+                           th:field="*{senderEmail}"
+                           th:errorclass="'is-invalid'">
+                    <p th:if="${#fields.hasErrors('senderEmail')}"
+                       th:errors="*{senderEmail}"
+                       class="invalid-feedback text-danger"></p>
                   </div>
                 </div>
                 <div class="col-12 col-md-6">
                   <label for="petSelect" class="form-label">Who do you want to contact? <span class="text-danger">*</span></label>
                   <select class="form-select"
                           aria-label="form-select"
-                          th:field="*{receiverUsername}">
+                          th:field="*{receiverUsername}"
+                          th:errorclass="'is-invalid'">
                     <option value="">Select Shelter</option>
                     <option th:each="name : ${sheltersNames}"
                             th:value="${name}"
                             th:text="${name}"></option>
                   </select>
+                  <p th:if="${#fields.hasErrors('receiverUsername')}"
+                     th:errors="*{receiverUsername}"
+                     class="invalid-feedback text-danger"></p>
                 </div>
                 <div class="col-12 col-md-6">
                     <label for="petSelect" class="form-label">Which pet are you interested in? <span class="text-danger">*</span></label>
                       <input class="form-control"
                              id="petSelect"
                              th:field="*{petName}"
+                             th:errorclass="'is-invalid'"
                              required
                              placeholder="Enter pet name">
+                      <p th:if="${#fields.hasErrors('petName')}"
+                         th:errors="*{petName}"
+                         class="invalid-feedback text-danger"></p>
                 </div>
                 <div class="col-12 col-md-6">
                     <label for="petSelect" class="form-label">Choose pet type <span class="text-danger">*</span></label>
                     <select class="form-select"
                             aria-label="form-select"
-                            th:field="*{petType}">
+                            th:field="*{petType}"
+                            th:errorclass="'is-invalid'">
                       <option value="">Select Pet Type</option>
                       <option th:each="val : ${petTypes}"
                               th:value="${val}"
                               th:text="${val}"></option>
-                      </select>
+                    </select>
+                    <p th:if="${#fields.hasErrors('petType')}"
+                       th:errors="*{petType}"
+                       class="invalid-feedback text-danger"></p>
                 </div>
                 <div class="col-12">
                   <label for="message" class="form-label">Message <span class="text-danger">*</span></label>
@@ -82,9 +102,13 @@
                             id="message"
                             name="message"
                             th:field="*{body}"
+                            th:errorclass="'is-invalid'"
                             rows="3"
                             required
                             placeholder="Write your message here..."></textarea>
+                  <p th:if="${#fields.hasErrors('body')}"
+                     th:errors="*{body}"
+                     class="invalid-feedback text-danger"></p>
                 </div>
                 <div class="col-12">
                   <div class="d-grid">
