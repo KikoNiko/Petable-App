@@ -32,16 +32,21 @@ public class BaseUser {
     )
     private List<UserRole> roles = new ArrayList<>();
     @OneToMany
-    private Set<Message> messages;
+    private Set<Message> messages = new HashSet<>();
 
     private String profileImageUrl;
 
     public BaseUser() {
-        this.messages = new HashSet<>();
     }
 
     public BaseUser(String username, String password) {
         this.username = username;
+        this.password = password;
+    }
+
+    public BaseUser(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
         this.password = password;
     }
 

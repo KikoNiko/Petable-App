@@ -4,7 +4,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public class BaseUserRegistrationDTO {
+public class BaseUserRegistrationDTO{
 
     @NotBlank(message = "Username cannot be empty!")
     @Size(min = 4, max = 20, message = "Username length must be between 4 and 20 characters")
@@ -19,7 +19,6 @@ public class BaseUserRegistrationDTO {
     @Size(min = 5, max = 30)
     private String confirmPassword;
 
-    private String profileImageUrl;
     public String getUsername() {
         return username;
     }
@@ -52,11 +51,4 @@ public class BaseUserRegistrationDTO {
         this.confirmPassword = confirmPassword;
     }
 
-    public String getProfileImageUrl() {
-        return profileImageUrl;
-    }
-
-    public void setProfileImageUrl(String profileImageUrl) {
-        this.profileImageUrl = profileImageUrl;
-    }
 }

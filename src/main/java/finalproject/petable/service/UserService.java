@@ -6,7 +6,6 @@ import finalproject.petable.model.dto.ShelterRegistrationDTO;
 import finalproject.petable.model.entity.BaseUser;
 
 import java.util.List;
-import java.util.Set;
 
 public interface UserService {
     boolean isUsernameRegistered(String username);
