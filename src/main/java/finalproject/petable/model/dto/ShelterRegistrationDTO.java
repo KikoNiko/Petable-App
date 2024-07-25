@@ -18,7 +18,6 @@ public class ShelterRegistrationDTO extends BaseUserRegistrationDTO {
     @URL
     private String logoUrl;
 
-
     public String getName() {
         return name;
     }
