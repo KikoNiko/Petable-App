@@ -84,10 +84,16 @@
                                         <label for="messageBody" class="form-label">Message: </label>
                                         <textarea class="form-control"
                                                   id="messageBody"
+                                                  name="messageBody"
                                                   rows="4"
                                                   th:field="*{body}"
-                                                  name="messageBody">
+                                                  th:errorclass="'is-invalid'"
+                                                  placeholder="Write your message here..."
+                                                  required>
                                                     </textarea>
+                                        <p th:if="${#fields.hasErrors('body')}"
+                                           th:errors="*{body}"
+                                           class="invalid-feedback text-danger"></p>
                                         <div class="d-grid mt-2">
                                             <button class="btn btn-primary" type="submit">Send</button>
                                         </div>

@@ -10,10 +10,13 @@ public class ClientProfileDTO {
 
     private String email;
 
+    private String imageUrl;
+
     public ClientProfileDTO(Client client) {
         this.username = client.getUsername();
         this.fullName = client.getFirstName() + " " + client.getLastName();
         this.email = client.getEmail();
+        this.imageUrl = client.getProfileImageUrl();
     }
 
     public ClientProfileDTO() {
@@ -41,5 +44,13 @@ public class ClientProfileDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

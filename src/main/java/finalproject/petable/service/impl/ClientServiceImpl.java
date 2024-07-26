@@ -20,12 +20,10 @@ import java.util.stream.Collectors;
 public class ClientServiceImpl implements ClientService {
     private final ClientRepository clientRepository;
     private final PetRepository petRepository;
-    private final RestClient restClient;
 
-    public ClientServiceImpl(ClientRepository clientRepository, PetRepository petRepository, RestClient restClient) {
+    public ClientServiceImpl(ClientRepository clientRepository, PetRepository petRepository) {
         this.clientRepository = clientRepository;
         this.petRepository = petRepository;
-        this.restClient = restClient;
     }
 
     @Override

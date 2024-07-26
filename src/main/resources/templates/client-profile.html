@@ -12,7 +12,7 @@
                 <div class="card rounded-4 shadow">
                     <div class="card-body">
                         <div class="d-flex justify-content-center m-1">
-                            <img id="profileImg" src=""
+                            <img id="profileImg" th:src="${clientProfileInfo.getImageUrl()}"
                                  class="rounded-circle" style="width: 250px; height: 250px; object-fit: cover;" alt="profile picture" />
                         </div>
                         <div class="d-flex justify-content-center">
@@ -20,12 +20,14 @@
                         </div>
                         <div class="d-flex justify-content-center">
                             <div class="btn btn-primary btn-rounded">
-                                <form th:action="@{#}"
-                                      th:method="post">
+                                <form th:action="@{/images/upload}"
+                                      th:method="post"
+                                      enctype="multipart/form-data">
                                     <label class="form-label text-white m-1" for="profilePic">Choose file</label>
                                     <input type="file"
                                            class="form-control d-none"
                                            id="profilePic"
+                                           name="profilePic"
                                            onchange="form.submit()"/>
                                 </form>
                             </div>
@@ -59,6 +61,7 @@
                             <div class="col-sm-9 text-secondary" th:text="${clientProfileInfo.getEmail()}"></div>
                         </div>
                         <hr>
+                        <!-- TODO: Edit client info -->
                         <div class="row">
                             <div class="col-sm-12 ">
                                 <a class="btn btn-warning"

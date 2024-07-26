@@ -104,8 +104,8 @@
                             th:field="*{body}"
                             th:errorclass="'is-invalid'"
                             rows="3"
-                            required
-                            placeholder="Write your message here..."></textarea>
+                            placeholder="Write your message here..."
+                            required></textarea>
                   <p th:if="${#fields.hasErrors('body')}"
                      th:errors="*{body}"
                      class="invalid-feedback text-danger"></p>

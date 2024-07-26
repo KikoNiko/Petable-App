@@ -1,7 +1,9 @@
 package finalproject.petable.model.dto;
 
-public class ReplyMessageDTO {
+import jakarta.validation.constraints.NotEmpty;
 
+public class ReplyMessageDTO {
+    @NotEmpty(message = "Message body cannot be empty!")
     private String body;
 
     public String getBody() {

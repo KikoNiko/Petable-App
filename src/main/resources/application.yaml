@@ -25,11 +25,7 @@ spring:
       hibernate:
         format_sql: true
     defer-datasource-initialization: true
-  #Cloudinary Properties
-  #cloudinary:
-  #api-key:
-  #api-secret:
-  #cloud-name:
+
   thymeleaf: # Thymeleaf
     cache: false
     mode: HTML
@@ -49,10 +45,8 @@ admin:
   username: ${ADMIN_USERNAME}
   password: ${ADMIN_PASS}
 
-#cloudinary:
-#  api:
-#    cloud_name: ${CLOUD_NAME}
-#    api_key: ${CLOUD_API_KEY}
-#    api_secret: ${CLOUD_SECRET}
-#    baseUrl: "http://localhost:8080/cloudinary"
-
+cloudinary:
+  api:
+    cloud_name: ${CLOUD_NAME}
+    api_key: ${CLOUD_API_KEY}
+    api_secret: ${CLOUD_SECRET}

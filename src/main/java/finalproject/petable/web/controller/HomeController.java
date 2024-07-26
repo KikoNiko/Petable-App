@@ -10,10 +10,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Collection;
 import java.util.List;
@@ -79,13 +81,6 @@ public class HomeController {
         return "shelter-profile";
     }
 
-    @PostMapping("/messages/reply/{id}")
-    public String replyMessage(@PathVariable Long id,
-                               @Valid ReplyMessageDTO replyMessage) {
-        messageService.replyMessage(id, replyMessage);
-        return "redirect:/home";
-    }
-
     @PostMapping("/shelter-profile/{shelterId}")
     public String editProfileInfo(@PathVariable Long shelterId,
                                   @ModelAttribute("shelterProfileInfo") ShelterProfileDTO shelterProfileInfo) {
@@ -98,10 +93,23 @@ public class HomeController {
         return "redirect:/shelter-profile";
     }
 
+    @PostMapping("/messages/reply/{id}")
+    public String replyMessage(@PathVariable Long id,
+                               @Valid ReplyMessageDTO replyMessage,
+                               BindingResult bindingResult,
+                               RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("replyMessage", replyMessage);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.replyMessage", bindingResult);
+            return "redirect:/messages/reply/{id}";
+        }
+        messageService.replyMessage(id, replyMessage);
+        return "redirect:/home";
+    }
+
     @ModelAttribute("replyMessage")
     public ReplyMessageDTO replyMessage() {
         return new ReplyMessageDTO();
     }
-
 
 }
