@@ -99,24 +99,7 @@ public class PetServiceImpl implements PetService {
         pet.setId(petId);
         pet.setName(petProfileInfo.getName());
         pet.setLocation(petProfileInfo.getLocation());
-        pet.setImages(mapImages(petProfileInfo));
         petRepository.save(pet);
-    }
-
-    private List<Image> mapImages(PetProfileDTO petProfileDTO) {
-        List<String> images = petProfileDTO.getImages();
-        List<Image> petImages = new ArrayList<>();
-        for (String imageUrl : images) {
-            String randomName = UUID.randomUUID().toString();
-            Image petImage = new Image(randomName, imageUrl);
-            saveImage(petImage);
-            petImages.add(petImage);
-        }
-        return petImages;
-    }
-
-    private void saveImage(Image image) {
-        imageRepository.save(image);
     }
 
 }

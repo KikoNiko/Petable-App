@@ -1,7 +1,9 @@
-package finalproject.petable.service;
+package finalproject.petable.service.impl;
 
 import com.cloudinary.Cloudinary;
 import finalproject.petable.model.entity.Image;
+import finalproject.petable.service.CloudinaryService;
+import finalproject.petable.service.ImageService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,15 +22,18 @@ public class CloudinaryServiceImpl implements CloudinaryService {
     }
 
     @Override
-    public String upload(MultipartFile multipartFile) throws IOException {
+    public Image upload(MultipartFile multipartFile) throws IOException {
         String fileName = Objects.requireNonNull(multipartFile.getOriginalFilename());
+        Image existingImage = imageService.getByName(fileName);
+        if (existingImage != null) {
+            return existingImage;
+        }
         String resultUrl = cloudinary.uploader()
                 .upload(multipartFile.getBytes(),
                         Map.of("public_id", fileName))
                 .get("url")
                 .toString();
-        Image image = new Image(resultUrl, fileName);
-        imageService.save(image);
-        return resultUrl;
+        Image image = new Image(fileName, resultUrl);
+        return imageService.save(image);
     }
 }

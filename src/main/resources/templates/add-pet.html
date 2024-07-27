@@ -3,138 +3,153 @@
 <head th:replace="~{fragments/head::head}"></head>
 <body>
 <header th:replace="~{fragments/navbar::navbar}"></header>
-<div class="section pt-5">
+<div class="section pt-3">
     <div class="container">
-        <div class="row">
-            <form th:action="@{/add-pet}"
-                  th:method="post"
-                  th:object="${petData}"
-                  enctype="multipart/form-data">
+        <h3 class="text-center pb-3">Add a new pet</h3>
+        <form th:action="@{/add-pet}"
+              th:method="post"
+              th:object="${petData}"
+              enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md">
+                    <div class="form-group mb-3">
+                        <label class="mb-2" for="name">Name</label>
+                        <input type="text"
+                               id="name"
+                               th:field="*{name}"
+                               th:errorclass="'is-invalid'"
+                               class="form-control form-control-lg bg-light fs-6"
+                               placeholder="Name" required>
+                        <p th:if="${#fields.hasErrors('name')}"
+                           th:errors="*{name}"
+                           class="invalid-feedback text-danger">
+                        </p>
+                    </div>
 
-                <div class="form-group mb-3">
-                    <label class="mb-2" for="name">Name</label>
-                    <input type="text"
-                           id="name"
-                           th:field="*{name}"
-                           th:errorclass="'is-invalid'"
-                           class="form-control form-control-lg bg-light fs-6"
-                           placeholder="Name" required>
-                    <p th:if="${#fields.hasErrors('name')}"
-                       th:errors="*{name}"
-                       class="invalid-feedback text-danger"></p>
+                    <div class="form-group mb-3">
+                        <label class="mb-2" for="petType">Pet Type</label>
+                        <select class="form-select"
+                                id="petType"
+                                th:field="*{type}"
+                                th:errorclass="'is-invalid'"
+                                aria-label="form-select">
+                            <option value="">Select Pet Type</option>
+                            <option th:each="val : ${petTypes}"
+                                    th:value="${val}"
+                                    th:text="${val}">
+                            </option>
+                        </select>
+                        <small th:if="${#fields.hasErrors('type')}"
+                               th:errors="*{type}"
+                               class="invalid-feedback text-danger">
+                        </small>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="mb-2" for="gender">Gender</label>
+                        <select class="form-select"
+                                id="gender"
+                                th:field="*{gender}"
+                                th:errorclass="'is-invalid'"
+                                aria-label="form-select">
+                            <option value="">Select Pet Gender</option>
+                            <option th:each="val : ${petGenders}"
+                                    th:value="${val}"
+                                    th:text="${val}">
+                            </option>
+                        </select>
+                        <small th:if="${#fields.hasErrors('gender')}"
+                               th:errors="*{gender}"
+                               class="invalid-feedback text-danger">
+                        </small>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="mb-2" for="status">Status</label>
+                        <select class="form-select"
+                                id="status"
+                                th:field="*{status}"
+                                th:errorclass="'is-invalid'"
+                                aria-label="form-select">
+                            <option value="">Select Pet Status</option>
+                            <option th:each="val : ${petStatuses}"
+                                    th:value="${val}"
+                                    th:text="${val}">
+                            </option>
+                        </select>
+                        <small th:if="${#fields.hasErrors('status')}"
+                               th:errors="*{status}"
+                               class="invalid-feedback text-danger">
+                        </small>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="mb-2" for="birthdate">Birthdate</label>
+                        <input type="date"
+                               id="birthdate"
+                               class="form-control"
+                               th:field="*{birthdate}"
+                               th:errorclass="'is-invalid'"
+                               placeholder="Birthdate"
+                               aria-label="birthdate"
+                               required>
+                        <small th:if="${#fields.hasErrors('birthdate')}"
+                               th:errors="*{birthdate}"
+                               class="invalid-feedback text-danger">
+                        </small>
+                    </div>
                 </div>
 
-                <div class="form-group mb-3">
-                    <label class="mb-2" for="petType">Pet Type</label>
-                    <select class="form-select"
-                            id="petType"
-                            th:field="*{type}"
-                            th:errorclass="'is-invalid'"
-                            aria-label="form-select">
-                        <option value="">Select Pet Type</option>
-                        <option th:each="val : ${petTypes}"
-                                th:value="${val}"
-                                th:text="${val}"></option>
-                    </select>
-                    <small th:if="${#fields.hasErrors('type')}"
-                           th:errors="*{type}"
-                           class="invalid-feedback text-danger"></small>
-                </div>
+                <div class="col-md">
+                    <div class="form-group mb-3">
+                        <label class="mb-2" for="location">Location</label>
+                        <input type="text"
+                               id="location"
+                               th:field="*{location}"
+                               th:errorclass="'is-invalid'"
+                               class="form-control form-control-lg bg-light fs-6"
+                               placeholder="Location" required>
+                        <small th:if="${#fields.hasErrors('location')}"
+                               th:errors="*{location}"
+                               class="invalid-feedback text-danger">
+                        </small>
+                    </div>
 
-                <div class="form-group mb-3">
-                    <label class="mb-2" for="gender">Gender</label>
-                    <select class="form-select"
-                            id="gender"
-                            th:field="*{gender}"
-                            th:errorclass="'is-invalid'"
-                            aria-label="form-select">
-                        <option value="">Select Pet Gender</option>
-                        <option th:each="val : ${petGenders}"
-                                th:value="${val}"
-                                th:text="${val}"></option>
-                    </select>
-                    <small th:if="${#fields.hasErrors('gender')}"
-                           th:errors="*{gender}"
-                           class="invalid-feedback text-danger"></small>
-                </div>
+                    <div class="form-group mb-3">
+                        <label class="mb-2" for="shortDescription">Short Description</label>
+                        <input type="text"
+                               id="shortDescription"
+                               th:field="*{shortDescription}"
+                               th:errorclass="'is-invalid'"
+                               class="form-control form-control-lg bg-light fs-6"
+                               placeholder="" required>
+                        <small th:if="${#fields.hasErrors('shortDescription')}"
+                               th:errors="*{shortDescription}"
+                               class="invalid-feedback text-danger" style="font-size: 15px">
+                        </small>
+                    </div>
 
-                <div class="form-group mb-3">
-                    <label class="mb-2" for="birthdate">Birthdate</label>
-                    <input type="date"
-                           id="birthdate"
-                           class="form-control"
-                           th:field="*{birthdate}"
-                           th:errorclass="'is-invalid'"
-                           placeholder="Birthdate"
-                           aria-label="birthdate"
-                           required>
-                    <small th:if="${#fields.hasErrors('birthdate')}"
-                           th:errors="*{birthdate}"
-                           class="invalid-feedback text-danger"></small>
+                    <div class="form-group mb-3">
+                        <label class="mb-2" for="story">Story</label>
+                        <textarea id="story"
+                                  th:field="*{story}"
+                                  th:errorclass="'is-invalid'"
+                                  class="form-control" rows="8"
+                                  placeholder="Write the pet's story here...">
+                        </textarea>
+                        <small th:if="${#fields.hasErrors('story')}"
+                               th:errors="*{story}"
+                               class="invalid-feedback text-danger" style="font-size: 15px">
+                        </small>
+                    </div>
                 </div>
-
-                <div class="form-group mb-3">
-                    <label class="mb-2" for="location">Location</label>
-                    <input type="text"
-                           id="location"
-                           th:field="*{location}"
-                           th:errorclass="'is-invalid'"
-                           class="form-control form-control-lg bg-light fs-6"
-                           placeholder="Location" required>
-                    <small th:if="${#fields.hasErrors('location')}"
-                           th:errors="*{location}"
-                           class="invalid-feedback text-danger"></small>
-                </div>
-
-                <div class="form-group mb-3">
-                    <label class="mb-2" for="status">Status</label>
-                    <select class="form-select"
-                            id="status"
-                            th:field="*{status}"
-                            th:errorclass="'is-invalid'"
-                            aria-label="form-select">
-                        <option value="">Select Pet Status</option>
-                        <option th:each="val : ${petStatuses}"
-                                th:value="${val}"
-                                th:text="${val}"></option>
-                    </select>
-                    <small th:if="${#fields.hasErrors('status')}"
-                           th:errors="*{status}"
-                           class="invalid-feedback text-danger"></small>
-                </div>
-
-                <div class="form-group mb-3">
-                    <label class="mb-2" for="shortDescription">Short Description</label>
-                    <input type="text"
-                           id="shortDescription"
-                           th:field="*{shortDescription}"
-                           th:errorclass="'is-invalid'"
-                           class="form-control form-control-lg bg-light fs-6"
-                           placeholder="" required>
-                    <small th:if="${#fields.hasErrors('shortDescription')}"
-                           th:errors="*{shortDescription}"
-                           class="invalid-feedback text-danger" style="font-size: 15px"></small>
-                </div>
-
-                <div class="form-group mb-3">
-                    <label class="mb-2" for="story">Story</label>
-                    <textarea id="story"
-                              th:field="*{story}"
-                              th:errorclass="'is-invalid'"
-                              class="form-control" rows="2">
-                    </textarea>
-                    <small th:if="${#fields.hasErrors('story')}"
-                           th:errors="*{story}"
-                           class="invalid-feedback text-danger" style="font-size: 15px"></small>
-                </div>
-
-                <div class="form-group my-4">
-                    <button class="btn btn-lg btn-primary w-100 fs-5">
-                        Add Pet
-                    </button>
-                </div>
-            </form>
+            </div>
+        <div class="form-group my-4">
+            <button class="btn btn-lg btn-primary w-100 fs-5">
+                Add Pet
+            </button>
         </div>
+        </form>
     </div>
 </div>
 </body>

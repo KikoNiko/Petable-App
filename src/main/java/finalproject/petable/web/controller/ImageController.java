@@ -1,10 +1,12 @@
 package finalproject.petable.web.controller;
 
 import finalproject.petable.model.AppUserDetails;
+import finalproject.petable.model.entity.Image;
 import finalproject.petable.service.CloudinaryService;
 import finalproject.petable.service.ImageService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,8 +28,9 @@ public class ImageController {
     @PostMapping( "/upload")
     public String upload(@RequestParam("profilePic")MultipartFile multipartFile,
                          @AuthenticationPrincipal AppUserDetails userDetails) throws IOException {
-        String imageUrl = cloudinaryService.upload(multipartFile);
-        imageService.assignImageToUser(imageUrl, userDetails.getUsername());
+        Image image = cloudinaryService.upload(multipartFile);
+        imageService.assignImageToUser(image.getUrl(), userDetails.getUsername());
         return "redirect:/home";
     }
+
 }

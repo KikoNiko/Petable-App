@@ -15,6 +15,6 @@ public interface PetService {
     List<PetDisplayInfoDTO> getAllByType(PetType type);
     PetProfileDTO getPetById(Long id);
     List<PetDisplayInfoDTO> getAllByShelterIdAndType(Long id, PetType type);
-
     void editPetInfo(PetProfileDTO petProfileInfo);
+
 }

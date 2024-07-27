@@ -21,6 +21,20 @@
                         <div class="d-flex justify-content-center">
                             <p class="lead fs-4 fw-bolder" th:text="${shelterProfileInfo.getName()}"></p>
                         </div>
+                        <div class="d-flex justify-content-center">
+                            <form th:action="@{/images/upload}"
+                                  th:method="post"
+                                  enctype="multipart/form-data">
+                                <div class="btn btn-primary btn-rounded">
+                                <label class="form-label text-white m-1" for="profilePic">Choose file</label>
+                                <input type="file"
+                                       class="form-control d-none"
+                                       id="profilePic"
+                                       name="profilePic"
+                                       onchange="form.submit()"/>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 <div th:replace="~{fragments/messages::messages}"></div>
@@ -153,16 +167,6 @@
                            id="location"
                            th:field="*{location}"
                            th:value="${shelterProfileInfo.getLocation()}">
-                </div>
-                <div class="mb-2">
-                    <label for="logoUrl" class="col-form-label">
-                        Logo Url
-                    </label>
-                    <input type="text"
-                           class="form-control"
-                           id="logoUrl"
-                           th:field="*{logoUrl}"
-                           th:value="${shelterProfileInfo.getLogoUrl()}">
                 </div>
                 <div class="mb-2">
                     <label for="websiteUrl" class="col-form-label">

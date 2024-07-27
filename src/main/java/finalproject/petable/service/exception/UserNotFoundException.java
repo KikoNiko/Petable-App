@@ -17,6 +17,11 @@ public class UserNotFoundException extends RuntimeException{
         this.id = id;
     }
 
+    public UserNotFoundException(String message){
+        super(message);
+    }
+
+
     public String getUsername() {
         return username;
     }

@@ -21,7 +21,7 @@ public class PetProfileDTO {
     private PetStatus status;
     private String shelterName;
     private String shelterLink;
-    private List<String> images;
+    private List<Image> images;
 
     public PetProfileDTO(Pet pet) {
         this.id = pet.getId();
@@ -35,7 +35,7 @@ public class PetProfileDTO {
         this.status = pet.getStatus();
         this.shelterName = pet.getShelter().getName();
         this.shelterLink = pet.getShelter().getWebsiteUrl();
-        this.images = pet.getImages().stream().map(Image::getUrl).collect(Collectors.toList());
+        this.images = pet.getImages();
     }
 
     public PetProfileDTO() {
@@ -129,12 +129,8 @@ public class PetProfileDTO {
         this.shelterLink = shelterLink;
     }
 
-    public List<String> getImages() {
+    public List<Image> getImages() {
         return images;
-    }
-
-    public void setImages(List<String> images) {
-        this.images = images;
     }
 
 }

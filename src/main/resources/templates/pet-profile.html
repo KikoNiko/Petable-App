@@ -59,9 +59,8 @@
                     </div>
                     <div class="carousel-inner" th:each="image : ${petProfileData.getImages()}">
                         <div class="carousel-item active">
-                            <img th:src="*{image}" class="d-block w-100" alt="...">
+                            <img th:src="*{image.getUrl()}" class="d-block w-100" alt="...">
                         </div>
-
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -121,11 +120,24 @@
                                     <!-- TODO: Edit pet info -->
                                     <div sec:authorize="hasRole('SHELTER')" class="row pt-4">
                                         <div class="col-md-4">
-                                            <p class="text-end pe-3">
+                                            <p class="text-center pe-3">
                                                 <a class="btn btn-sm btn-warning"
                                                    data-bs-toggle="modal"
                                                    data-bs-target="#editInfo">Edit <i class="bi bi-pencil ms-1"></i></a>
                                             </p>
+                                        </div>
+                                        <div class="col-md-8">
+                                        <form th:action="@{/pet-profile/upload/{id}(id=${petProfileData.getId()})}"
+                                              th:method="post" enctype="multipart/form-data">
+                                            <div class="mb-3">
+                                                <label for="petPicture" class="form-label">Upload pet photos</label>
+                                                <input class="form-control"
+                                                       type="file"
+                                                       id="petPicture"
+                                                       name="petPicture"
+                                                       onchange="form.submit()">
+                                            </div>
+                                        </form>
                                         </div>
                                     </div>
                                 </div>
@@ -136,7 +148,6 @@
             </div>
         </div>
     </div>
-</div>
 
 <!-- Edit info Modal -->
 <div class="modal fade" id="editInfo" tabindex="-1" aria-labelledby="editInfoLabel" aria-hidden="true">
@@ -159,16 +170,6 @@
                                id="shelterName"
                                th:field="*{name}"
                                th:value="${petProfileData.getName()}">
-                    </div>
-                    <div class="mb-2">
-                        <label for="images" class="col-form-label">
-                            Images
-                        </label>
-                        <input type="text"
-                               class="form-control"
-                               id="images"
-                               th:field="*{images}"
-                               th:value="${petProfileData.getImages()}">
                     </div>
                     <div class="mb-2">
                         <label for="location" class="col-form-label">
