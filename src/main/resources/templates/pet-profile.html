@@ -47,19 +47,27 @@
 </div>
 <!-- EO: Pet status: -->
 
-<div class="section p-3">
-    <div class="container px-5">
+<div class="section">
+    <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div id="carouselExampleIndicators" class="carousel slide mb-3" data-bs-ride="carousel"
+                     th:unless="${petProfileData.getAllImages().isEmpty()}">
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                     </div>
-                    <div class="carousel-inner" th:each="image : ${petProfileData.getImages()}">
+                    <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img th:src="*{image.getUrl()}" class="d-block w-100" alt="...">
+                            <img th:src="${petProfileData.getAllImages().get(0).getUrl()}"
+                                 class="d-block w-100" alt="profile picture">
+                        </div>
+                    </div>
+                    <div class="carousel-inner" th:each="image : ${petProfileData.getImages()}">
+                        <div class="carousel-item">
+                            <img th:src="${image.getUrl()}"
+                                 class="d-block w-100"  th:alt="${image.getName()}">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -71,10 +79,15 @@
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
+                <div th:if="${petProfileData.getAllImages().isEmpty()}">
+                    <img src="/images/photo-coming-soon.jpg"
+                         class="mx-auto d-block w-50"
+                         alt="coming soon">
+                </div>
             </div>
             <div class="col-md-6">
                 <div class="section details">
-                    <div class="container">
+                    <div class="container pb-5">
                         <div class="card">
                             <div class="card-body">
                                 <p>

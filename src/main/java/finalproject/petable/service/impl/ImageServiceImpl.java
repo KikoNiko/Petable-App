@@ -17,11 +17,9 @@ import java.util.Optional;
 public class ImageServiceImpl implements ImageService {
     private final ImageRepository imageRepository;
     private final UserRepository userRepository;
-    private final PetRepository petRepository;
-    public ImageServiceImpl(ImageRepository imageRepository, UserRepository userRepository, PetRepository petRepository) {
+    public ImageServiceImpl(ImageRepository imageRepository, UserRepository userRepository) {
         this.imageRepository = imageRepository;
         this.userRepository = userRepository;
-        this.petRepository = petRepository;
     }
 
     @Override
@@ -38,17 +36,6 @@ public class ImageServiceImpl implements ImageService {
         BaseUser user = optionalUser.get();
         user.setProfileImageUrl(imageUrl);
         userRepository.save(user);
-    }
-
-    @Override
-    public void assignImageToPet(Image image, Long id) {
-        Optional<Pet> optionalPet = petRepository.findById(id);
-        if (optionalPet.isEmpty()) {
-            throw new PetNotFoundException("Pet with id " + id + " not found", id);
-        }
-        Pet pet = optionalPet.get();
-        pet.getImages().add(image);
-        petRepository.save(pet);
     }
 
     @Override

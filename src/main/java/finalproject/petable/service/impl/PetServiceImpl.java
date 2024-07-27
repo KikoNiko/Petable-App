@@ -102,4 +102,14 @@ public class PetServiceImpl implements PetService {
         petRepository.save(pet);
     }
 
+    @Override
+    public void assignImageToPet(Image image, Long id) {
+        Optional<Pet> optionalPet = petRepository.findById(id);
+        if (optionalPet.isEmpty()) {
+            throw new PetNotFoundException("Pet with id " + id + " not found", id);
+        }
+        Pet pet = optionalPet.get();
+        pet.getImages().add(image);
+        petRepository.save(pet);
+    }
 }

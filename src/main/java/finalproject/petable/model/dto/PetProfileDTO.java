@@ -6,6 +6,7 @@ import finalproject.petable.model.entity.enums.Gender;
 import finalproject.petable.model.entity.enums.PetStatus;
 import finalproject.petable.model.entity.enums.PetType;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -129,8 +130,11 @@ public class PetProfileDTO {
         this.shelterLink = shelterLink;
     }
 
-    public List<Image> getImages() {
+    public List<Image> getAllImages() {
         return images;
+    }
+    public List<Image> getImages() {
+        return images.subList(1, images.size());
     }
 
 }

@@ -91,4 +91,6 @@ public class UserServiceImpl implements UserService {
     public BaseUser getByUsername(String username) {
         return userRepository.findByUsername(username).orElse(null);
     }
+
+
 }

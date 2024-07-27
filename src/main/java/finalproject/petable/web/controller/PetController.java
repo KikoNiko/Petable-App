@@ -31,12 +31,10 @@ import java.util.stream.Collectors;
 public class PetController {
     private final PetService petService;
     private final CloudinaryService cloudinaryService;
-    private final ImageService imageService;
 
-    public PetController(PetService petService, CloudinaryService cloudinaryService, ImageService imageService) {
+    public PetController(PetService petService, CloudinaryService cloudinaryService) {
         this.petService = petService;
         this.cloudinaryService = cloudinaryService;
-        this.imageService = imageService;
     }
 
     @ModelAttribute("petData")
@@ -118,7 +116,7 @@ public class PetController {
     public String uploadPetPhoto(@PathVariable Long id,
                                  @RequestParam("petPicture") MultipartFile multipartFile) throws IOException {
         Image image = cloudinaryService.upload(multipartFile);
-        imageService.assignImageToPet(image, id);
+        petService.assignImageToPet(image, id);
         return "redirect:/pet-profile/{id}";
     }
 
