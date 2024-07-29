@@ -30,32 +30,32 @@
             </div>
             <div class="offcanvas-body">
                 <!-- messages go here -->
-                <div class="accordion" id="messageAccordion">
-                    <div class="accordion-item" th:each="message : ${allMessages}">
+                <div class="accordion" id="messageAccordion" th:each="message : ${allMessages}">
+                    <div class="accordion-item">
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed"
                                     type="button"
                                     data-bs-toggle="collapse"
-                                    th:attr="data-bs-target='#message'+${message.getId()}"
+                                    th:attr="data-bs-target='#message'+${message.key}"
                                     aria-expanded="false">
-                                <span th:text="|From: ${message.getSenderUsername()}|"></span>
+                                <span th:text="|From: ${message.key}|"></span>
                             </button>
                         </h2>
-                        <div th:id="'message'+${message.getId()}"
+                        <div th:id="'message'+${message.key}" th:each="m : ${message.value}"
                              class="accordion-collapse collapse"
                              data-bs-parent="#messageAccordion">
                             <div class="accordion-body">
                                 <div>
                                     <b>Subject: </b>
-                                    <span th:text="${message.getSubject()}"></span>
+                                    <span th:text="${m.getSubject()}"></span>
                                 </div>
                                 <div>
                                     <b>Date: </b>
-                                    <span th:text="${message.getDate()}"></span>
+                                    <span th:text="${m.getDate()}"></span>
                                 </div>
                                 <hr>
                                 <div>
-                                    <span th:text="${message.getBody()}"></span>
+                                    <span th:text="${m.getBody()}"></span>
                                 </div>
                                 <hr>
                                 <div class="row text-center">
@@ -65,10 +65,10 @@
                                         </a>
                                     </div>
                                     <div class="col-6">
-                                        <form th:action="@{/messages/delete/{id}(id=${message.getId()})}"
+                                        <form th:action="@{/messages/delete/{id}(id=${m.getId()})}"
                                               th:method="delete">
                                             <input type="hidden" name="_method" value="delete"/>
-                                            <button th:href="@{/messages/delete/{id}(id=${message.getId()})}"
+                                            <button th:href="@{/messages/delete/{id}(id=${m.getId()})}"
                                                     class="btn btn-danger btn-sm">Delete <i class="bi bi-x-square ms-1"></i>
                                             </button>
                                         </form>
@@ -78,7 +78,7 @@
                             <!-- Reply message collapse -->
                             <div class="collapse" id="replyMessage">
                                 <div class="card card-body">
-                                    <form th:action="@{/messages/reply/{id}(id=${message.getId()})}"
+                                    <form th:action="@{/messages/reply/{id}(id=${m.getId()})}"
                                           th:method="post"
                                           th:object="${replyMessage}">
                                         <label for="messageBody" class="form-label">Message: </label>

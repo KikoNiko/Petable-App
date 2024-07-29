@@ -2,12 +2,9 @@ package finalproject.petable.service.impl;
 
 import finalproject.petable.model.entity.BaseUser;
 import finalproject.petable.model.entity.Image;
-import finalproject.petable.model.entity.Pet;
 import finalproject.petable.repository.ImageRepository;
-import finalproject.petable.repository.PetRepository;
 import finalproject.petable.repository.UserRepository;
 import finalproject.petable.service.ImageService;
-import finalproject.petable.service.exception.PetNotFoundException;
 import finalproject.petable.service.exception.UserNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -41,5 +38,10 @@ public class ImageServiceImpl implements ImageService {
     @Override
     public Image getByName(String name) {
         return imageRepository.findByName(name).orElse(null);
+    }
+
+    @Override
+    public void delete(Long id) {
+        imageRepository.deleteById(id);
     }
 }

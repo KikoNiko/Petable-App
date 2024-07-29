@@ -6,12 +6,13 @@ import finalproject.petable.model.dto.ShowMessageDTO;
 import finalproject.petable.model.entity.Message;
 
 import java.util.List;
+import java.util.Map;
 
 public interface MessageService {
 
     void sendMessage(SendMessageDTO messageData);
 
-    List<ShowMessageDTO> getAllMessages(Long userId);
+    Map<String, List<ShowMessageDTO>> getAllMessages(Long userId);
     void deleteMessage(Long id);
 
     Message getMessageById(Long id);

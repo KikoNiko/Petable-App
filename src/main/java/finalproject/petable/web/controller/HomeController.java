@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @Controller
@@ -65,7 +66,7 @@ public class HomeController {
         model.addAttribute("clientProfileInfo", clientProfileInfo);
         BaseUser user = userService.getByUsername(userDetails.getUsername());
         Long clientId = user.getId();
-        List<ShowMessageDTO> allMessages = messageService.getAllMessages(clientId);
+        Map<String, List<ShowMessageDTO>> allMessages = messageService.getAllMessages(clientId);
         model.addAttribute("allMessages", allMessages);
         return "client-profile";
     }
@@ -76,7 +77,7 @@ public class HomeController {
         model.addAttribute("shelterProfileInfo", shelterProfileInfo);
         Shelter shelter = shelterService.getByUsername(userDetails.getUsername());
         Long shelterId = shelter.getId();
-        List<ShowMessageDTO> allMessages = messageService.getAllMessages(shelterId);
+        Map<String, List<ShowMessageDTO>> allMessages = messageService.getAllMessages(shelterId);
         model.addAttribute("allMessages", allMessages);
         return "shelter-profile";
     }

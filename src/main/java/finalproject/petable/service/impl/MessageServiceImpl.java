@@ -13,8 +13,10 @@ import finalproject.petable.service.exception.UserNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Service
@@ -51,15 +53,34 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public List<ShowMessageDTO> getAllMessages(Long userId) {
-        BaseUser user = userRepository.findById(userId).orElse(null);
-        if (user == null) {
+    public Map<String, List<ShowMessageDTO>> getAllMessages(Long userId) {
+        Map<String, List<ShowMessageDTO>> messagesMap = new LinkedHashMap<>();
+        Optional<BaseUser> optionalUser = userRepository.findById(userId);
+        if (optionalUser.isEmpty()) {
             throw new UserNotFoundException("User not found!", userId);
         }
-        return user.getMessages()
+        BaseUser user = optionalUser.get();
+
+        List<ShowMessageDTO> messagesList = user.
+                getMessages()
                 .stream()
+                .sorted(Comparator.comparing(Message::getDate).reversed())
                 .map(this::map)
-                .collect(Collectors.toList());
+                .toList();
+
+        for (ShowMessageDTO m : messagesList) {
+            String senderUsername = m.getSenderUsername();
+            if (messagesMap.containsKey(senderUsername)) {
+                continue;
+            }
+            List<ShowMessageDTO> messagesBySender = messagesList
+                    .stream()
+                    .filter(mes -> mes.getSenderUsername().equals(senderUsername))
+                    .toList();
+            messagesMap.putIfAbsent(senderUsername, messagesBySender);
+        }
+
+        return messagesMap;
     }
 
     @Override
@@ -108,4 +129,21 @@ public class MessageServiceImpl implements MessageService {
         showMessageData.setBody(message.getBody());
         return showMessageData;
     }
+
+    private static <T> Predicate<T> distinctByKey(
+            Function<? super T, ?> keyExtractor) {
+
+        Map<Object, Boolean> seen = new ConcurrentHashMap<>();
+        return t -> seen.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
+    }
+
+    private List<ShowMessageDTO> getMessagesBySender(Long userId) {
+        BaseUser user = userRepository.findById(userId).orElse(null);
+        return user.getMessages()
+                .stream()
+                .filter(distinctByKey(Message::getSenderId))
+                .map(this::map)
+                .toList();
+    }
+
 }
