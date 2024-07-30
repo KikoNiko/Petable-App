@@ -38,21 +38,17 @@ public class UserServiceImplTests {
     @Mock
     private ShelterRepository mockShelterRepository;
     @Mock
-    private UserRoleRepository mockRoleRepository;
+    private UserRoleRepository mockUserRoleRepository;
     @Mock
     private PasswordEncoder mockPasswordEncoder;
 
     @BeforeEach
     void setUp() {
-        if (mockRoleRepository.count() == 0) {
-            Arrays.stream(UserRolesEnum.values())
-                    .forEach(role -> mockRoleRepository.save(new UserRole(role)));
-        }
         toTest = new UserServiceImpl(
                 mockUserRepository,
                 mockClientRepository,
                 mockShelterRepository,
-                mockRoleRepository,
+                mockUserRoleRepository,
                 new ModelMapper(),
                 mockPasswordEncoder
         );
@@ -60,6 +56,8 @@ public class UserServiceImplTests {
 
     @Test
     void testRegisterClient() {
+        mockUserRoleRepository.save(new UserRole(UserRolesEnum.CLIENT));
+
         ClientRegistrationDTO cliRegDto = new ClientRegistrationDTO();
         cliRegDto.setUsername("test");
         cliRegDto.setPassword("test123");
@@ -83,7 +81,6 @@ public class UserServiceImplTests {
         Assertions.assertEquals(cliRegDto.getFirstName(), savedClient.getFirstName());
         Assertions.assertEquals(cliRegDto.getLastName(), savedClient.getLastName());
         Assertions.assertEquals(cliRegDto.getPassword() + "encoded", savedClient.getPassword());
-
     }
 
 }

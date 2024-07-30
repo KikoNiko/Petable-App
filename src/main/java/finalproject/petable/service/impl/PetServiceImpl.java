@@ -30,14 +30,12 @@ public class PetServiceImpl implements PetService {
     private final ShelterRepository shelterRepository;
     private final ClientRepository clientRepository;
     private final ModelMapper modelMapper;
-    private final ImageRepository imageRepository;
 
-    public PetServiceImpl(PetRepository petRepository, ShelterRepository shelterRepository, ClientRepository clientRepository, ModelMapper modelMapper, ImageRepository imageRepository) {
+    public PetServiceImpl(PetRepository petRepository, ShelterRepository shelterRepository, ClientRepository clientRepository, ModelMapper modelMapper) {
         this.petRepository = petRepository;
         this.shelterRepository = shelterRepository;
         this.clientRepository = clientRepository;
         this.modelMapper = modelMapper;
-        this.imageRepository = imageRepository;
     }
 
     @Override
