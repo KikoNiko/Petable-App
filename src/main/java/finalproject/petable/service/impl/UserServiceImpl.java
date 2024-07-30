@@ -59,11 +59,11 @@ public class UserServiceImpl implements UserService {
     public void registerClient(ClientRegistrationDTO clientRegistrationDTO) {
         Client client = modelMapper.map(clientRegistrationDTO, Client.class);
         client.setPassword(passwordEncoder.encode(clientRegistrationDTO.getPassword()));
-        Optional<UserRole> byRole = roleRepository.findByRole(UserRolesEnum.CLIENT);
-        if (byRole.isEmpty()) {
+        Optional<UserRole> role = roleRepository.findByRole(UserRolesEnum.CLIENT);
+        if (role.isEmpty()) {
             throw new NullPointerException();
         }
-        client.setRoles(List.of(byRole.get()));
+        client.setRoles(List.of(role.get()));
         clientRepository.save(client);
     }
 
@@ -71,11 +71,11 @@ public class UserServiceImpl implements UserService {
     public void registerShelter(ShelterRegistrationDTO shelterRegistrationDTO) {
         Shelter shelter = modelMapper.map(shelterRegistrationDTO, Shelter.class);
         shelter.setPassword(passwordEncoder.encode(shelterRegistrationDTO.getPassword()));
-        Optional<UserRole> byRole = roleRepository.findByRole(UserRolesEnum.SHELTER);
-        if (byRole.isEmpty()) {
+        Optional<UserRole> role = roleRepository.findByRole(UserRolesEnum.SHELTER);
+        if (role.isEmpty()) {
             throw new NullPointerException();
         }
-        shelter.setRoles(List.of(byRole.get()));
+        shelter.setRoles(List.of(role.get()));
         shelterRepository.save(shelter);
     }
 

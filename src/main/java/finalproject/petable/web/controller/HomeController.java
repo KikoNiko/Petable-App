@@ -83,7 +83,7 @@ public class HomeController {
     }
 
     @PostMapping("/shelter-profile/{shelterId}")
-    public String editProfileInfo(@PathVariable Long shelterId,
+    public String editShelterProfileInfo(@PathVariable Long shelterId,
                                   @ModelAttribute("shelterProfileInfo") ShelterProfileDTO shelterProfileInfo) {
         String username = shelterService.findById(shelterId).getUsername();
         shelterProfileInfo.setId(shelterId);
@@ -93,6 +93,19 @@ public class HomeController {
         }
         return "redirect:/shelter-profile";
     }
+
+    @PostMapping("/client-profile/{clientId}")
+    public String editClientProfileInfo(@PathVariable Long clientId,
+                                         @ModelAttribute("clientProfileInfo") ClientProfileDTO clientProfileInfo) {
+        String username = clientService.findById(clientId).getUsername();
+        clientProfileInfo.setId(clientId);
+        clientService.editClientInfo(clientProfileInfo);
+        if (!username.equals(clientProfileInfo.getUsername())) {
+            return "redirect:/users/login";
+        }
+        return "redirect:/client-profile";
+    }
+
 
     @PostMapping("/messages/reply/{id}")
     public String replyMessage(@PathVariable Long id,

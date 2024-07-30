@@ -79,12 +79,6 @@ public class PetController {
         return "redirect:/shelter-profile";
     }
 
-    @DeleteMapping("/pet-profile/remove-pet/{id}")
-    public String removePet(@PathVariable Long id) {
-        petService.removePet(id);
-        return "redirect:/shelters/shelter/my-animals";
-    }
-
     @GetMapping("/pet-registry")
     public String viewPetRegistry(Model model) {
         List<PetDisplayInfoDTO> allRegisteredDogs = petService.getAllByType(PetType.DOG);
@@ -110,6 +104,12 @@ public class PetController {
         }
         petService.editPetInfo(petProfileInfo);
         return "redirect:/pet-profile/{id}";
+    }
+
+    @DeleteMapping("/pet-profile/remove-pet/{id}")
+    public String removePet(@PathVariable Long id) {
+        petService.removePet(id);
+        return "redirect:/pet-registry";
     }
 
     @PostMapping("/pet-profile/upload/{id}")

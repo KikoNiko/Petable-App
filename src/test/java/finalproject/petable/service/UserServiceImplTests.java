@@ -26,7 +26,6 @@ import java.util.Arrays;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@Disabled
 @ExtendWith(MockitoExtension.class)
 public class UserServiceImplTests {
     private UserServiceImpl toTest;
@@ -86,4 +85,5 @@ public class UserServiceImplTests {
         Assertions.assertEquals(cliRegDto.getPassword() + "encoded", savedClient.getPassword());
 
     }
+
 }

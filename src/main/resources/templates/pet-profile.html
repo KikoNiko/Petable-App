@@ -118,7 +118,7 @@
                                         <div class="col-md-4 text-center">
                                             <a href="/contact-form" class="btn btn-primary"> I want to meet <span th:text="${petProfileData.getName()}"></span></a>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-4" sec:authorize="hasRole('CLIENT')">
                                             <form th:action="@{/pet-profile/add-to-favorites/{id}(id=${petProfileData.getId()})}"
                                                   th:method="post">
                                                 <p class="text-end pe-3">

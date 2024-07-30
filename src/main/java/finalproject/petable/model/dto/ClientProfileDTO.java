@@ -3,6 +3,7 @@ package finalproject.petable.model.dto;
 import finalproject.petable.model.entity.Client;
 
 public class ClientProfileDTO {
+    private Long id;
 
     private String username;
 
@@ -13,6 +14,7 @@ public class ClientProfileDTO {
     private String imageUrl;
 
     public ClientProfileDTO(Client client) {
+        this.id = client.getId();
         this.username = client.getUsername();
         this.fullName = client.getFirstName() + " " + client.getLastName();
         this.email = client.getEmail();
@@ -20,6 +22,14 @@ public class ClientProfileDTO {
     }
 
     public ClientProfileDTO() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {

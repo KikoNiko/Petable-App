@@ -11,10 +11,7 @@ public interface ShelterService {
     List<ShelterDisplayInfoDTO> getAllSheltersInfo();
     ShelterProfileDTO getInfoByUsername(String username);
     Shelter getByUsername(String username);
-
     void editShelterInfo(ShelterProfileDTO shelterProfileInfo);
-
     Shelter findById(Long shelterId);
-
     List<String> getAllSheltersNames();
 }

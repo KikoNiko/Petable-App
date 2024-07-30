@@ -76,19 +76,6 @@
                                class="invalid-feedback" style="font-size: 15px">Location error message</small>
                     </div>
                     <div class="form-group mb-3">
-                        <label class="mb-2" for="imageUrl">Logo Url</label>
-                        <input type="text"
-                               id="imageUrl"
-                               th:field="*{profileImageUrl}"
-                               th:errorclass="'is-invalid'"
-                               class="form-control form-control-lg bg-light fs-6"
-                               placeholder="http://i.imgur.com">
-
-                        <small th:if="${#fields.hasErrors('logoUrl')}"
-                               th:errors="*{logoUrl}"
-                               class="invalid-feedback" style="font-size: 15px">Logo url error message</small>
-                    </div>
-                    <div class="form-group mb-3">
                         <label class="mb-2" for="websiteUrl">Website link</label>
                         <input type="text"
                                id="websiteUrl"

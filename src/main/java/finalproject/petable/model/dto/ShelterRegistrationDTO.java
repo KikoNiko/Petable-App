@@ -15,8 +15,6 @@ public class ShelterRegistrationDTO extends BaseUserRegistrationDTO {
     @URL
     @Size(max = 1500, message = "Url is too long.")
     private String websiteUrl;
-    @URL
-    private String logoUrl;
 
     public String getName() {
         return name;
@@ -50,11 +48,4 @@ public class ShelterRegistrationDTO extends BaseUserRegistrationDTO {
         this.websiteUrl = websiteUrl;
     }
 
-    public String getLogoUrl() {
-        return logoUrl;
-    }
-
-    public void setLogoUrl(String logoUrl) {
-        this.logoUrl = logoUrl;
-    }
 }
