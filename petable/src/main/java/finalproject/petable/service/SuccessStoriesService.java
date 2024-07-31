@@ -2,6 +2,7 @@ package finalproject.petable.service;
 
 import finalproject.petable.model.dto.stories.AddStoryDTO;
 import finalproject.petable.model.dto.stories.StoryDTO;
+import org.springframework.web.client.RestClient;
 
 import java.util.List;
 

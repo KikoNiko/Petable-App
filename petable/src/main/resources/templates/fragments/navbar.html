@@ -33,11 +33,15 @@
 
                 <a class="nav-link"
                    sec:authorize="!hasRole('SHELTER')"
-                   href="/pet-registry">Find A Pet</a>
+                   th:href="@{/pets/all}">Find A Pet</a>
 
                 <a class="nav-link"
                    sec:authorize="hasRole('SHELTER')"
-                   href="/add-pet">Add Pet</a>
+                  th:href="@{/pets/add}">Add Pet</a>
+
+                <a class="nav-link"
+                   sec:authorize="hasRole('ADMIN')"
+                   th:href="@{/stories/add}">Add Success Story</a>
 
                 <a class="nav-link"
                    sec:authorize="hasRole('SHELTER')"

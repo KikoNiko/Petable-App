@@ -6,7 +6,7 @@
 <div class="section pt-3">
     <div class="container">
         <h3 class="text-center pb-3">Add a new pet</h3>
-        <form th:action="@{/add-pet}"
+        <form th:action="@{/pets/add}"
               th:method="post"
               th:object="${petData}"
               enctype="multipart/form-data">

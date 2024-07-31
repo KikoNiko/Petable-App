@@ -1,9 +1,67 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/head::head}"></head>
-
 <body>
 <header th:replace="~{fragments/navbar::navbar}"></header>
+<div class="section pt-3">
+    <div class="container">
+        <h3 class="text-center pb-3">Add a new pet</h3>
+        <form th:action="@{/stories/add}"
+              th:method="post"
+              th:object="${addStoryData}"
+              enctype="multipart/form-data">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group mb-3">
+                        <label class="mb-2" for="title">Title</label>
+                        <input type="text"
+                               id="title"
+                               th:field="*{title}"
+                               th:errorclass="'is-invalid'"
+                               class="form-control form-control-lg bg-light fs-6"
+                               placeholder="Title" required>
+                        <small th:if="${#fields.hasErrors('title')}"
+                               th:errors="*{title}"
+                               class="invalid-feedback text-danger">
+                        </small>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="mb-2" for="story">Story</label>
+                        <textarea id="story"
+                                  th:field="*{story}"
+                                  th:errorclass="'is-invalid'"
+                                  class="form-control" rows="8"
+                                  placeholder="Write the story here...">
+                        </textarea>
+                        <small th:if="${#fields.hasErrors('story')}"
+                               th:errors="*{story}"
+                               class="invalid-feedback text-danger" style="font-size: 15px">
+                        </small>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="mb-2" for="imageUrl">Enter image url</label>
+                        <input type="text"
+                               id="imageUrl"
+                               th:field="*{imageUrl}"
+                               th:errorclass="'is-invalid'"
+                               class="form-control form-control-lg bg-light fs-6"
+                               placeholder="Title" required>
+                        <small th:if="${#fields.hasErrors('imageUrl')}"
+                               th:errors="*{imageUrl}"
+                               class="invalid-feedback text-danger">
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group my-4">
+                <button class="btn btn-lg btn-primary w-100 fs-5">
+                    Add Story
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
 
 <footer th:replace="~{fragments/footer::footer}"></footer>
 </body>

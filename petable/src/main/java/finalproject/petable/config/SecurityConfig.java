@@ -26,13 +26,13 @@ public class SecurityConfig {
                                                 "/users/register",
                                                 "/users/register/client",
                                                 "/users/register/shelter",
-                                                "/pet-registry",
-                                                "/pet-profile/{id}",
-                                                "/test",
+                                                "/pets/all",
+                                                "/stories/all",
                                                 "/shelters/info")
                                         .permitAll()
-                                        .requestMatchers("/add-pet", "/shelter-profile").hasRole("SHELTER")
+                                        .requestMatchers("/pets/add", "/shelter-profile").hasRole("SHELTER")
                                         .requestMatchers("/client-profile").hasRole("CLIENT")
+                                        .requestMatchers("/stories/add").hasRole("ADMIN")
                                         // all other URL-s should be authenticated.
                                         .anyRequest()
                                         .authenticated()

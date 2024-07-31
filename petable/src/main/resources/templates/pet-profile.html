@@ -32,11 +32,11 @@
                         <i class="bi bi-heart-fill" style="font-size: 30px;"></i>
                     </button>
                 </form>
-                <form th:action="@{/pet-profile/remove-pet/{id}(id=${petProfileData.getId()})}"
+                <form th:action="@{/pets/remove/{id}(id=${petProfileData.getId()})}"
                       th:method="delete">
                     <input type="hidden" name="_method" value="delete"/>
                     <button sec:authorize="hasAnyRole('SHELTER','ADMIN')"
-                            th:href="@{/pet-profile/remove-pet/{id}(id=${petProfileData.getId()})}"
+                            th:href="@{/pets/remove/{id}(id=${petProfileData.getId()})}"
                             class="btn btn-danger btn-sm">Delete<i class="bi bi-x-square ms-1"></i>
                     </button>
                 </form>
@@ -63,9 +63,7 @@
                             <img th:src="${petProfileData.getAllImages().get(0).getUrl()}"
                                  class="d-block w-100" alt="profile picture">
                         </div>
-                    </div>
-                    <div class="carousel-inner" th:each="image : ${petProfileData.getImages()}">
-                        <div class="carousel-item">
+                        <div class="carousel-item" th:each="image : ${petProfileData.getImages()}">
                             <img th:src="${image.getUrl()}"
                                  class="d-block w-100"  th:alt="${image.getName()}">
                         </div>
@@ -140,7 +138,7 @@
                                             </p>
                                         </div>
                                         <div class="col-md-8">
-                                        <form th:action="@{/pet-profile/upload/{id}(id=${petProfileData.getId()})}"
+                                        <form th:action="@{/pets/upload/{id}(id=${petProfileData.getId()})}"
                                               th:method="post" enctype="multipart/form-data">
                                             <div class="mb-3">
                                                 <label for="petPicture" class="form-label">Upload pet photos</label>
@@ -171,7 +169,7 @@
                 <h1 class="modal-title fs-5" id="editInfoLabel">Edit user information</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form th:action="@{/pet-profile/{id}(id=${petProfileData.getId()})}"
+            <form th:action="@{/pets/{id}(id=${petProfileData.getId()})}"
                   th:method="post"
                   th:object="${petProfileData}">
                 <div class="modal-body">

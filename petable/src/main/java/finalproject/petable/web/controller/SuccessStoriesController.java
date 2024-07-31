@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+
 @Controller
 @RequestMapping("stories")
 public class SuccessStoriesController {
@@ -31,10 +32,10 @@ public class SuccessStoriesController {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("addStoryData", addStoryData);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.addStoryData", bindingResult);
-            return "redirect:/add-story";
+            return "redirect:/stories/add";
         }
         storiesService.addStory(addStoryData);
-        return "redirect:/success-stories";
+        return "redirect:/stories/all";
     }
 
     @GetMapping("/{id}")
@@ -54,4 +55,5 @@ public class SuccessStoriesController {
         storiesService.deleteStory(id);
         return "redirect:/success-stories";
     }
+
 }

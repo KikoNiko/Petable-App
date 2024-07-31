@@ -58,12 +58,12 @@ public class PetController {
         return Gender.values();
     }
 
-    @GetMapping("/add-pet")
+    @GetMapping("/pets/add")
     public String viewAddPet() {
         return "add-pet";
     }
 
-    @PostMapping("/add-pet")
+    @PostMapping("/pets/add")
     public String addPet(@AuthenticationPrincipal AppUserDetails userDetails,
                          @Valid PetAddDTO petData,
                          BindingResult bindingResult,
@@ -72,13 +72,13 @@ public class PetController {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("petData", petData);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.petData", bindingResult);
-            return "redirect:/add-pet";
+            return "redirect:/pets/add";
         }
         petService.addPet(userDetails.getUsername(), petData);
         return "redirect:/shelter-profile";
     }
 
-    @GetMapping("/pet-registry")
+    @GetMapping("/pets/all")
     public String viewPetRegistry(Model model) {
         List<PetDisplayInfoDTO> allRegisteredDogs = petService.getAllByType(PetType.DOG);
         model.addAttribute("allRegisteredDogs", allRegisteredDogs);
@@ -88,35 +88,35 @@ public class PetController {
         return "pet-registry";
     }
 
-    @GetMapping("/pet-profile/{id}")
+    @GetMapping("/pets/{id}")
     public String viewPetProfile(@PathVariable Long id, Model model) {
         PetProfileDTO petProfileData = petService.getPetById(id);
         model.addAttribute("petProfileData", petProfileData);
         return "pet-profile";
     }
 
-    @PostMapping("/pet-profile/{id}")
+    @PostMapping("/pets/{id}")
     public String ediPetInfo(@PathVariable Long id,
                              @ModelAttribute("petProfileData") PetProfileDTO petProfileInfo) {
         if (!Objects.equals(petProfileInfo.getId(), id)) {
-            return "redirect:/pet-registry";
+            return "redirect:/pets/all";
         }
         petService.editPetInfo(petProfileInfo);
-        return "redirect:/pet-profile/{id}";
+        return "redirect:/pets/{id}";
     }
 
-    @DeleteMapping("/pet-profile/remove-pet/{id}")
+    @DeleteMapping("/pets/remove/{id}")
     public String removePet(@PathVariable Long id) {
         petService.removePet(id);
-        return "redirect:/pet-registry";
+        return "redirect:/pets/all";
     }
 
-    @PostMapping("/pet-profile/upload/{id}")
+    @PostMapping("/pets/upload/{id}")
     public String uploadPetPhoto(@PathVariable Long id,
                                  @RequestParam("petPicture") MultipartFile multipartFile) throws IOException {
         Image image = cloudinaryService.upload(multipartFile);
         petService.assignImageToPet(image, id);
-        return "redirect:/pet-profile/{id}";
+        return "redirect:/pets/{id}";
     }
 
 }

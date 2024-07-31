@@ -17,7 +17,7 @@
                         <h5 class="card-title" th:text="${dog.getName()}"></h5>
                         <p class="card-text" th:text="${dog.getShortDescription()}"></p>
                         <div class="card-btn">
-                            <a th:href="@{/pet-profile/{id}(id=${dog.getId()})}" class="btn btn-primary">See profile</a>
+                            <a th:href="@{/pets/{id}(id=${dog.getId()})}" class="btn btn-primary">See profile</a>
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                         <h5 class="card-title" th:text="${cat.getName()}"></h5>
                         <p class="card-text" th:text="${cat.getShortDescription()}"></p>
                         <div class="card-btn">
-                            <a th:href="@{/pet-profile/{id}(id=${cat.getId()})}" class="btn btn-primary">See profile</a>
+                            <a th:href="@{/pets/{id}(id=${cat.getId()})}" class="btn btn-primary">See profile</a>
                         </div>
                     </div>
                 </div>

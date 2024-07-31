@@ -32,7 +32,7 @@
               <img src="/images/background-dog-cat.jpg" class="card-img-top img-responsive" alt="">
               <div class="card-body">
                 <h5 class="card-title text-center">Choose a pet </h5>
-                <p class="card-title d-flex justify-content-center"><a href="/pet-registry" class="btn btn-outline-warning fw-bold">Here</a></p>
+                <p class="card-title d-flex justify-content-center"><a th:href="@{pets/all}" class="btn btn-outline-warning fw-bold">Here</a></p>
               </div>
             </div>
           </div>
@@ -87,6 +87,7 @@
 
   <!-- Carousel with success stories -->
   <div class="section p-3">
+    <div class="container">
     <div class="row text-center m-3">
       <h2>Our success stories</h2>
     </div>
@@ -96,8 +97,25 @@
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
       </div>
-      <div class="carousel-inner" th:each="story : ${topStories}">
+      <div class="carousel-inner">
         <div class="carousel-item active">
+          <div class="card text-bg-success">
+            <div class="row">
+              <div class="col-md-4">
+                <img class="img-fluid rounded-start" th:src="${topStories.get(0).imageUrl()}" alt="">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <p class="h3 card-title" th:text="${topStories.get(0).title()}">
+                  </p>
+                  <p class="card-text" th:text="${topStories.get(0).story()}">
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item" th:each="story : ${topStories.subList(1, topStories.size())}">
           <div class="card text-bg-success">
             <div class="row">
               <div class="col-md-4">
@@ -114,8 +132,8 @@
             </div>
           </div>
         </div>
-
       </div>
+
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
@@ -124,6 +142,12 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
+    </div>
+    <div class="row text-center m-3">
+      <div class="col">
+        <a th:href="@{/stories/all}" class="btn btn-outline-success text-decoration-none" >View All Stories</a>
+      </div>
+    </div>
     </div>
   </div>
   <!-- EO: Carousel with success stories -->

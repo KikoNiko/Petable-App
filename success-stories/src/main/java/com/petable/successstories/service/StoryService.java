@@ -14,4 +14,5 @@ public interface StoryService {
     void deleteStory(Long id);
 
     List<StoryDTO> getTopStories();
+
 }

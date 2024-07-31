@@ -65,4 +65,5 @@ public class SuccessStoriesServiceImpl implements SuccessStoriesService {
                 .retrieve()
                 .body(new ParameterizedTypeReference<List<StoryDTO>>() {});
     }
+
 }

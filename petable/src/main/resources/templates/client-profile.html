@@ -104,7 +104,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <a th:href="@{/pet-profile/{id}(id=${pet.getId()})}" class="btn btn-secondary btn-sm">Go to profile <i class="bi bi-arrow-up-right-square ms-1"></i></a>
+                                            <a th:href="@{/pets/{id}(id=${pet.getId()})}" class="btn btn-secondary btn-sm">Go to profile <i class="bi bi-arrow-up-right-square ms-1"></i></a>
                                         </td>
                                         <td>
                                             <form th:action="@{/client-profile/remove-pet/{id}(id=${pet.getId()})}" th:method="delete">
