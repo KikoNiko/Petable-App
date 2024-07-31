@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/stories")
 public class StoryController {
@@ -33,6 +35,22 @@ public class StoryController {
     public ResponseEntity<StoryDTO> getById(@PathVariable("id") Long id) {
         return ResponseEntity
                 .ok(storyService.getStoryById(id));
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<StoryDTO>> getAll() {
+        return ResponseEntity.ok(storyService.getAll());
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<StoryDTO> delete(@PathVariable Long id) {
+        storyService.deleteStory(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/top")
+    public ResponseEntity<List<StoryDTO>> getTopStories() {
+        return ResponseEntity.ok(storyService.getTopStories());
     }
 
 }

@@ -1,15 +1,14 @@
 package finalproject.petable.web.controller;
 
 import finalproject.petable.model.AppUserDetails;
-import finalproject.petable.model.dto.PetAddDTO;
-import finalproject.petable.model.dto.PetProfileDTO;
-import finalproject.petable.model.dto.PetDisplayInfoDTO;
+import finalproject.petable.model.dto.pets.PetAddDTO;
+import finalproject.petable.model.dto.pets.PetProfileDTO;
+import finalproject.petable.model.dto.pets.PetDisplayInfoDTO;
 import finalproject.petable.model.entity.Image;
 import finalproject.petable.model.entity.enums.Gender;
 import finalproject.petable.model.entity.enums.PetStatus;
 import finalproject.petable.model.entity.enums.PetType;
 import finalproject.petable.service.CloudinaryService;
-import finalproject.petable.service.ImageService;
 import finalproject.petable.service.PetService;
 import jakarta.validation.Valid;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

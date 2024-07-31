@@ -1,8 +1,8 @@
 package finalproject.petable.service;
 
-import finalproject.petable.model.dto.ReplyMessageDTO;
-import finalproject.petable.model.dto.SendMessageDTO;
-import finalproject.petable.model.dto.ShowMessageDTO;
+import finalproject.petable.model.dto.messages.ReplyMessageDTO;
+import finalproject.petable.model.dto.messages.SendMessageDTO;
+import finalproject.petable.model.dto.messages.ShowMessageDTO;
 import finalproject.petable.model.entity.Message;
 
 import java.util.List;

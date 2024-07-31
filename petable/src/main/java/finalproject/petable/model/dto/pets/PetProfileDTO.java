@@ -1,4 +1,4 @@
-package finalproject.petable.model.dto;
+package finalproject.petable.model.dto.pets;
 
 import finalproject.petable.model.entity.Image;
 import finalproject.petable.model.entity.Pet;

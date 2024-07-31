@@ -1,4 +1,4 @@
-package finalproject.petable.model.dto;
+package finalproject.petable.model.dto.messages;
 
 import finalproject.petable.model.entity.enums.PetType;
 import finalproject.petable.validation.ValidPetName;

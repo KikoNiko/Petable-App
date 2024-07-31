@@ -1,4 +1,4 @@
-package finalproject.petable.model.dto;
+package finalproject.petable.model.dto.users;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

@@ -8,12 +8,17 @@ import org.springframework.web.client.RestClient;
 @Configuration
 public class RestConfig {
 
-    @Bean
+    @Bean("genericRestClient")
+    public RestClient genericRestClient() {
+        return RestClient.create();
+    }
+
+    @Bean("ssRestClient")
     public RestClient restClient(){
         return RestClient
                 .builder()
-                .baseUrl("http://localhost:8081")
-                .defaultHeader("Content-Type", MediaType.MULTIPART_FORM_DATA_VALUE)
+                .baseUrl("http://localhost:8081/stories")
+                .defaultHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE)
                 .build();
     }
 }

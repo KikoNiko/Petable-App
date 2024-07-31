@@ -1,15 +1,14 @@
 package finalproject.petable.service.impl;
 
-import finalproject.petable.model.dto.PetAddDTO;
-import finalproject.petable.model.dto.PetProfileDTO;
-import finalproject.petable.model.dto.PetDisplayInfoDTO;
+import finalproject.petable.model.dto.pets.PetAddDTO;
+import finalproject.petable.model.dto.pets.PetProfileDTO;
+import finalproject.petable.model.dto.pets.PetDisplayInfoDTO;
 import finalproject.petable.model.entity.Client;
 import finalproject.petable.model.entity.Image;
 import finalproject.petable.model.entity.Pet;
 import finalproject.petable.model.entity.enums.PetStatus;
 import finalproject.petable.model.entity.enums.PetType;
 import finalproject.petable.repository.ClientRepository;
-import finalproject.petable.repository.ImageRepository;
 import finalproject.petable.repository.PetRepository;
 import finalproject.petable.repository.ShelterRepository;
 import finalproject.petable.service.PetService;
@@ -17,10 +16,8 @@ import finalproject.petable.service.exception.PetNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service

@@ -1,7 +1,7 @@
 package finalproject.petable.service.impl;
 
-import finalproject.petable.model.dto.ShelterDisplayInfoDTO;
-import finalproject.petable.model.dto.ShelterProfileDTO;
+import finalproject.petable.model.dto.users.ShelterDisplayInfoDTO;
+import finalproject.petable.model.dto.users.ShelterProfileDTO;
 import finalproject.petable.model.entity.Shelter;
 import finalproject.petable.repository.ShelterRepository;
 import finalproject.petable.service.ShelterService;
@@ -62,13 +62,6 @@ public class ShelterServiceImpl implements ShelterService {
         shelter.setBio(shelterProfileInfo.getBio());
         shelter.setWebsiteUrl(shelterProfileInfo.getWebsiteUrl());
         shelterRepository.save(shelter);
-    }
-
-    @Override
-    public Shelter findById(Long shelterId) {
-        return shelterRepository.
-                findById(shelterId)
-                .orElseThrow(() -> new UserNotFoundException("Shelter not found!", shelterId));
     }
 
     @Override

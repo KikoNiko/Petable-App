@@ -1,18 +1,15 @@
 package finalproject.petable.service.impl;
 
-import finalproject.petable.model.dto.ClientProfileDTO;
-import finalproject.petable.model.dto.PetDisplayInfoDTO;
+import finalproject.petable.model.dto.users.ClientProfileDTO;
+import finalproject.petable.model.dto.pets.PetDisplayInfoDTO;
 import finalproject.petable.model.entity.Client;
 import finalproject.petable.model.entity.Pet;
-import finalproject.petable.model.entity.Shelter;
 import finalproject.petable.repository.ClientRepository;
 import finalproject.petable.repository.PetRepository;
 import finalproject.petable.service.ClientService;
 import finalproject.petable.service.exception.PetNotFoundException;
 import finalproject.petable.service.exception.UserNotFoundException;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestClient;
 
 import java.util.Optional;
 import java.util.Set;
@@ -66,11 +63,6 @@ public class ClientServiceImpl implements ClientService {
         clientRepository.save(client);
     }
 
-    @Override
-    public Client findById(Long clientId) {
-        return clientRepository.findById(clientId)
-                .orElseThrow(() -> new UserNotFoundException("User not found", clientId));
-    }
 
     @Override
     public void editClientInfo(ClientProfileDTO clientProfileInfo) {

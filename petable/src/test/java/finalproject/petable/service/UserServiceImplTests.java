@@ -1,6 +1,6 @@
 package finalproject.petable.service;
 
-import finalproject.petable.model.dto.ClientRegistrationDTO;
+import finalproject.petable.model.dto.users.ClientRegistrationDTO;
 import finalproject.petable.model.entity.Client;
 import finalproject.petable.model.entity.UserRole;
 import finalproject.petable.model.entity.enums.UserRolesEnum;
@@ -11,7 +11,6 @@ import finalproject.petable.repository.UserRoleRepository;
 import finalproject.petable.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -20,8 +19,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.util.Arrays;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;

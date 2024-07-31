@@ -1,5 +1,22 @@
-{
-  "title" : "Test success",
-  "story" : "Test was successfully adopted. Now he has a new family and he is happy!",
-  "imageUrl" : "https://www.shutterstock.com/image-photo/pure-youth-crazy-english-cocker-600nw-1424153078.jpg"
-}
+[
+  {
+    "title" : "Test success",
+    "story" : "Test was successfully adopted. Now he has a new family and he is happy!",
+    "imageUrl" : "https://www.shutterstock.com/image-photo/pure-youth-crazy-english-cocker-600nw-1424153078.jpg"
+  },
+  {
+    "title" : "Test success 2",
+    "story" : "Test 2 was successfully adopted. Now he has a new family and he is happy!",
+    "imageUrl" : "https://thumbs.dreamstime.com/b/my-cute-cat-random-adorable-264324605.jpg"
+  },
+  {
+    "title" : "Test success 3",
+    "story" : "Test 3 was successfully adopted. Now he has a new family and he is happy!",
+    "imageUrl" : "https://cdn.pixabay.com/photo/2013/05/30/18/21/cat-114782_640.jpg"
+  },
+  {
+    "title" : "Test success 4",
+    "story" : "Test 4 was successfully adopted. Now he has a new family and he is happy!",
+    "imageUrl" : "https://plus.unsplash.com/premium_photo-1676389282268-68e11d91d8a4?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZnVubnklMjBkb2d8ZW58MHx8MHx8fDA%3D"
+  }
+]

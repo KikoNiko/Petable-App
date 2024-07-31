@@ -1,9 +1,8 @@
 package finalproject.petable.web.controller;
 
 import finalproject.petable.model.AppUserDetails;
-import finalproject.petable.model.dto.PetDisplayInfoDTO;
-import finalproject.petable.model.dto.ShelterDisplayInfoDTO;
-import finalproject.petable.model.dto.ShelterProfileDTO;
+import finalproject.petable.model.dto.pets.PetDisplayInfoDTO;
+import finalproject.petable.model.dto.users.ShelterDisplayInfoDTO;
 import finalproject.petable.model.entity.Shelter;
 import finalproject.petable.model.entity.enums.PetType;
 import finalproject.petable.service.PetService;
@@ -14,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/shelters")

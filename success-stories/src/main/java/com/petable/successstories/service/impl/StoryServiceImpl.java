@@ -8,6 +8,10 @@ import com.petable.successstories.service.StoryService;
 import com.petable.successstories.service.exception.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class StoryServiceImpl implements StoryService {
 
@@ -28,6 +32,29 @@ public class StoryServiceImpl implements StoryService {
     public StoryDTO getStoryById(Long id) {
         return storyRepository.findById(id).map(StoryServiceImpl::map)
                 .orElseThrow(ObjectNotFoundException::new);
+    }
+
+    @Override
+    public List<StoryDTO> getAll() {
+        return storyRepository.findAll()
+                .stream()
+                .map(StoryServiceImpl::map)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteStory(Long id) {
+        storyRepository.deleteById(id);
+    }
+
+    @Override
+    public List<StoryDTO> getTopStories() {
+        return storyRepository.findAll()
+                .stream()
+                .sorted(Comparator.comparing(Story::getId))
+                .limit(3)
+                .map(StoryServiceImpl::map)
+                .collect(Collectors.toList());
     }
 
     private static Story map(AddStoryDTO addStoryDTO) {

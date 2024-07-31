@@ -96,70 +96,25 @@
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
       </div>
-      <div class="carousel-inner">
+      <div class="carousel-inner" th:each="story : ${topStories}">
         <div class="carousel-item active">
           <div class="card text-bg-success">
             <div class="row">
               <div class="col-md-4">
-                <img class="img-fluid rounded-start" src="/images/peeping-dog.jpg" alt="">
+                <img class="img-fluid rounded-start" th:src="${story.imageUrl()}" alt="">
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <p class="h3 card-title">
-                    Title here
+                  <p class="h3 card-title" th:text="${story.title()}">
                   </p>
-                  <p class="card-text">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Laboriosam id illum doloribus repudiandae nihil nesciunt cupiditate
-                    praesentium totam laudantium repellat?
+                  <p class="card-text" th:text="${story.story()}">
                   </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="carousel-item">
-          <div class="card text-bg-success">
-            <div class="row">
-              <div class="col-md-4">
-                <img class="img-fluid rounded-start" src="/images/paw-hand.jpg" alt="">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <p class="h3 card-title">
-                    Title here
-                  </p>
-                  <p class="card-text">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Laboriosam id illum doloribus repudiandae nihil nesciunt cupiditate
-                    praesentium totam laudantium repellat?
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="card text-bg-success">
-            <div class="row">
-              <div class="col-md-4">
-                <img class="img-fluid rounded-start" src="/images/pet-care.jpg" alt="">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <p class="h3 card-title">
-                    Title here
-                  </p>
-                  <p class="card-text">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Laboriosam id illum doloribus repudiandae nihil nesciunt cupiditate
-                    praesentium totam laudantium repellat?
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

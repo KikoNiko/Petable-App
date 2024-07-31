@@ -1,8 +1,8 @@
 package finalproject.petable.service;
 
-import finalproject.petable.model.dto.PetAddDTO;
-import finalproject.petable.model.dto.PetProfileDTO;
-import finalproject.petable.model.dto.PetDisplayInfoDTO;
+import finalproject.petable.model.dto.pets.PetAddDTO;
+import finalproject.petable.model.dto.pets.PetProfileDTO;
+import finalproject.petable.model.dto.pets.PetDisplayInfoDTO;
 import finalproject.petable.model.entity.Image;
 import finalproject.petable.model.entity.enums.PetType;
 

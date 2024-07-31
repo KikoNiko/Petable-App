@@ -1,8 +1,8 @@
 package finalproject.petable.service.impl;
 
-import finalproject.petable.model.dto.ReplyMessageDTO;
-import finalproject.petable.model.dto.SendMessageDTO;
-import finalproject.petable.model.dto.ShowMessageDTO;
+import finalproject.petable.model.dto.messages.ReplyMessageDTO;
+import finalproject.petable.model.dto.messages.SendMessageDTO;
+import finalproject.petable.model.dto.messages.ShowMessageDTO;
 import finalproject.petable.model.entity.BaseUser;
 import finalproject.petable.model.entity.Message;
 import finalproject.petable.repository.MessageRepository;
@@ -14,10 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 @Service
 public class MessageServiceImpl implements MessageService {

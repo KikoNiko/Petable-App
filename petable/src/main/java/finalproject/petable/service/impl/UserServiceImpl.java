@@ -1,8 +1,8 @@
 package finalproject.petable.service.impl;
 
-import finalproject.petable.model.dto.BaseUserDisplayInfoDTO;
-import finalproject.petable.model.dto.ClientRegistrationDTO;
-import finalproject.petable.model.dto.ShelterRegistrationDTO;
+import finalproject.petable.model.dto.users.BaseUserDisplayInfoDTO;
+import finalproject.petable.model.dto.users.ClientRegistrationDTO;
+import finalproject.petable.model.dto.users.ShelterRegistrationDTO;
 import finalproject.petable.model.entity.BaseUser;
 import finalproject.petable.model.entity.Client;
 import finalproject.petable.model.entity.Shelter;
@@ -13,6 +13,7 @@ import finalproject.petable.repository.ShelterRepository;
 import finalproject.petable.repository.UserRepository;
 import finalproject.petable.repository.UserRoleRepository;
 import finalproject.petable.service.UserService;
+import finalproject.petable.service.exception.UserNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -90,6 +91,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public BaseUser getByUsername(String username) {
         return userRepository.findByUsername(username).orElse(null);
+    }
+
+    @Override
+    public BaseUser getById(Long id) {
+        return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found!"));
     }
 
 

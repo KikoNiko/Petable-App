@@ -1,8 +1,8 @@
 package finalproject.petable.web.controller;
 
-import finalproject.petable.model.dto.ClientRegistrationDTO;
-import finalproject.petable.model.dto.BaseUserRegistrationDTO;
-import finalproject.petable.model.dto.ShelterRegistrationDTO;
+import finalproject.petable.model.dto.users.ClientRegistrationDTO;
+import finalproject.petable.model.dto.users.BaseUserRegistrationDTO;
+import finalproject.petable.model.dto.users.ShelterRegistrationDTO;
 import finalproject.petable.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;

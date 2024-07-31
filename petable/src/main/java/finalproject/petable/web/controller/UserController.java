@@ -1,6 +1,6 @@
 package finalproject.petable.web.controller;
 
-import finalproject.petable.model.dto.BaseUserDisplayInfoDTO;
+import finalproject.petable.model.dto.users.BaseUserDisplayInfoDTO;
 import finalproject.petable.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

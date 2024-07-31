@@ -1,4 +1,4 @@
-package finalproject.petable.model.dto;
+package finalproject.petable.model.dto.users;
 
 import finalproject.petable.model.entity.BaseUser;
 import finalproject.petable.model.entity.UserRole;

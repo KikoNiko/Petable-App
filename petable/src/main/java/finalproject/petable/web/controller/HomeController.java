@@ -1,7 +1,11 @@
 package finalproject.petable.web.controller;
 
 import finalproject.petable.model.AppUserDetails;
-import finalproject.petable.model.dto.*;
+import finalproject.petable.model.dto.messages.ReplyMessageDTO;
+import finalproject.petable.model.dto.messages.ShowMessageDTO;
+import finalproject.petable.model.dto.pets.PetDisplayInfoDTO;
+import finalproject.petable.model.dto.users.ClientProfileDTO;
+import finalproject.petable.model.dto.users.ShelterProfileDTO;
 import finalproject.petable.model.entity.BaseUser;
 import finalproject.petable.model.entity.Shelter;
 import finalproject.petable.service.*;
@@ -28,16 +32,19 @@ public class HomeController {
     private final ClientService clientService;
     private final MessageService messageService;
     private final UserService userService;
+    private final SuccessStoriesService storiesService;
 
-    public HomeController(ShelterService shelterService, ClientService clientService, MessageService messageService, UserService userService) {
+    public HomeController(ShelterService shelterService, ClientService clientService, MessageService messageService, UserService userService, SuccessStoriesService storiesService) {
         this.shelterService = shelterService;
         this.clientService = clientService;
         this.messageService = messageService;
         this.userService = userService;
+        this.storiesService = storiesService;
     }
 
     @GetMapping("/")
-    public String index() {
+    public String index(Model model) {
+        model.addAttribute("topStories", storiesService.getTopStories());
         return "index";
     }
 
@@ -85,7 +92,7 @@ public class HomeController {
     @PostMapping("/shelter-profile/{shelterId}")
     public String editShelterProfileInfo(@PathVariable Long shelterId,
                                   @ModelAttribute("shelterProfileInfo") ShelterProfileDTO shelterProfileInfo) {
-        String username = shelterService.findById(shelterId).getUsername();
+        String username = userService.getById(shelterId).getUsername();
         shelterProfileInfo.setId(shelterId);
         shelterService.editShelterInfo(shelterProfileInfo);
         if (!username.equals(shelterProfileInfo.getUsername())) {
@@ -97,7 +104,7 @@ public class HomeController {
     @PostMapping("/client-profile/{clientId}")
     public String editClientProfileInfo(@PathVariable Long clientId,
                                          @ModelAttribute("clientProfileInfo") ClientProfileDTO clientProfileInfo) {
-        String username = clientService.findById(clientId).getUsername();
+        String username = userService.getById(clientId).getUsername();
         clientProfileInfo.setId(clientId);
         clientService.editClientInfo(clientProfileInfo);
         if (!username.equals(clientProfileInfo.getUsername())) {

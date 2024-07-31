@@ -35,7 +35,7 @@
                 <form th:action="@{/pet-profile/remove-pet/{id}(id=${petProfileData.getId()})}"
                       th:method="delete">
                     <input type="hidden" name="_method" value="delete"/>
-                    <button sec:authorize="!hasRole('CLIENT')"
+                    <button sec:authorize="hasAnyRole('SHELTER','ADMIN')"
                             th:href="@{/pet-profile/remove-pet/{id}(id=${petProfileData.getId()})}"
                             class="btn btn-danger btn-sm">Delete<i class="bi bi-x-square ms-1"></i>
                     </button>
@@ -161,6 +161,7 @@
             </div>
         </div>
     </div>
+</div>
 
 <!-- Edit info Modal -->
 <div class="modal fade" id="editInfo" tabindex="-1" aria-labelledby="editInfoLabel" aria-hidden="true">
