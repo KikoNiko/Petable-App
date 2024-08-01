@@ -58,7 +58,7 @@ public class HomeController {
                 } else if (authority.getAuthority().equals("ROLE_SHELTER")) {
                     return "redirect:/shelter-profile";
                 } else if (authority.getAuthority().equals("ROLE_ADMIN")) {
-                    return "redirect:/admin-page";
+                    return "redirect:/admin";
                 }
             }
         }

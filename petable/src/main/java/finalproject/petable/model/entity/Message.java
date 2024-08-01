@@ -2,6 +2,9 @@ package finalproject.petable.model.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
@@ -12,9 +15,9 @@ public class Message extends BaseEntity{
     private Long senderId;
 
     private Long receiverId;
-
+    @NotBlank
     private String subject;
-
+    @NotBlank
     private String body;
 
     private LocalDate date;

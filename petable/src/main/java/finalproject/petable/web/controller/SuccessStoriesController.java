@@ -53,7 +53,7 @@ public class SuccessStoriesController {
     @DeleteMapping("/{id}")
     public String deleteStory(@PathVariable Long id) {
         storiesService.deleteStory(id);
-        return "redirect:/success-stories";
+        return "redirect:/stories/all";
     }
 
 }

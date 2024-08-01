@@ -18,13 +18,6 @@
                             <div class="d-flex justify-content-center">
                                 <p class="lead fs-4 fw-bolder" th:text="${allUsers.get(0).getUsername()}"></p>
                             </div>
-                            <div class="d-flex justify-content-center">
-                                <div class="btn btn-primary btn-rounded">
-                                    <label class="form-label text-white m-1" for="profileImage">Choose file</label>
-                                    <input type="file" class="form-control d-none" id="profileImage"
-                                           onchange="displaySelectedImage(event, 'profileImage')" />
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -63,9 +56,9 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <button th:href="@{/}"
-                                                        class="btn btn-sm btn-warning btn-sm">Edit <i class="bi bi-pencil ms-1"></i>
-                                                </button>
+                                                <a class="btn btn-warning btn-sm"
+                                                   data-bs-toggle="modal"
+                                                   data-bs-target="#editInfo">Edit <i class="bi bi-pencil ms-1"></i></a>
                                             </td>
                                         </tr>
 
@@ -85,22 +78,5 @@
 </main>
 
 <footer th:replace="~{fragments/footer::footer}"></footer>
-
-<script>
-    function displaySelectedImage(event, elementId) {
-        const selectedImage = document.getElementById(elementId);
-        const fileInput = event.target;
-
-        if (fileInput.files && fileInput.files[0]) {
-            const reader = new FileReader();
-
-            reader.onload = function(e) {
-                selectedImage.src = e.target.result;
-            };
-
-            reader.readAsDataURL(fileInput.files[0]);
-        }
-    }
-</script>
 </body>
 </html>

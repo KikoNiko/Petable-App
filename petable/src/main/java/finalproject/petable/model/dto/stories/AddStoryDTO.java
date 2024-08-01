@@ -5,9 +5,11 @@ import jakarta.validation.constraints.Size;
 
 public class AddStoryDTO {
     @NotEmpty(message = "Title cannot be empty!")
+    @Size(min = 3, message = "Title should be at leas 3 characters long.")
     private String title;
 
     @NotEmpty(message = "Story cannot be empty!")
+    @Size(min = 10, message = "Story should be at least 10 characters long.")
     private String story;
 
     @Size(max = 1000, message = "Url is too long!")

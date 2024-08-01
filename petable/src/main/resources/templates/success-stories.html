@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{fragments/head::head}"></head>
 
 <body>
@@ -16,10 +17,19 @@
                     <div class="card-header fw-bolder fs-3 mt-3 rounded-4" style="border: none;">
                         <span th:text="${story.title()}"></span>
                     </div>
+
                     <div class="card-body">
                         <p class="card-text" th:text="${story.story()}"></p>
                     </div>
                 </div>
+                <form th:action="@{/stories/{id}(id=${story.id()})}"
+                      th:method="delete">
+                    <input type="hidden" name="_method" value="delete"/>
+                    <button sec:authorize="hasRole('ADMIN')"
+                            th:href="@{/stories/{id}(id=${story.id()})}"
+                            class="btn btn-danger btn-sm">Delete<i class="bi bi-x-square ms-1"></i>
+                    </button>
+                </form>
             </div>
         </div>
     </div>

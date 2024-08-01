@@ -29,7 +29,7 @@
                    aria-current="page" th:href="@{/shelter-profile}">Home</a>
                 <a class="nav-link"
                    sec:authorize="hasRole('ADMIN')"
-                   aria-current="page" th:href="@{/admin-page}">Home</a>
+                   aria-current="page" th:href="@{/admin}">Home</a>
 
                 <a class="nav-link"
                    sec:authorize="!hasRole('SHELTER')"

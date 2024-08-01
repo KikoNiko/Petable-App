@@ -17,10 +17,11 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/admin-page")
+    @GetMapping("/admin")
     public String viewAdminPage(Model model) {
         List<BaseUserDisplayInfoDTO> allUsers = userService.getAllUsersInfo();
         model.addAttribute("allUsers", allUsers);
         return "admin-page";
     }
+
 }

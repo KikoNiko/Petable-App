@@ -7,12 +7,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class BaseUserDisplayInfoDTO {
-
+    private Long id;
     private String username;
     private String email;
     private List<String> roles;
 
     public BaseUserDisplayInfoDTO(BaseUser user) {
+        this.id = user.getId();
         this.username = user.getUsername();
         this.email = user.getEmail();
         this.roles = user.getRoles()
@@ -23,6 +24,14 @@ public class BaseUserDisplayInfoDTO {
     }
 
     public BaseUserDisplayInfoDTO() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {
