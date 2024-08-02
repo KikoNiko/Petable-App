@@ -68,10 +68,8 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public PetProfileDTO getPetById(Long id) {
-        Pet pet = petRepository.findById(id).orElse(null);
-        if (pet == null) {
-            throw new PetNotFoundException("Pet not found!", id);
-        }
+        Pet pet = petRepository.findById(id)
+                .orElseThrow(() -> new PetNotFoundException("Pet not found!", id));
         return new PetProfileDTO(pet);
     }
 
@@ -84,7 +82,7 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    public void editPetInfo(PetProfileDTO petProfileInfo) {
+    public Pet editPetInfo(PetProfileDTO petProfileInfo) {
         Long petId = petProfileInfo.getId();
         Optional<Pet> optionalPet = petRepository.findById(petId);
         if (optionalPet.isEmpty()) {
@@ -94,7 +92,7 @@ public class PetServiceImpl implements PetService {
         pet.setId(petId);
         pet.setName(petProfileInfo.getName());
         pet.setLocation(petProfileInfo.getLocation());
-        petRepository.save(pet);
+        return petRepository.save(pet);
     }
 
     @Override

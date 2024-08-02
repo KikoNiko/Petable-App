@@ -3,6 +3,7 @@ package finalproject.petable.model.dto.pets;
 import finalproject.petable.model.entity.enums.Gender;
 import finalproject.petable.model.entity.enums.PetStatus;
 import finalproject.petable.model.entity.enums.PetType;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
@@ -25,9 +26,8 @@ public class PetAddDTO {
     @NotNull(message = "You must select pet status!")
     private String status;
     @NotEmpty
-    @Size(max = 50, message = "Short description cannot be longer than 50 characters.")
+    @Size(max = 200, message = "Short description cannot be longer than 200 characters.")
     private String shortDescription;
-    @Size(max = 1000)
     private String story;
 
     public Long getId() {

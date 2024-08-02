@@ -84,7 +84,6 @@ public class UserServiceImplTests {
         toTest.registerClient(cliRegDto);
 
         verify(mockClientRepository).save(clientCaptor.capture());
-
         Client savedClient = clientCaptor.getValue();
 
         Assertions.assertNotNull(savedClient);
@@ -116,7 +115,6 @@ public class UserServiceImplTests {
         toTest.registerShelter(sheRegDto);
 
         verify(mockShelterRepository).save(shelterCaptor.capture());
-
         Shelter savedShelter = shelterCaptor.getValue();
 
         Assertions.assertNotNull(savedShelter);
