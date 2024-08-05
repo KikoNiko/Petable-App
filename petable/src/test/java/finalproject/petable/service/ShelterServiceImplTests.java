@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class ShelterServiceImplTests {
-    private final String SHELTER_USERNAME = "TEST_SHELTER";
+    private final String SHELTER_USERNAME = "Test_Shelter";
     private Shelter testShelter;
 
     private ShelterServiceImpl toTest;
@@ -32,6 +32,10 @@ public class ShelterServiceImplTests {
     void setUp() {
         toTest = new ShelterServiceImpl(mockShelterRepository);
         testShelter = new Shelter();
+        testShelter.setUsername(SHELTER_USERNAME);
+        testShelter.setEmail("shelter@test.com");
+        testShelter.setSpecialNumber("1234abcd");
+        testShelter.setLocation("Test city");
     }
 
     @Test
@@ -76,5 +80,19 @@ public class ShelterServiceImplTests {
         List<String> allSheltersNames = toTest.getAllSheltersNames();
         Assertions.assertFalse(allSheltersNames.isEmpty());
         Assertions.assertTrue(allSheltersNames.contains(testShelter.getUsername()));
+    }
+
+    @Test
+    void testEditShelterInfo() {
+        when(mockShelterRepository.findById(testShelter.getId())).thenReturn(Optional.of(testShelter));
+        ShelterProfileDTO dto = new ShelterProfileDTO();
+        dto.setId(testShelter.getId());
+        dto.setUsername(testShelter.getUsername());
+        dto.setLocation("Plovdiv");
+        dto.setEmail("changed@test.com");
+
+        toTest.editShelterInfo(dto);
+        Assertions.assertEquals(dto.getEmail(), testShelter.getEmail());
+        Assertions.assertEquals(dto.getLocation(), testShelter.getLocation());
     }
 }

@@ -41,6 +41,7 @@ public class Pet extends BaseEntity{
     private List<Image> images;
 
     public Pet() {
+        this.images = new ArrayList<>();
     }
 
     public String getName() {
