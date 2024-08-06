@@ -1,9 +1,6 @@
 package com.petable.successstories.model.entity;
 
 import jakarta.persistence.*;
-import org.springframework.data.annotation.CreatedDate;
-
-import java.util.Date;
 
 @Entity
 @Table(name = "stories")

@@ -30,7 +30,7 @@ public class Pet extends BaseEntity{
     private String location;
     @Size(max = 200)
     private String shortDescription;
-    @Column(columnDefinition = "TEXT")
+    @Column()
     private String story;
     @NotNull
     @Enumerated(EnumType.STRING)
