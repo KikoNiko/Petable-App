@@ -16,7 +16,7 @@
             <div class="col-8 col-sm-4">
                 <p class="lead fw-normal fs-4">
                   Status : <span class="badge rounded-pill bg-warning text-dark"
-                                 th:text="${petProfileData.getStatus().getLabel()}"></span>
+                                 th:text="${petProfileData.getStatus()}"></span>
                 </p>
             </div>
 
@@ -169,17 +169,18 @@
                 <h1 class="modal-title fs-5" id="editInfoLabel">Edit user information</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form th:action="@{/pets/{id}(id=${petProfileData.getId()})}"
+            <form th:action="@{/pets/edit/{id}(id=${petProfileData.getId()})}"
                   th:method="post"
                   th:object="${petProfileData}">
+
                 <div class="modal-body">
                     <div class="mb-2">
-                        <label for="shelterName" class="col-form-label">
-                            Shelter Name
+                        <label for="name" class="col-form-label">
+                            Name
                         </label>
                         <input type="text"
                                class="form-control"
-                               id="shelterName"
+                               id="name"
                                th:field="*{name}"
                                th:value="${petProfileData.getName()}">
                     </div>
@@ -192,6 +193,20 @@
                                id="location"
                                th:field="*{location}"
                                th:value="${petProfileData.getLocation()}">
+                    </div>
+                    <div class="mb-2">
+                        <label class="mb-2" for="status">Status</label>
+                        <select class="form-select"
+                                id="status"
+                                th:field="*{status}"
+                                th:errorclass="'is-invalid'"
+                                aria-label="form-select">
+                            <option value="">Select Pet Status</option>
+                            <option th:each="val : ${petStatuses}"
+                                    th:value="${val}"
+                                    th:text="${val}">
+                            </option>
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">

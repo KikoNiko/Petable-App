@@ -95,7 +95,7 @@ public class PetController {
         return "pet-profile";
     }
 
-    @PostMapping("/pets/{id}")
+    @RequestMapping("/pets/edit/{id}")
     public String ediPetInfo(@PathVariable Long id,
                              @ModelAttribute("petProfileData") PetProfileDTO petProfileInfo) {
         if (!Objects.equals(petProfileInfo.getId(), id)) {

@@ -19,7 +19,7 @@ public class PetProfileDTO {
     private String location;
     private String shortDescription;
     private String story;
-    private PetStatus status;
+    private String status;
     private String shelterName;
     private String shelterLink;
     private List<Image> images;
@@ -33,7 +33,7 @@ public class PetProfileDTO {
         this.location = pet.getLocation();
         this.shortDescription = pet.getShortDescription();
         this.story = pet.getStory();
-        this.status = pet.getStatus();
+        this.status = pet.getStatus().label;
         this.shelterName = pet.getShelter().getName();
         this.shelterLink = pet.getShelter().getWebsiteUrl();
         this.images = pet.getImages();
@@ -106,11 +106,11 @@ public class PetProfileDTO {
         this.story = story;
     }
 
-    public PetStatus getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(PetStatus status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

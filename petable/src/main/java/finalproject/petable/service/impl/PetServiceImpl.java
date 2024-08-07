@@ -82,17 +82,17 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    public Pet editPetInfo(PetProfileDTO petProfileInfo) {
+    public void editPetInfo(PetProfileDTO petProfileInfo) {
         Long petId = petProfileInfo.getId();
         Optional<Pet> optionalPet = petRepository.findById(petId);
         if (optionalPet.isEmpty()) {
             throw new PetNotFoundException("Pet not found!", petId);
         }
         Pet pet = optionalPet.get();
-        pet.setId(petId);
         pet.setName(petProfileInfo.getName());
         pet.setLocation(petProfileInfo.getLocation());
-        return petRepository.save(pet);
+        pet.setStatus(PetStatus.valueOfLabel(petProfileInfo.getStatus()));
+        petRepository.save(pet);
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.petable.successstories.model.dto;
 
 public class AddStoryDTO {
-
     private String title;
 
     private String story;
