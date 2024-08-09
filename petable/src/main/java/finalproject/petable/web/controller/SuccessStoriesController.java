@@ -19,9 +19,12 @@ public class SuccessStoriesController {
         this.storiesService = storiesService;
     }
 
+    @ModelAttribute("addStoryData")
+    public AddStoryDTO addStoryData() {
+        return new AddStoryDTO();
+    }
     @GetMapping("/add")
-    public String addStoryView(Model model) {
-        model.addAttribute("addStoryData", new AddStoryDTO());
+    public String addStoryView() {
         return "add-story";
     }
 

@@ -166,7 +166,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="editInfoLabel">Edit user information</h1>
+                <h1 class="modal-title fs-5" id="editInfoLabel">Edit pet information</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form th:action="@{/pets/edit/{id}(id=${petProfileData.getId()})}"
@@ -207,6 +207,19 @@
                                     th:text="${val}">
                             </option>
                         </select>
+                    </div>
+                    <div class="mb-2">
+                        <label class="mb-2" for="story">Story</label>
+                        <textarea id="story"
+                                  th:field="*{story}"
+                                  th:errorclass="'is-invalid'"
+                                  class="form-control" rows="3"
+                                  placeholder="Write the pet's story here...">
+                        </textarea>
+                        <small th:if="${#fields.hasErrors('story')}"
+                               th:errors="*{story}"
+                               class="invalid-feedback text-danger">
+                        </small>
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -18,4 +18,5 @@ public interface PetService {
     void editPetInfo(PetProfileDTO petProfileInfo);
     void assignImageToPet(Image image, Long id);
 
+    boolean isUserAuthorized(Long petId, String username);
 }

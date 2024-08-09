@@ -10,7 +10,7 @@ spring:
     init:
       mode: never
   mvc:
-    hiddenmethod:
+    hidden-method:
       filter:
         enabled: true
 admin:

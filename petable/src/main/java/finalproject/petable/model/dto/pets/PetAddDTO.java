@@ -3,6 +3,7 @@ package finalproject.petable.model.dto.pets;
 import finalproject.petable.model.entity.enums.Gender;
 import finalproject.petable.model.entity.enums.PetStatus;
 import finalproject.petable.model.entity.enums.PetType;
+import finalproject.petable.validation.ValidPetName;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.*;
 
@@ -21,9 +22,9 @@ public class PetAddDTO {
     @Past(message = "Birthdate cannot be in the present or future!")
     private LocalDate birthdate;
     @NotEmpty
-    @Size(min = 2, max = 50)
+    @Size(min = 2, max = 50, message = "Length must be between 2 and 50 characters!")
     private String location;
-    @NotNull(message = "You must select pet status!")
+    @NotEmpty(message = "You must select pet status!")
     private String status;
     @NotEmpty
     @Size(max = 200, message = "Short description cannot be longer than 200 characters.")

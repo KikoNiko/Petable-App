@@ -10,25 +10,6 @@
             <div class="col-md-6">
                 <p class="fs-2 fw-bold">Here you can find all listed pets</p>
             </div>
-            <div class="col-md-6">
-                <form th:action="@{/pet-registry}">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Pet name">
-                        <button class="btn btn-danger"
-                                type="button" 
-                                id="dropdownFilter" 
-                                data-bs-toggle="dropdown" 
-                                aria-expanded="false">
-                            Filter<i class="bi bi-filter ms-1"></i>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownFilter">
-                            <li><a class="dropdown-item" href="#">Dogs</a></li>
-                            <li><a class="dropdown-item" href="#">Cats</a></li>
-                        </ul>
-                        <button class="btn btn-outline-warning" type="submit">Search<i class="bi bi-search ms-1"></i></button>
-                    </div> 
-                </form>  
-            </div>
         </div>
     </div>
 </div>

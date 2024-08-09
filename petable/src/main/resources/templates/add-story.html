@@ -5,11 +5,10 @@
 <header th:replace="~{fragments/navbar::navbar}"></header>
 <div class="section pt-3">
     <div class="container">
-        <h3 class="text-center pb-3">Add a new pet</h3>
+        <h3 class="text-center pb-3">Add a new story</h3>
         <form th:action="@{/stories/add}"
               th:method="post"
-              th:object="${addStoryData}"
-              enctype="multipart/form-data">
+              th:object="${addStoryData}">
             <div class="row">
                 <div class="col">
                     <div class="form-group mb-3">
@@ -36,7 +35,7 @@
                         </textarea>
                         <small th:if="${#fields.hasErrors('story')}"
                                th:errors="*{story}"
-                               class="invalid-feedback text-danger" style="font-size: 15px">
+                               class="invalid-feedback text-danger">
                         </small>
                     </div>
                     <div class="form-group mb-3">

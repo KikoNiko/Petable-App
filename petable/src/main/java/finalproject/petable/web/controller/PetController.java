@@ -106,7 +106,10 @@ public class PetController {
     }
 
     @DeleteMapping("/pets/remove/{id}")
-    public String removePet(@PathVariable Long id) {
+    public String removePet(@PathVariable Long id, @AuthenticationPrincipal AppUserDetails userDetails) {
+        if (!petService.isUserAuthorized(id, userDetails.getUsername())) {
+            return "redirect:/pets/all";
+        }
         petService.removePet(id);
         return "redirect:/pets/all";
     }

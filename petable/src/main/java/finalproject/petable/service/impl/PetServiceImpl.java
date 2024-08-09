@@ -6,6 +6,7 @@ import finalproject.petable.model.dto.pets.PetDisplayInfoDTO;
 import finalproject.petable.model.entity.Client;
 import finalproject.petable.model.entity.Image;
 import finalproject.petable.model.entity.Pet;
+import finalproject.petable.model.entity.Shelter;
 import finalproject.petable.model.entity.enums.PetStatus;
 import finalproject.petable.model.entity.enums.PetType;
 import finalproject.petable.repository.ClientRepository;
@@ -13,6 +14,7 @@ import finalproject.petable.repository.PetRepository;
 import finalproject.petable.repository.ShelterRepository;
 import finalproject.petable.service.PetService;
 import finalproject.petable.service.exception.PetNotFoundException;
+import finalproject.petable.service.exception.UserNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -92,6 +94,7 @@ public class PetServiceImpl implements PetService {
         pet.setName(petProfileInfo.getName());
         pet.setLocation(petProfileInfo.getLocation());
         pet.setStatus(PetStatus.valueOfLabel(petProfileInfo.getStatus()));
+        pet.setStory(petProfileInfo.getStory());
         petRepository.save(pet);
     }
 
@@ -104,5 +107,18 @@ public class PetServiceImpl implements PetService {
         Pet pet = optionalPet.get();
         pet.getImages().add(image);
         petRepository.save(pet);
+    }
+
+    @Override
+    public boolean isUserAuthorized(Long petId, String username) {
+        if (username.equals("admin")) {
+            return true;
+        }
+        Optional<Pet> optionalPet = petRepository.findById(petId);
+        if (optionalPet.isEmpty()) {
+            throw new PetNotFoundException("Pet with id " + petId + " not found", petId);
+        }
+        Pet pet = optionalPet.get();
+        return pet.getShelter().getUsername().equals(username);
     }
 }
