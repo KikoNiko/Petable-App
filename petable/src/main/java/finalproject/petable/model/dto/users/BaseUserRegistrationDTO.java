@@ -16,7 +16,7 @@ public class BaseUserRegistrationDTO{
     @Size(min = 5, max = 30, message = "Password length must be between 5 and 30 characters!")
     private String password;
     @NotBlank
-    @Size(min = 5, max = 30)
+    @Size(min = 5, max = 30, message = "Password length must be between 5 and 30 characters!")
     private String confirmPassword;
     private String profileImageUrl;
 

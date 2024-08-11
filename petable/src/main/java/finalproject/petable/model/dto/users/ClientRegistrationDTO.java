@@ -5,10 +5,10 @@ import jakarta.validation.constraints.Size;
 
 public class ClientRegistrationDTO extends BaseUserRegistrationDTO {
     @NotBlank(message = "First name cannot be empty!")
-    @Size(min = 2, max = 40)
+    @Size(min = 2, max = 40, message = "Length must be between 2 and 40 characters")
     private String firstName;
     @NotBlank(message = "Last name cannot be empty!")
-    @Size(min = 2, max = 40)
+    @Size(min = 2, max = 40, message = "Length must be between 2 and 40 characters")
     private String lastName;
 
 

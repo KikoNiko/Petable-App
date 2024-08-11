@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.URL;
 
 public class ShelterRegistrationDTO extends BaseUserRegistrationDTO {
     @NotBlank(message = "Shelter name cannot be empty!")
-    @Size(min = 2, max = 60)
+    @Size(min = 2, max = 60, message = "Length must be between 2 and 60 characters")
     private String name;
     @NotBlank(message = "Location cannot be empty!")
     private String location;
