@@ -17,7 +17,9 @@ import finalproject.petable.service.exception.UserNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -98,6 +100,28 @@ public class UserServiceImpl implements UserService {
     public BaseUser getById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("User not found!"));
+    }
+
+    @Override
+    public void changeUserRoles(BaseUserDisplayInfoDTO dto) {
+        Optional<BaseUser> optUser = userRepository.findById(dto.getId());
+        if (optUser.isEmpty()) {
+            throw new UserNotFoundException();
+        }
+        BaseUser user = optUser.get();
+        List<UserRole> newRoles = new ArrayList<>();
+        dto.getRoles().forEach(r -> {
+            Optional<UserRole> optRole = roleRepository.findByRole(UserRolesEnum.valueOf(r));
+            if (optRole.isEmpty()) {
+                throw new IllegalArgumentException();
+            }
+            UserRole role = optRole.get();
+            if (!newRoles.contains(role)) {
+                newRoles.add(role);
+            }
+        });
+        user.setRoles(newRoles);
+        userRepository.save(user);
     }
 
 }

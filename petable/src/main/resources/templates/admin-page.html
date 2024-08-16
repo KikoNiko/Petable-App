@@ -58,8 +58,38 @@
                                             <td>
                                                 <a class="btn btn-warning btn-sm"
                                                    data-bs-toggle="modal"
-                                                   data-bs-target="#editInfo">Edit <i class="bi bi-pencil ms-1"></i></a>
+                                                   data-bs-target="#editInfo" th:attrappend="data-bs-target=${user.getId()}">Edit <i class="bi bi-pencil ms-1"></i></a>
                                             </td>
+                                            <!-- Edit Info Modal -->
+                                            <div th:attrappend="id=${user.getId()}" class="modal fade" id="editInfo" tabindex="-1" aria-labelledby="editInfoLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="editInfoLabel">Edit user information</h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <form th:action="@{/admin/{userId}(userId=${user.getId()})}"
+                                                              th:method="post"
+                                                              th:object="${userDto}">
+                                                            <div class="modal-body">
+                                                                <p th:text="${user.getUsername()}"></p>
+                                                                <label for="roles">Choose roles:</label>
+                                                                <select name="roles" id="roles" th:field="*{roles}" multiple>
+                                                                    <option value="">Select User Roles</option>
+                                                                    <option th:each="role : ${userRoles}"
+                                                                            th:value="${role}"
+                                                                            th:text="${role}">
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- EO: Modal -->
                                         </tr>
 
                                         </tbody>

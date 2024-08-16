@@ -15,6 +15,5 @@ public interface UserService {
     List<BaseUserDisplayInfoDTO> getAllUsersInfo();
     BaseUser getByUsername(String username);
     BaseUser getById(Long id);
-
-
+    void changeUserRoles(BaseUserDisplayInfoDTO dto);
 }
