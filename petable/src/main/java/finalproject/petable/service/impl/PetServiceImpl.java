@@ -49,7 +49,7 @@ public class PetServiceImpl implements PetService {
     public void removePet(Long petId) {
         Optional<Pet> optionalPet = petRepository.findById(petId);
         if (optionalPet.isEmpty()) {
-            throw new PetNotFoundException("Pet not found!", petId);
+            throw new PetNotFoundException(petId);
         }
         Pet pet = optionalPet.get();
         clientRepository.findAll()
@@ -71,7 +71,7 @@ public class PetServiceImpl implements PetService {
     @Override
     public PetProfileDTO getPetById(Long id) {
         Pet pet = petRepository.findById(id)
-                .orElseThrow(() -> new PetNotFoundException("Pet not found!", id));
+                .orElseThrow(() -> new PetNotFoundException(id));
         return new PetProfileDTO(pet);
     }
 
@@ -88,7 +88,7 @@ public class PetServiceImpl implements PetService {
         Long petId = petProfileInfo.getId();
         Optional<Pet> optionalPet = petRepository.findById(petId);
         if (optionalPet.isEmpty()) {
-            throw new PetNotFoundException("Pet not found!", petId);
+            throw new PetNotFoundException(petId);
         }
         Pet pet = optionalPet.get();
         pet.setName(petProfileInfo.getName());
@@ -102,7 +102,7 @@ public class PetServiceImpl implements PetService {
     public void assignImageToPet(Image image, Long id) {
         Optional<Pet> optionalPet = petRepository.findById(id);
         if (optionalPet.isEmpty()) {
-            throw new PetNotFoundException("Pet with id " + id + " not found", id);
+            throw new PetNotFoundException(id);
         }
         Pet pet = optionalPet.get();
         pet.getImages().add(image);
@@ -116,7 +116,7 @@ public class PetServiceImpl implements PetService {
         }
         Optional<Pet> optionalPet = petRepository.findById(petId);
         if (optionalPet.isEmpty()) {
-            throw new PetNotFoundException("Pet with id " + petId + " not found", petId);
+            throw new PetNotFoundException(petId);
         }
         Pet pet = optionalPet.get();
         return pet.getShelter().getUsername().equals(username);

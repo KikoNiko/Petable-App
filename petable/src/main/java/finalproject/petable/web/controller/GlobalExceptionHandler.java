@@ -1,5 +1,8 @@
-package finalproject.petable.service.exception;
+package finalproject.petable.web.controller;
 
+import finalproject.petable.service.exception.PetNotFoundException;
+import finalproject.petable.service.exception.StoryNotFoundException;
+import finalproject.petable.service.exception.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -23,6 +26,14 @@ public class GlobalExceptionHandler {
         ModelAndView modelAndView = new ModelAndView("user-not-found");
         modelAndView.addObject("userId", unfe.getId());
 
+        return modelAndView;
+    }
+
+    @ResponseStatus(code = HttpStatus.NOT_FOUND)
+    @ExceptionHandler(StoryNotFoundException.class)
+    public ModelAndView handleStoryNotFound(StoryNotFoundException snfe) {
+        ModelAndView modelAndView = new ModelAndView("story-not-found");
+        modelAndView.addObject("errorMessage", snfe.getMessage());
         return modelAndView;
     }
 }

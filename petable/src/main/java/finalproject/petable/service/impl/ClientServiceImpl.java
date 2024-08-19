@@ -89,7 +89,7 @@ public class ClientServiceImpl implements ClientService {
     private Pet getPet(Long id) {
         Optional<Pet> optionalPet = petRepository.findById(id);
         if (optionalPet.isEmpty()) {
-            throw new PetNotFoundException("Pet not found!", id);
+            throw new PetNotFoundException(id);
         }
         return optionalPet.get();
     }

@@ -1,8 +1,10 @@
 package finalproject.petable.service.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import finalproject.petable.model.dto.stories.AddStoryDTO;
 import finalproject.petable.model.dto.stories.StoryDTO;
 import finalproject.petable.service.SuccessStoriesService;
+import finalproject.petable.service.exception.StoryNotFoundException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.MediaType;
@@ -42,8 +44,14 @@ public class SuccessStoriesServiceImpl implements SuccessStoriesService {
                 .get()
                 .uri("/{id}", storyId)
                 .accept(MediaType.APPLICATION_JSON)
-                .retrieve()
-                .body(StoryDTO.class);
+                .exchange(((request, response) -> {
+                    if (response.getStatusCode().is4xxClientError()) {
+                        throw new StoryNotFoundException("Story not found :(");
+                    } else {
+                        ObjectMapper objectMapper = new ObjectMapper();
+                        return objectMapper.readValue(response.getBody(), StoryDTO.class);
+                    }
+                }));
     }
 
     @Override

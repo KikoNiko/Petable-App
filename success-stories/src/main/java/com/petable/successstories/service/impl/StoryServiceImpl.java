@@ -1,5 +1,6 @@
 package com.petable.successstories.service.impl;
 
+import com.petable.successstories.exception.StoryNotFoundException;
 import com.petable.successstories.model.dto.AddStoryDTO;
 import com.petable.successstories.model.dto.StoryDTO;
 import com.petable.successstories.model.entity.Story;
@@ -32,7 +33,7 @@ public class StoryServiceImpl implements StoryService {
     @Override
     public StoryDTO getStoryById(Long id) {
         return storyRepository.findById(id).map(StoryServiceImpl::map)
-                .orElseThrow(ObjectNotFoundException::new);
+                .orElseThrow(() -> new StoryNotFoundException("Story was not found :("));
     }
 
     @Override

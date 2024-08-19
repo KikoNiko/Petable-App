@@ -7,8 +7,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class PetNotFoundException extends RuntimeException{
     private final Object id;
 
-    public PetNotFoundException(String message, Object id) {
-        super(message);
+    public PetNotFoundException(Object id) {
         this.id = id;
     }
     public Object getId() {
