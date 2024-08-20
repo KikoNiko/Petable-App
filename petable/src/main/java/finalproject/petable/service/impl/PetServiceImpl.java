@@ -15,6 +15,7 @@ import finalproject.petable.repository.ShelterRepository;
 import finalproject.petable.service.PetService;
 import finalproject.petable.service.exception.PetNotFoundException;
 import finalproject.petable.service.exception.UserNotFoundException;
+import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -120,5 +121,11 @@ public class PetServiceImpl implements PetService {
         }
         Pet pet = optionalPet.get();
         return pet.getShelter().getUsername().equals(username);
+    }
+
+    @Override
+    @Transactional
+    public void removeAdoptedPets() {
+        petRepository.findAllByStatus(PetStatus.ADOPTED).forEach(p -> removePet(p.getId()));
     }
 }

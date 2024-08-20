@@ -17,6 +17,6 @@ public interface PetService {
     List<PetDisplayInfoDTO> getAllByShelterIdAndType(Long id, PetType type);
     void editPetInfo(PetProfileDTO petProfileInfo);
     void assignImageToPet(Image image, Long id);
-
     boolean isUserAuthorized(Long petId, String username);
+    void removeAdoptedPets();
 }

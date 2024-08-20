@@ -10,9 +10,11 @@ public class Story {
     private Long id;
     @Column(nullable = false)
     private String title;
+    @Lob
     @Column(nullable = false)
     private String story;
 
+    @Column(length = 2000)
     private String imageUrl;
 
     public Long getId() {

@@ -29,6 +29,7 @@ public class PetAddDTO {
     @NotEmpty
     @Size(max = 200, message = "Short description cannot be longer than 200 characters.")
     private String shortDescription;
+    @Size(max = 4000, message = "Your story is too long...")
     private String story;
 
     public Long getId() {
