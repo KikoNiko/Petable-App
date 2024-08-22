@@ -12,6 +12,8 @@ public class PetDisplayInfoDTO {
     private String shortDescription;
 
     private PetType petType;
+    private String status;
+    private String location;
 
     private String profileImageUrl;
 
@@ -27,6 +29,8 @@ public class PetDisplayInfoDTO {
         } else if (petType.equals(PetType.DOG)) {
             this.profileImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3hTQwsrGuYW0XGXbIB4d2noVL1ZhL7llERA&s";
         }
+        this.status = pet.getStatus().label;
+        this.location = pet.getLocation();
     }
 
     public PetDisplayInfoDTO() {
@@ -62,6 +66,22 @@ public class PetDisplayInfoDTO {
 
     public void setPetType(PetType petType) {
         this.petType = petType;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getProfileImageUrl() {

@@ -14,6 +14,7 @@
     </div>
 </div>
 
+
 <!-- EO: Search field -->
 
 <!-- Dogs flip cards carousel -->
@@ -27,7 +28,9 @@
                          class="card-img-top"
                          th:alt="${dog.getName()}">
                     <div class="card-body">
-                        <h5 class="card-title" th:text="${dog.getName()}"></h5>
+                        <h5 class="card-title fw-bold" th:text="${dog.getName()}"></h5>
+                        <p><b>Status: </b><em class="card-text" th:text="${dog.getStatus()}"></em></p>
+                        <p><b>Location: </b><em class="card-text" th:text="${dog.getLocation()}"></em></p>
                         <p class="card-text" th:text="${dog.getShortDescription()}"></p>
                         <div class="card-btn">
                             <a th:href="@{/pets/{id}(id=${dog.getId()})}" class="btn btn-primary">See profile</a>
@@ -51,7 +54,9 @@
                          class="card-img-top"
                          th:alt="${cat.getName()}">
                     <div class="card-body">
-                        <h5 class="card-title" th:text="${cat.getName()}"></h5>
+                        <h5 class="card-title fw-bold" th:text="${cat.getName()}"></h5>
+                        <p><b>Status: </b><em class="card-text" th:text="${cat.getStatus()}"></em></p>
+                        <p><b>Location: </b><em class="card-text" th:text="${cat.getLocation()}"></em></p>
                         <p class="card-text" th:text="${cat.getShortDescription()}"></p>
                         <div class="card-btn">
                             <a th:href="@{/pets/{id}(id=${cat.getId()})}" class="btn btn-primary">See profile</a>

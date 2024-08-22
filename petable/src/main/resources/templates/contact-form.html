@@ -82,8 +82,9 @@
                          class="invalid-feedback text-danger"></p>
                 </div>
                 <div class="col-12 col-md-6">
-                    <label for="petSelect" class="form-label">Choose pet type <span class="text-danger">*</span></label>
+                    <label for="petType" class="form-label">Choose pet type <span class="text-danger">*</span></label>
                     <select class="form-select"
+                            id="petType"
                             aria-label="form-select"
                             th:field="*{petType}"
                             th:errorclass="'is-invalid'">

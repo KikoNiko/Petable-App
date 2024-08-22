@@ -1,5 +1,6 @@
 package finalproject.petable.model.entity;
 
+import finalproject.petable.validation.ValidCityName;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -18,6 +19,7 @@ public class Shelter extends BaseUser {
     @Column(unique = true)
     private String name;
     @NotBlank
+    @ValidCityName
     private String location;
     @NotBlank
     @Column(unique = true)
