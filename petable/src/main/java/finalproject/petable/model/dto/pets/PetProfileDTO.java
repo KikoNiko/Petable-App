@@ -21,6 +21,7 @@ public class PetProfileDTO {
     private String story;
     private String status;
     private String shelterName;
+    private String shelterUsername;
     private String shelterLink;
     private List<Image> images;
 
@@ -35,6 +36,7 @@ public class PetProfileDTO {
         this.story = pet.getStory();
         this.status = pet.getStatus().label;
         this.shelterName = pet.getShelter().getName();
+        this.shelterUsername = pet.getShelter().getUsername();
         this.shelterLink = pet.getShelter().getWebsiteUrl();
         this.images = pet.getImages();
     }
@@ -120,6 +122,18 @@ public class PetProfileDTO {
 
     public void setShelterName(String shelterName) {
         this.shelterName = shelterName;
+    }
+
+    public String getShelterUsername() {
+        return shelterUsername;
+    }
+
+    public void setShelterUsername(String shelterUsername) {
+        this.shelterUsername = shelterUsername;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 
     public String getShelterLink() {

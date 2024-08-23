@@ -39,6 +39,7 @@ public class ShelterController {
         Shelter shelter = shelterService.getByUsername(userDetails.getUsername());
         List<PetDisplayInfoDTO> allCatsByShelter = petService.getAllByShelterIdAndType(shelter.getId(), PetType.CAT);
         List<PetDisplayInfoDTO> allDogsByShelter = petService.getAllByShelterIdAndType(shelter.getId(), PetType.DOG);
+        model.addAttribute("username", shelter.getUsername());
         model.addAttribute("allCatsByShelter", allCatsByShelter);
         model.addAttribute("allDogsByShelter", allDogsByShelter);
         return "shelter-animal-list";

@@ -36,6 +36,7 @@
                       th:method="delete">
                     <input type="hidden" name="_method" value="delete"/>
                     <button sec:authorize="hasAnyRole('SHELTER','ADMIN')"
+                            th:if="${#strings.equals(#authentication.name, petProfileData.getShelterUsername())}"
                             th:href="@{/pets/remove/{id}(id=${petProfileData.getId()})}"
                             class="btn btn-danger btn-sm">Delete<i class="bi bi-x-square ms-1"></i>
                     </button>
@@ -114,7 +115,7 @@
                                             <a th:href="${petProfileData.getShelterLink()}" target="_blank" class="fs-5 ps-3" style="text-decoration: none; color: green;"> <i class="bi bi-asterisk"></i> Link to Shelter</a>
                                         </div>
                                         <div class="col-md-4 text-center">
-                                            <a href="/contact-form" class="btn btn-primary"> I want to meet <span th:text="${petProfileData.getName()}"></span></a>
+                                            <a th:href="@{/contact-form}" class="btn btn-primary"> I want to meet <span th:text="${petProfileData.getName()}"></span></a>
                                         </div>
                                         <div class="col-md-4" sec:authorize="hasRole('CLIENT')">
                                             <form th:action="@{/pet-profile/add-to-favorites/{id}(id=${petProfileData.getId()})}"
@@ -129,7 +130,9 @@
                                         </div>
                                     </div>
                                     <!-- TODO: Edit pet info -->
-                                    <div sec:authorize="hasRole('SHELTER')" class="row pt-4">
+                                    <div sec:authorize="hasRole('SHELTER')"
+                                         th:if="${#strings.equals(#authentication.name, petProfileData.getShelterUsername())}"
+                                         class="row pt-4">
                                         <div class="col-md-4">
                                             <p class="text-center pe-3">
                                                 <a class="btn btn-sm btn-warning"

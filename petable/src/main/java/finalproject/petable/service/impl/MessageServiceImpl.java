@@ -30,11 +30,11 @@ public class MessageServiceImpl implements MessageService {
         Message message = new Message();
         Optional<BaseUser> optionalSender = userRepository.findByUsername(messageData.getSenderUsername());
         if (optionalSender.isEmpty()) {
-            throw new UserNotFoundException("User not found");
+            throw new UserNotFoundException();
         }
         Optional<BaseUser> optionalReceiver = userRepository.findByUsername(messageData.getReceiverUsername());
         if (optionalReceiver.isEmpty()) {
-            throw new UserNotFoundException("User not found");
+            throw new UserNotFoundException();
         }
         BaseUser sender = optionalSender.get();
         BaseUser receiver = optionalReceiver.get();

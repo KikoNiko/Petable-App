@@ -18,4 +18,5 @@ public interface MessageService {
     Message getMessageById(Long id);
 
     void replyMessage(Long messageId, ReplyMessageDTO message);
+
 }
